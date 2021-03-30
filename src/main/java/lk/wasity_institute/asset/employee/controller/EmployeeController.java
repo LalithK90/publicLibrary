@@ -70,7 +70,6 @@ public class EmployeeController {
   //Send all employee data
   @RequestMapping
   public String employeePage(Model model) {
-    System.out.println(" im in");
     List< Employee > employees = new ArrayList<>();
     for ( Employee employee : employeeService.findAll()
         .stream()
@@ -132,7 +131,7 @@ public class EmployeeController {
 
     if ( employee.getId() == null ) {
       Employee lastEmployee = employeeService.lastEmployee();
-      if ( lastEmployee == null ) {
+      if ( lastEmployee.getCode() == null ) {
         employee.setCode("SSME" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
       } else {
         employee.setCode("SSME" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(4)).toString());

@@ -1,7 +1,6 @@
 package lk.wasity_institute.asset.subject.controller;
 
 
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.subject.entity.Subject;
 import lk.wasity_institute.asset.subject.service.SubjectService;
 import lk.wasity_institute.util.interfaces.AbstractController;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/subject" )
@@ -26,7 +24,7 @@ public class SubjectController implements AbstractController< Subject, Integer >
   @GetMapping
   public String findAll(Model model) {
     model.addAttribute("subjects",
-                       subjectService.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList()));
+                       subjectService.findAll());
     return "subject/subject";
   }
 

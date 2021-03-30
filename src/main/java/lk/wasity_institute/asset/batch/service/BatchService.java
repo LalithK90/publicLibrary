@@ -9,6 +9,7 @@ import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -60,5 +61,10 @@ public class BatchService implements AbstractService< Batch, Integer > {
 
   public List< Batch > findByClassDay(ClassDay classDay) {
     return batchDao.findByClassDay(classDay);
+  }
+
+  public Batch findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetween(String year, ClassDay classDay, LocalTime startAt, LocalTime endAt, LocalTime startAt1,
+                                                                         LocalTime endAt1) {
+  return batchDao.findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetween(year,classDay,startAt,endAt,startAt1,endAt1);
   }
 }
