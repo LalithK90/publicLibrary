@@ -15,7 +15,7 @@
   <div class="col-4" >
   </div >
   <div class="col-4" >
-    <h1 >Add a new studet</h1 >
+    <h1 >Add a new Student</h1 >
   </div >
   <div class="col-4" >
     <a href="/student" >
@@ -25,71 +25,117 @@
 </div >
 <div class="container" >
   <form action="/student/save" data-th-object="${student}" method="post" >
+    <!--index-->
     <div class="form-group" data-th-if="${addStatus==false}" >
-      <label class="col-sm-3 control-label" data-th-for="${id}" >Index</label >
-      <div class="col-sm-9" >
+      <label class="col-6 control-label" data-th-for="${id}" >Index</label >
+      <div class="col-6" >
         <input type="text" readonly data-th-field="*{id}" id="id" placeholder="IndeX" class="form-control" autofocus >
       </div >
     </div >
+    <!--registrationId-->
     <div class="form-group" data-th-if="${addStatus==false}" >
-      <label class="col-sm-2 control-label" data-th-for="${regNo}" >Registration ID</label >
-      <div class="col-sm-5" >
+      <label class="col-6 control-label" data-th-for="${regNo}" >Registration ID</label >
+      <div class="col-6" >
         <input type="text" id="regNo" class="form-control" data-th-field="*{regNo}" >
         <input type="text" class="form-control" data-th-field="*{liveDead}" hidden >
       </div >
     </div >
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${firstName}" >First name</label >
-      <div class="col-sm-4" >
-        <input type="text" id="firstName" class="form-control" data-th-field="*{firstName}" >
+    <div class="row" >
+      <div class="col-6" >
+        <!--firstName-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${firstName}" >First name</label >
+          <div class="col-6" >
+            <input type="text" id="firstName" class="form-control" data-th-field="*{firstName}" >
+          </div >
+        </div >
+
       </div >
-    </div >
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${lastName}" >Last name</label >
-      <div class="col-sm-4" >
-        <input type="text" id="lastName" class="form-control" data-th-field="*{lastName}" >
-      </div >
-    </div >
-    <!--Gender-->
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${'gender'}" >Gender :</label >
-      <div class="col-sm-4" >
-        <div class="custom-control custom-checkbox custom-control-inline "
-             data-th-each="genders,index : ${gender}" >
-          <input class="custom-control-input gender" required
-                 data-th-name="${'gender'}"
-                 data-th-value="${genders}"
-                 data-th-id="${index.index}+${genders}" type="radio"
-                 data-th-checked="${genders==student.gender}" />
-          <label class="custom-control-label"
-                 data-th-for="${index.index}+${genders}"
-                 data-th-text="${genders.gender}" > radio
-          </label >
+      <div class="col-6" >
+        <!--lastName-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${lastName}" >Last name</label >
+          <div class="col-6" >
+            <input type="text" id="lastName" class="form-control" data-th-field="*{lastName}" >
+          </div >
         </div >
       </div >
     </div >
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${dob}" >Date of birth</label >
-      <div class="col-sm-4" >
-        <input type="date" id="dob" class="form-control" data-th-field="*{dob}" >
+    <div class="row" >
+      <div class="col-6" >
+        <!--Gender-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${'gender'}" >Gender :</label >
+          <div class="col-6" >
+            <div class="custom-control custom-checkbox custom-control-inline "
+                 data-th-each="genders,index : ${gender}" >
+              <input class="custom-control-input gender" required
+                     data-th-name="${'gender'}"
+                     data-th-value="${genders}"
+                     data-th-id="${index.index}+${genders}" type="radio"
+                     data-th-checked="${genders==student.gender}" />
+              <label class="custom-control-label"
+                     data-th-for="${index.index}+${genders}"
+                     data-th-text="${genders.gender}" > radio
+              </label >
+            </div >
+          </div >
+        </div >
+
+      </div >
+      <div class="col-6" >
+        <!--dateOfBirth-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${dob}" >Date of birth</label >
+          <div class="col-6" >
+            <input type="date" id="dob" class="form-control" data-th-field="*{dob}" >
+          </div >
+        </div >
       </div >
     </div >
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${address}" >Address</label >
-      <div class="col-sm-4" >
-        <textarea id="address" class="form-control" data-th-field="*{address}" ></textarea >
+    <div class="row" >
+      <div class="col-6" >
+        <!--address-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${address}" >Address</label >
+          <div class="col-6" >
+            <textarea id="address" class="form-control" data-th-field="*{address}" ></textarea >
+          </div >
+        </div >
+
+      </div >
+      <div class="col-6" >
+        <!--city-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${city}" >City</label >
+          <div class="col-6" >
+            <input type="text" id="city" class="form-control" data-th-field="*{city}" >
+          </div >
+        </div >
       </div >
     </div >
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${city}" >City</label >
-      <div class="col-sm-4" >
-        <input type="text" id="city" class="form-control" data-th-field="*{city}" >
+    <div class="row" >
+      <div class="col-6" >
+        <!--grade-->
+        <div class="form-group" >
+          <label class="col-sm-1 control-label" data-th-for="${'grade'}" >Grade</label >
+          <div class="col-sm-5" >
+            <select id="grade" class="form-control" data-th-field="*{grade}" required >
+              <option value="" >Select the Grade</option >
+              <option data-th-each="grade : ${grades}"
+                      data-th-text="${grade.grade}"
+                      data-th-value="${grade}" ></option >
+            </select >
+          </div >
+        </div >
       </div >
+      <div class="col-6" ></div >
     </div >
+    <!--school-->
     <div class="form-group" >
-      <label class="col-sm-3 control-label" >School</label >
-      <div class="col-sm-9" >
-        <select id="school" class="form-control" data-th-field="*{school}" >
+      <label class="col-6 control-label" for="school">School</label >
+      <div class="col-6" >
+        <select id="school" class="form-control" data-th-field="*{school}" required>
           <option value="" selected disabled >Please select</option >
           <option data-th-each="school : ${schools}"
                   data-th-text="${school.name}"
@@ -98,42 +144,47 @@
         </select >
       </div >
     </div >
-    <div class="form-group" >
-      <label class="col-sm-1 control-label" data-th-for="${'grade'}" >Grade</label >
-      <div class="col-sm-5" >
-        <select id="grade" class="form-control" data-th-field="*{grade}" required >
-          <option value="" >Select the Grade</option >
-          <option data-th-each="grade : ${grades}"
-                  data-th-text="${grade.grade}"
-                  data-th-value="${grade}" ></option >
-        </select >
+    <div class="row" >
+      <div class="col-6" >
+        <!--mobileNumber-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${mobile}" >Mobile number</label >
+          <div class="col-6" >
+            <input type="tel" id="mobile" class="form-control" data-th-field="*{mobile}" >
+          </div >
+        </div >
+      </div >
+      <div class="col-6" >
+        <!--fixedNumber-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${home}" >Fixed number</label >
+          <div class="col-6" >
+            <input type="tel" id="home" class="form-control" data-th-field="*{home}" >
+          </div >
+        </div >
       </div >
     </div >
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${mobile}" >Mobile number</label >
-      <div class="col-sm-4" >
-        <input type="tel" id="mobile" class="form-control" data-th-field="*{mobile}" >
+    <div class="row" >
+      <div class="col-6" >
+        <!--guardian-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${guardian}" >Guardian's name</label >
+          <div class="col-6" >
+            <input type="text" id="guardian" class="form-control" data-th-field="*{guardian}" >
+          </div >
+        </div >
       </div >
-    </div >
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${home}" >Fixed number</label >
-      <div class="col-sm-4" >
-        <input type="tel" id="home" class="form-control" data-th-field="*{home}" >
-      </div >
-    </div >
-    <div class="form-group" >
-      <label class="col-sm-2 control-label" data-th-for="${guardian}" >Guardian's name</label >
-      <div class="col-sm-4" >
-        <input type="text" id="guardian" class="form-control" data-th-field="*{guardian}" >
-      </div >
-    </div >
-    <div class="form-group" >
-      <label class="col-sm-1 control-label" data-th-for="${'batches'}" >Available Batches</label >
-      <div class="col-sm-5" >
-        <select id="batches" class="form-control" >
-          <option value="" >Choose</option >
+      <div class="col-6" >
+        <!--available Batches-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${'batches'}" >Available Batches</label >
+          <div class="col-6" >
+            <select id="batches" class="form-control" >
+              <option value="" >Choose</option >
 
-        </select >
+            </select >
+          </div >
+        </div >
       </div >
     </div >
     <div class="form-row mt-4 text-center" >
@@ -149,7 +200,8 @@
           </tr >
           </thead >
           <tbody >
-          <tr data-th-each="batchStudent, index : ${student.batchStudents}" >
+          <tr data-th-if="${not #lists.isEmpty(student.batchStudents)}"
+              data-th-each="batchStudent, index : ${student.batchStudents}" >
             <td >
               <strong >
                 <span class="control-label" data-th-id="${'tx'+index.index}"
@@ -190,16 +242,18 @@
       </div >
 
     </div >
-    <div class="row container-fluid" >
-      <div class="col-sm-2 col-sm-offset-2" >
-        <button type="link" class="btn btn-danger btn-block" >Back</button >
+    <div class="row container" >
+      <div class="col-4" >
+        <a href="/student" >
+          <button type="button" class="btn btn-danger btn-block" >Back</button >
+        </a >
       </div >
 
-      <div class="col-sm-2 col-sm-offset-2" >
+      <div class="col-4" >
         <button type="reset" class="btn btn-warning btn-block" >Clear Data</button >
       </div >
 
-      <div class="col-sm-2 col-sm-offset-2" >
+      <div class="col-4" >
         <button type="submit" class="btn btn-success btn-block" >Submit</button >
       </div >
     </div >
@@ -213,29 +267,44 @@
 <script >
 
     $("#grade").change(function () {
-        let url = $("#batchUrl").val() + $(this).val();
-        let studentId = $("#id").val();
-        if (!studentId) {
-            url = $("#batchUrl").val() + $(this).val() + "/" + studentId;
-        }
+        gradeChange($(this).val());
+        deleteAllTableRow(selectedBatchInTable);
+    });
 
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: function (resp) {
-                for (let i = 0; i < resp.length; i++) {
-                    $("#batches").append(new Option(resp[i].name, resp[i].id));
-                }
-            },
-            error: function (err) {
-                console.log(err);
-                swal({
-                    title: "There is no more batches match with this grade",
-                    icon: "warning",
-                });
+    function gradeChange(val) {
+        if (val.length !== 0) {
+            let url = $("#batchUrl").val() + val;
+            let studentId = $("#id").val();
+            if (studentId) {
+                url = $("#batchUrl").val() + val + "/" + studentId;
             }
-        });
-    })
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (resp) {
+                    addOptionTag(resp);
+                },
+                error: function (err) {
+                    console.log(err);
+                    swal({
+                        title: "There is no more batches match with this grade",
+                        icon: "warning",
+                    });
+                }
+            });
+        }
+    }
+
+    function addOptionTag(resp) {
+        console.log("length " + resp.length);
+        $("#batches").empty();
+        $("#batches").append(`<option value="">Please Select</option>`);
+        for (let i = 0; i < resp.length; i++) {
+            $("#batches").append(`<option value="${resp[i].id}">${resp[i].name}</option>`);
+        }
+        selectedBatch();
+    }
 
     //add new item and price
     $("#batches").bind('change', function () {
@@ -276,14 +345,14 @@
                             <input id="vl${rowCount}" type="hidden" name="batchStudents[${rowCount}].batch.id" value="${value.value}">
                         </td>
                         <td>
-  <div class="custom-control custom-checkbox custom-control-inline " >
-    <input class="custom-control-input" required   id="${rowCount}+ACTIVE"        name="batchStudents[${rowCount}].liveDead"           value="ACTIVE" type="radio"/>
-    <label class="custom-control-label"           for="${rowCount}+ACTIVE">Active    </label >
-</div>
-  <div class="custom-control custom-checkbox custom-control-inline " >
-      <input class="custom-control-input" required id="${rowCount}+STOP"           name="batchStudents[${rowCount}].liveDead"           value="STOP" type="radio"/>
-    <label class="custom-control-label"           for="${rowCount}+STOP">Deactive    </label >
-  </div >
+                          <div class="custom-control custom-checkbox custom-control-inline " >
+                            <input class="custom-control-input" required   id="${rowCount}+ACTIVE" name="batchStudents[${rowCount}].liveDead" value="ACTIVE" type="radio" checked="checked"/>
+                            <label class="custom-control-label"  for="${rowCount}+ACTIVE" >Active </label >
+                          </div>
+                          <div class="custom-control custom-checkbox custom-control-inline " >
+                            <input class="custom-control-input" required id="${rowCount}+STOP" name="batchStudents[${rowCount}].liveDead" value="STOP" type="radio"/>
+                            <label class="custom-control-label" for="${rowCount}+STOP">Deactivate </label >
+                          </div >
                         </td>
 
                         <td>
@@ -298,6 +367,8 @@
 
     $(document).ready(function () {
         selectedBatch();
+        gradeChange($("#grade").val());
+
     });
 
     function selectedBatch() {

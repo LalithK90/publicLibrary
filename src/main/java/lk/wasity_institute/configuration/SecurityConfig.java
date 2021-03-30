@@ -22,7 +22,7 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final String[] ALL_PERMIT_URL = {"/favicon.ico", "/img/**", "/css/**", "/js/**", "/webjars/**",
-      "/login", "/select/**", "/", "/index","/info"};
+      "/login", "/select/**", "/", "/index"};
 
   @Bean
   public UserDetailsServiceImpl userDetailsService() {
@@ -71,9 +71,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-//    http.csrf().disable();
-//    http.authorizeRequests().antMatchers("/").permitAll();
-    // For developing easy to give permission all lin
+/*            http.csrf().disable();
+            http.authorizeRequests().antMatchers("/").permitAll();*/
 
 
     http
@@ -84,13 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //to see actuator details
                     .antMatchers(ALL_PERMIT_URL).permitAll()
                     //this is used the normal admin to give access every url mapping
-                    .antMatchers("/employee").hasRole("ADMIN")
-                    //Need to login for access those are
-                    .antMatchers("/employee1/**").hasRole("MANAGER")
-                    .antMatchers("/user/**").hasRole("ADMIN")
-                    .antMatchers("/petition/**").hasRole("ADMIN")
-                    .antMatchers("/minutePetition/**").hasRole("MANAGER")
-                    .antMatchers("/invoiceProcess/add").hasRole("CASHIER")
+                    .antMatchers("/category/**").hasAnyRole("ADMIN", "MANAGER")
 
                     .anyRequest()
                     .authenticated())
@@ -123,13 +116,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                     .invalidSessionUrl("/login")
                     .maximumSessions(1)
-                    .expiredUrl("/logout")
+                    .expiredUrl("/login")
                     .sessionRegistry(sessionRegistry()))
         //Cross site disable
-        .rememberMe().key("uniqueAndSecret").tokenValiditySeconds(86400)
-        .and()
         .csrf(AbstractHttpConfigurer::disable)
         .exceptionHandling();
 
   }
 }
+

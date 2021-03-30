@@ -19,17 +19,12 @@ public class UiController {
     this.dateTimeAgeService = dateTimeAgeService;
   }
 
-  @GetMapping( value = {"/","/index"} )
+  @GetMapping( value = {"/", "/index"} )
   public String index() {
     return "index";
   }
 
-  @GetMapping(value = "/info")
-  public String info() {
-    return "info";
-  }
-
-  @GetMapping(value = {"/home", "/mainWindow"})
+  @GetMapping( value = {"/home", "/mainWindow"} )
   public String getHome(Model model) {
     //do some logic here if you want something to be done whenever
         /*User authUser = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -47,31 +42,5 @@ public class UiController {
     return "mainWindow";
   }
 
-  @GetMapping( value = {"/login"} )
-  public String getLogin() {
-    return "login/login";
-  }
-
-//  @GetMapping( value = {"/login/error10"} )
-//  public String getLogin10(Model model) {
-//    model.addAttribute("err", "You already entered wrong credential more than 10 times. \n Please meet the system" +
-//        " admin");
-//    return "login/login";
-//  }
-//
-//  @GetMapping( value = {"/login/noUser"} )
-//  public String getLoginNoUser(Model model) {
-//    model.addAttribute("err", "There is no user according to the user name. \n Please try again !!");
-//    return "login/login";
-//  }
-
-  @GetMapping( value = {"/unicodeTamil"} )
-  public String getUnicodeTamil() {
-    return "fragments/unicodeTamil";
-  }
-
-  @GetMapping( value = {"/unicodeSinhala"} )
-  public String getUnicodeSinhala() {
-    return "fragments/unicodeSinhala";
-  }
 }
+

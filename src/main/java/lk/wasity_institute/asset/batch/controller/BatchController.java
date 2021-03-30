@@ -89,19 +89,23 @@ public class BatchController implements AbstractController< Batch, Integer > {
   @PostMapping( "/save" )
   public String persist(@Valid @ModelAttribute Batch batch, BindingResult bindingResult,
                         RedirectAttributes redirectAttributes, Model model) {
-    if ( bindingResult.hasErrors() ) {
-      return commonMethod(model, batch, true);
-    }
-
     if ( batch.getId() == null ) {
-      Batch batchDb = batchService.findByName(batch.getName());
+      Batch batchDbDayAndStartAndEndTime =
+          batchService.findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetween(batch.getYear(), batch.getClassDay()
+              , batch.getStartAt(), batch.getEndAt(), batch.getStartAt(), batch.getEndAt());
+         System.out.println(batchDbDayAndStartAndEndTime.toString());
 
-      if ( batchDb != null ) {
+      if ( batchDbDayAndStartAndEndTime != null ) {
         ObjectError error = new ObjectError("batch",
                                             "This batch is already in the system. ");
         bindingResult.addError(error);
         return commonMethod(model, batch, true);
       }
+
+      if ( bindingResult.hasErrors() ) {
+        return commonMethod(model, batch, true);
+      }
+
       // need to create auto generated registration number
       Batch lastBatch = batchService.lastBatchOnDB();
       if ( lastBatch != null ) {
@@ -146,9 +150,18 @@ public class BatchController implements AbstractController< Batch, Integer > {
     List< BatchStudent > batchStudents = batchStudentService.findByStudent(studentService.findById(id));
     List< Batch > notAssignBatch = new ArrayList<>();
     List< Batch > batches = batchService.findByGrade(grade);
-    for ( Batch batch : batches )
-      for ( BatchStudent batchStudent : batchStudents )
-        if ( !batchStudent.getBatch().equals(batch) ) notAssignBatch.add(batch);
+
+    if ( !batchStudents.isEmpty() ) {
+      for ( Batch batch : batches ) {
+        for ( BatchStudent batchStudent : batchStudents ) {
+          if ( !batchStudent.getBatch().equals(batch) ) {
+            notAssignBatch.add(batch);
+          }
+        }
+      }
+    } else {
+      notAssignBatch.addAll(batches);
+    }
 
     MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(notAssignBatch);
 

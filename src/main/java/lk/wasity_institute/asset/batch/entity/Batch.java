@@ -10,14 +10,12 @@ import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.teacher.entity.Teacher;
 import lk.wasity_institute.asset.time_table.entity.TimeTable;
 import lk.wasity_institute.util.audit.AuditEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -25,6 +23,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @JsonFilter( "Batch" )
 public class Batch extends AuditEntity {
 
@@ -45,9 +44,11 @@ public class Batch extends AuditEntity {
   @Enumerated( EnumType.STRING )
   private ClassDay classDay;
 
-  private String startAt;
+  @DateTimeFormat( pattern = "HH:mm" )
+  private LocalTime startAt;
 
-  private String endAt;
+  @DateTimeFormat( pattern = "HH:mm" )
+  private LocalTime endAt;
 
   @ManyToOne( fetch = FetchType.EAGER )
   private Teacher teacher;
