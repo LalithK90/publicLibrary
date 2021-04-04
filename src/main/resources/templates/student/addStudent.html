@@ -3,9 +3,10 @@
 <!--Styles, meta data, and title are included-->
 <head data-th-replace="~{fragments/header :: headerFragment}" >
   <meta charset="UTF-8" >
-  <title >Success Student Management System</title >
+  <title >Wasity Student Management System</title >
 </head >
-<body >
+
+<body style="margin-top: 90px;">
 
 
 <!--Nav bar is included-->
@@ -23,8 +24,8 @@
     </a >
   </div >
 </div >
-<div class="container" >
-  <form action="/student/save" data-th-object="${student}" method="post" >
+<div class="container-fluid" >
+  <form action="/student/save" data-th-object="${student}" method="post" id="form" >
     <!--index-->
     <div class="form-group" data-th-if="${addStatus==false}" >
       <label class="col-6 control-label" data-th-for="${id}" >Index</label >
@@ -249,9 +250,9 @@
         </a >
       </div >
 
-      <div class="col-4" >
-        <button type="reset" class="btn btn-warning btn-block" >Clear Data</button >
-      </div >
+      <div class="col-4 col-sm-offset-2">
+        <button type="reset" class="btn btn-warning btn-block">Clear Data</button>
+      </div>
 
       <div class="col-4" >
         <button type="submit" class="btn btn-success btn-block" >Submit</button >
