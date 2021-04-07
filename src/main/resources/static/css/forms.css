@@ -1,10 +1,11 @@
-form{
-  background-color: rgba(179, 81, 6, 0.10);
+form,table{
+  background-color: rgba(179, 81, 6, 0.30);
   border-radius: 5%;
   /*padding-top: 4%;*/
   margin-top: 5%;
 
 }
+
 body{
   background-image: url("../img/bookalter.jpg");
   background-size: cover;
@@ -41,5 +42,19 @@ button[type="reset"]{
 }
 #btn:hover{
   background-color: rgba(219,67,42,0.99);
+}
+#edit{
+width:15%;
+  border-color: rgba(9, 118, 193, 0.99);
+  border-radius: 12px;
+}
+#delete{
+  width: 15%;
+  background-color: rgba(253, 25, 23, 0.99);
+  border-radius: 12px;
+  border-color: rgba(160,16,14,0.99);
+}
+#delete:hover{
+  background-color: rgba(255,87,65,0.99);
 }
 

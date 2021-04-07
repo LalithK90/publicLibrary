@@ -3,37 +3,29 @@
 <head data-th-replace="~{fragments/header :: headerFragment}" >
   <meta charset="UTF-8" >
 </head >
-<body >
+<body style="margin-top: 90px;" >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
 
-<div class="container  form-Border" >
-  <div class="row text-center formManagement border-info" >
-    <div class="col" >
-      <a class="btn btn-outline-info" href="/home" >
-        Back To Home
-      </a >
-    </div >
+<div class="card bg-gradient-light text-center">
+  <h1>
+    <span data-th-text="${addStatus==true?'New Employee':'Update Employee Details'}" ></span >
+  </h1>
+</div>
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <a href="/employee">
+      <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Employee list</button>
+    </a>
+  </div>
+</div>
 
-    <div class="col" >
-      <a href="/employee" class="btn btn-info" >
-        View Employees
-      </a >
-    </div >
-  </div >
-  <div class="row text-center" >
-    <div class="col" >
-      <h4 class="text-info text-center" >
-        <strong >
-          <span data-th-text="${addStatus==true?'New Employee':'Update Employee Details'}" ></span >
-        </strong >
-      </h4 >
-    </div >
-  </div >
-</div >
+
+
 <!--Form Content - start -->
-<div class="container-fluid bg-light formBorder" >
-  <div class="col-sm-12 flex-column " >
+<div class="container-fliud" >
+  <div class="col-md-12" >
     <form id="form" class="form-horizontal" data-th-action="${addStatus==true?'/employee/save':'/employee/update'}"
           data-th-object="${employee}" method="POST" enctype="multipart/form-data" >
       <div class="row" >
@@ -41,7 +33,7 @@
         <div class="form-group col-md-6 col-sm-6 text-left flex-column" >
           <!--Id-->
           <div id="idStatus" data-th-if="${addStatus==false}" class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="id" >ID :</label >
             </div >
             <div class="col-md-8" >
@@ -51,7 +43,7 @@
           </div >
           <!--Payrole number-->
           <div class="form-row text-right" data-th-if="${addStatus==false}">
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="name" >Employee code :</label >
             </div >
             <div class="col-md-8" >
@@ -64,7 +56,7 @@
           </div >
           <!--Tittle -->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="title" >Title :</label >
             </div >
             <div class="col-md-8" >
@@ -79,7 +71,7 @@
           </div >
           <!--Name-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="name" >Name :</label >
             </div >
             <div class="col-md-8" >
@@ -90,7 +82,7 @@
           </div >
           <!--Calling Name-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="callingName" >Calling Name :</label >
             </div >
             <div class="col-md-8" >
@@ -102,8 +94,8 @@
           </div >
           <!--Nic-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
-              <label class="control-label" for="NationalID" >NIC No :</label >
+            <div class="col-md-3" >
+              <label class="control-label" data-th-for="NationalID"  >NIC No :</label >
             </div >
             <div class="col-md-8" >
               <input data-th-field="*{nic}" class="form-control" tabindex="6" type="text"
@@ -115,8 +107,8 @@
           </div >
           <!--Gender-->
           <div class="form-row text-right" >
-            <div class="col-md-4 text-right" >
-              <label class="control-label" for="gender" >Gender :</label >
+            <div class="col-md-3 text-right" >
+              <label class="control-label" data-th-for="gender"  >Gender :</label >
             </div >
             <div class="col-md-8 text-left" >
               <div class="custom-control custom-checkbox custom-control-inline "
@@ -135,7 +127,7 @@
           </div >
           <!--Date of birth-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="dateOfBirth" >Birth date :</label >
             </div >
             <div class="col-md-8" >
@@ -148,7 +140,7 @@
           </div >
           <!--Designation-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="designation" >Designation :</label >
             </div >
             <div class="col-md-8" >
@@ -162,12 +154,9 @@
               </select >
             </div >
           </div >
-        </div >
-        <!--Right Side-->
-        <div class="form-group col-md-6 col-sm-6 text-right flex-column" >
           <!--Civil status-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="civilStatus" >Civil State :</label >
             </div >
             <div class="col-md-8" >
@@ -183,7 +172,7 @@
           </div >
           <!--Address-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="address" >Address :</label >
             </div >
             <div class="col-md-8" >
@@ -193,9 +182,16 @@
                     data-th-if="${#fields.hasErrors('address')}" id="addressError" >Error Address</span >
             </div >
           </div >
+
+
+        </div >
+        <!--Right Side-->
+        <div class="form-group col-md-6 col-sm-6 text-right flex-column" >
+
+
           <!--Mobile Number One-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="mobileOne" >Mobile One No :</label >
             </div >
             <div class="col-md-8" >
@@ -210,7 +206,7 @@
           </div >
           <!--Mobile Number Two-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="mobileTwo" >Mobile Two No :</label >
             </div >
             <div class="col-md-8" >
@@ -224,7 +220,7 @@
           </div >
           <!--Land Number-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="land" >Land No :</label >
             </div >
             <div class="col-md-8" >
@@ -237,7 +233,7 @@
           </div >
           <!--Office email-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="officeEmail" >Office Email :</label >
             </div >
             <div class="col-md-8" >
@@ -250,7 +246,7 @@
           </div >
           <!--Date of assignment-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="dateOfAssignment" >Date Of Assignment :</label >
             </div >
             <div class="col-md-8" >
@@ -263,7 +259,7 @@
           </div >
           <!--Employee status-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-3" >
               <label class="control-label" for="employeeStatus" >Employee Status :</label >
             </div >
             <div class="col-md-8" >
@@ -279,12 +275,14 @@
           </div >
           <!--Image-->
           <div class="form-row text-right" >
-            <div class="form-row " >
-              <div class="col-md-3 mr-5" >
-                <label class="control-label" >Image</label >
-                <input type="file" name="file" id="imgUpload"
+
+              <div class="col-md-3 " >
+                <label class="control-label" >Image:</label ></div>
+              <div class="col-md-8">
+                <input type="file" name="file" id="imgUpload" class="form-control"
                        accept="image/png, image/jpeg" />
-              </div >
+              </div>
+
               <div class="col-md-3" ></div >
               <div class="col-md-3 ml-5" >
                 <!--photo details-->
@@ -299,7 +297,7 @@
           <!--Created by and created at-->
           <div id="updateStatus" data-th-if="${addStatus==false}" >
             <div class="form-row text-right" >
-              <div class="col-md-4" >
+              <div class="col-md-3" >
                 <label class="control-label" for="createdBy" >Created By :</label >
               </div >
               <div class="col-md-8" >
@@ -308,7 +306,7 @@
               </div >
             </div >
             <div class="form-row text-right" >
-              <div class="col-md-4" >
+              <div class="col-md-3" >
                 <label class="control-label" for="createdAt" >Created At :</label >
               </div >
               <div class="col-md-8" >
@@ -318,18 +316,19 @@
             </div >
           </div >
         </div >
-        <div class="form-group col-md-12 col-sm-12 text-left flex-column " >
+<!--        <div class="form-group col-md-12 col-sm-12 text-left flex-column " >-->
           <!--Button-->
-          <div class="form-group col-md-12 col-sm-12 text-center flex-column " >
-            <button class="btn btn-success" type="submit" tabindex="21" >
-              <i class="fa fa-save " style="font-size: 20px" ></i >&nbsp;
-              &nbsp;<span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span >
-            </button >
-            <button class="btn btn-danger" type="reset" >
-              <i class="fa fa-redo" ></i > <span id="reset" >Reset</span >
-            </button >
-          </div >
-        </div >
+
+      <div class="form-group row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <a href="/employee" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+          <button type="submit" class="btn btn-primary mt-3 ml-2">&nbsp;<span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span ></button>
+          <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
+        </div>
+      </div>
+
+<!--        </div >-->
         <div class="form-row" >
           <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
           <ul >

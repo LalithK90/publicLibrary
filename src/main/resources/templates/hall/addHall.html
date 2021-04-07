@@ -6,43 +6,44 @@
     <meta charset="UTF-8">
     <title>Success Student Management System</title>
 </head>
-<body>
+<body style="margin-top: 90px;">
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
-<div class="row bg-light">
-    <div class="col-4">
-    </div>
-    <div class="col-4">
-        <h1>Add a Hall</h1>
-    </div>
-    <div class="col-4">
+<div class="card bg-gradient-light text-center">
+    <h1>New Hall</h1>
+</div>
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-3">
         <a href="/hall">
-            <button class="btn btn-primary">View All</button>
+            <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Hall list</button>
         </a>
     </div>
 </div>
 
-<div class="container">
+<div class="container-fluid">
     <form action="/hall/save" data-th-object="${hall}" method="post">
-        <div class="form-group">
-            <label class="col-sm-3 control-label" data-th-for="${number}">Hall ID</label>
-            <div class="col-sm-5">
+        <div class=" row form-group">
+            <div class="col-md-2"></div><div class="col-md-2">
+            <label class=" control-label mr-4" data-th-for="${number}">Hall ID:</label></div>
+          <div class="col-md-4">
                 <input type="text" data-th-field="*{number}" id="hallId" placeholder="Hall Number" class="form-control" autofocus>
                 <input type="text" data-th-if="${addStatus==false}" data-th-field="*{id}" id="id" placeholder="Hall Number" class="form-control" autofocus hidden>
                 <input type="text" data-th-if="${addStatus==false}" data-th-field="*{liveDead}" i placeholder="Hall Number" class="form-control" autofocus hidden>
-
-            </div>
+          </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" data-th-for="${seatCount}">Seating Count</label>
-            <div class="col-sm-5">
+        <div class=" row form-group">
+            <div class="col-md-2"></div><div class="col-md-2">
+            <label class=" control-label" data-th-for="${seatCount}">Seating Count:</label></div>
+            <div class="col-md-4">
                 <input type="text" data-th-field="*{seatCount}" id="seatCount" placeholder="Seating Count" class="form-control" autofocus>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" data-th-for="${hallCondition}">Hall Condition</label>
-            <div class="col-sm-5">
+        <div class=" row form-group">
+            <div class="col-md-2"></div><div class="col-md-2">
+            <label class="control-label" data-th-for="${hallCondition}">Hall Condition:</label></div>
+            <div class="col-md-4">
                 <div class="custom-control custom-checkbox custom-control-inline "
                      data-th-each="hallCondition,index : ${hallConditions}">
                     <input class="custom-control-input gender" required
@@ -57,9 +58,10 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" data-th-for="${hallLocation}">Hall Location</label>
-            <div class="col-sm-5">
+        <div class=" row form-group">
+            <div class="col-md-2"></div><div class="col-md-2">
+            <label class= "control-label" data-th-for="${hallLocation}">Hall Location:</label></div>
+            <div class="col-md-4 ">
                 <select id="hallLocation" class="form-control" data-th-field="*{hallLocation}">
                     <option value="1st Floor">First floor</option>
                     <option value="2nd Floor">Second floor</option>
@@ -68,19 +70,15 @@
             </div>
         </div>
 
-        <div class="row container-fluid">
-            <div class="col-sm-2 col-sm-offset-2">
-              <a href="/hall"><button type="button" class="btn btn-danger btn-block">Back</button></a>
-            </div>
-
-            <div class="col-sm-2 col-sm-offset-2">
-                <button type="reset" class="btn btn-warning btn-block">Clear Data</button>
-            </div>
-
-            <div class="col-sm-2 col-sm-offset-2">
-                <button type="submit" class="btn btn-success btn-block">Submit</button>
+        <div class="form-group row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+                <button type="submit" class="btn btn-primary mt-3 ml-2"><span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span ></button>
+                <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
             </div>
         </div>
+
     </form> <!-- /form -->
 </div> <!-- ./container -->
 </body>

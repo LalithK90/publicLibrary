@@ -22,19 +22,21 @@
 </div>
 
 
-<div class="container">
+<div class="container-fluid">
     <form action="/school/save" data-th-object="${school}" method="post">
         <div class="form-group row" data-th-if="${addStatus==false}">
-            <div class="col-md-4"></div><div class="col-md-4">
-            <label class=" control-label" data-th-for="${schoolId}">School ID</label>
+            <div class="col-md-2"></div><div class="col-md-2">
+            <label class=" control-label" data-th-for="${schoolId}">School ID</label></div>
+            <div class="col-md-4">
                 <input type="text" data-th-field="*{id}" id="schoolId" placeholder="School ID" class="form-control" autofocus readonly></div>
                 <input type="text" data-th-field="*{liveDead}" hidden>
             </div>
 
 
         <div class="form-group row">
-            <div class="col-md-4"></div><div class="col-md-4">
-            <label data-th-for="${name}" class=" control-label">School Name:</label>
+            <div class="col-md-2"></div><div class="col-md-2">
+            <label data-th-for="${name}" class=" control-label">School Name:</label></div>
+            <div class="col-md-4">
                 <input type="text" data-th-field="*{name}" id="name" placeholder="School name" class="form-control" autofocus >
         </div>
         </div>
