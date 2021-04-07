@@ -1,0 +1,75 @@
+#loginbody{
+    background-image: url("../img/book.jpg");
+    background-size: cover;
+color: white;
+    font-family: "Cambria Math";
+
+}
+.form-area{
+  left: 50%;
+   top: 50%;
+    transform:translate(-50%,-50%);
+    width: 400px;
+    height: 480px;
+    position: absolute;
+    /*box-sizing: border-box;*/
+    background: rgba(55, 92, 17, 0.5);
+    border-radius: 10%;
+}
+#loginb{
+width: 70%;
+position: center;
+    border-radius: 12px;
+   background-color:rgba(17,6,93,0.79);
+    font-size: larger;
+
+}
+#loginb:hover{
+    background-color: rgba(11,91,136,0.79);
+}
+#pw{
+    margin-top: unset;
+    margin-bottom: unset;
+}
+#user{
+    margin-top: unset;
+    margin-bottom: unset;
+}
+#loginlogo{
+    border-radius: 50%;
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    margin-bottom: 5%;
+
+
+}
+#inpw{
+    background-color: transparent;
+    width:300px;
+    border: none;
+    border-bottom: 2px solid darkslategray;
+    outline:none;}
+#inuse{
+    background-color: transparent;
+    width:300px;
+    border: none;
+    border-bottom: 2px solid darkslategray;
+    outline:none;
+
+}
+::placeholder{
+    color: rgba(250, 245, 243, 0.60);
+
+}
+
+
+#paralog{
+text-align: center;
+    color: white;
+
+
+
+}

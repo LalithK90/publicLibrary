@@ -71,56 +71,56 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-/*    http.csrf().disable();
-    http.authorizeRequests().antMatchers("/").permitAll();*/
+            http.csrf().disable();
+            http.authorizeRequests().antMatchers("/").permitAll();
 
 
-    http
-        .authorizeRequests(
-            authorizeRequests ->
-                authorizeRequests
-                    //Anytime users can access without login
-                    //to see actuator details
-                    .antMatchers(ALL_PERMIT_URL).permitAll()
-                    //this is used the normal admin to give access every url mapping
-                    .antMatchers("/category/**").hasAnyRole("ADMIN", "MANAGER")
-
-                    .anyRequest()
-                    .authenticated())
-        // Login form
-        .formLogin(
-            formLogin ->
-                formLogin
-                    .loginPage("/login")
-                    .loginProcessingUrl("/login")
-                    //Username and password for validation
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .successHandler(customAuthenticationSuccessHandler())
-                    .failureUrl("/login?error")
-                  )
-        //Logout controlling
-        .logout(
-            logout ->
-                logout
-                    .logoutUrl("/logout")
-                    .logoutSuccessHandler(customLogoutSuccessHandler())
-                    .deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true))
-        //session management
-        .sessionManagement(
-            sessionManagement ->
-                sessionManagement
-                    .sessionFixation().migrateSession()
-                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                    .invalidSessionUrl("/login")
-                    .maximumSessions(1)
-                    .expiredUrl("/login")
-                    .sessionRegistry(sessionRegistry()))
-        //Cross site disable
-        .csrf(AbstractHttpConfigurer::disable)
-        .exceptionHandling();
+//    http
+//        .authorizeRequests(
+//            authorizeRequests ->
+//                authorizeRequests
+//                    //Anytime users can access without login
+//                    //to see actuator details
+//                    .antMatchers(ALL_PERMIT_URL).permitAll()
+//                    //this is used the normal admin to give access every url mapping
+//                    .antMatchers("/category/**").hasAnyRole("ADMIN", "MANAGER")
+//
+//                    .anyRequest()
+//                    .authenticated())
+//        // Login form
+//        .formLogin(
+//            formLogin ->
+//                formLogin
+//                    .loginPage("/login")
+//                    .loginProcessingUrl("/login")
+//                    //Username and password for validation
+//                    .usernameParameter("username")
+//                    .passwordParameter("password")
+//                    .successHandler(customAuthenticationSuccessHandler())
+//                    .failureUrl("/login?error")
+//                  )
+//        //Logout controlling
+//        .logout(
+//            logout ->
+//                logout
+//                    .logoutUrl("/logout")
+//                    .logoutSuccessHandler(customLogoutSuccessHandler())
+//                    .deleteCookies("JSESSIONID")
+//                    .invalidateHttpSession(true)
+//                    .clearAuthentication(true))
+//        //session management
+//        .sessionManagement(
+//            sessionManagement ->
+//                sessionManagement
+//                    .sessionFixation().migrateSession()
+//                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                    .invalidSessionUrl("/login")
+//                    .maximumSessions(1)
+//                    .expiredUrl("/login")
+//                    .sessionRegistry(sessionRegistry()))
+//        //Cross site disable
+//        .csrf(AbstractHttpConfigurer::disable)
+//        .exceptionHandling();
 
   }
 }
