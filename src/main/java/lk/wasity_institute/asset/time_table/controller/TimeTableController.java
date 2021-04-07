@@ -144,6 +144,11 @@ public class TimeTableController {
   public String editGet(@PathVariable( "date" ) @DateTimeFormat( pattern = "yyyy-MM-dd" ) LocalDate date, Model model) {
     return commonThing(model, date, false);
   }
+//  @GetMapping( "/edit/{id}" )
+//  public String edit(@PathVariable Integer id, Model model) {
+//    return commonThing(model, timeTableService.findById(id), false);
+//  }
+
 
   @PostMapping( "/edit" )
   public String editPost(@RequestParam( "date" ) @DateTimeFormat( pattern = "yyyy-MM-dd" ) LocalDate date,
