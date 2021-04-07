@@ -91,7 +91,7 @@
 
 <!--User add from-->
 <div class="container-fluid bg-dark formBorder" data-th-if="${employeeDetailShow==true}" id="userFormShow" >
-  <form id="formUser" data-th-action="${addStatus==true?'/user/add':'/user/update'}" data-th-object="${user}"
+  <form id="formUser" data-th-action="${addStatus==true?'/user/save':'/user/update'}" data-th-object="${user}"
         class="form-horizontal" method="POST" autocomplete="false" >
     <div class="row" >
       <!--Left Side-->
@@ -149,9 +149,9 @@
           </div >
         </div >
         <!--Teacher name-->
-        <div class="form-row" data-th-if="${user.teacher != null}" >
+        <div class="form-row" data-th-if="${user.student != null}" >
           <div class="col-md-4" >
-            <label class="control-label" for="employee" >Teacher :</label >
+            <label class="control-label" for="employee" >Student :</label >
           </div >
           <div class="col-md-8" >
             <select class="form-control" data-th-field="*{student}" data-th-each="e : ${student}" name="student"
@@ -175,7 +175,7 @@
           <label class="control-label col-md-4" for="username" >User Name :</label >
           <div class="col-md-8" >
             <input class="form-control" data-th-field="*{username}" id="username"
-                   placeholder="Enter User Name Here" required type="text" />
+                   placeholder="Enter User Name Here" required type="text" data-th-readonly="${addStatus==false}"/>
           </div >
         </div >
         <!--Password-->

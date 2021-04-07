@@ -5,6 +5,7 @@ import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.payment.dao.PaymentDao;
 import lk.wasity_institute.asset.payment.entity.Payment;
+import lk.wasity_institute.asset.payment.entity.enums.PaymentStatus;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,9 @@ public class PaymentService implements AbstractService< Payment, Integer > {
 
   public Payment findByMonthAndBatchStudent(Month month, BatchStudent batchStudent) {
     return paymentDao.findByBatchStudentAndMonth(batchStudent, month);
+  }
+
+  public Payment findByMonthAndBatchStudentAndPaymentStatus(Month month, BatchStudent batchStudent, PaymentStatus noPaid) {
+    return paymentDao.findByMonthAndBatchStudentAndPaymentStatus(batchStudent, month,noPaid);
   }
 }
