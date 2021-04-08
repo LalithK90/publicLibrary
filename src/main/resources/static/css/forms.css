@@ -44,12 +44,12 @@ button[type="reset"]{
   background-color: rgba(219,67,42,0.99);
 }
 #edit{
-width:15%;
+width:13%;
   border-color: rgba(9, 118, 193, 0.99);
   border-radius: 12px;
 }
 #delete{
-  width: 15%;
+  width:13%;
   background-color: rgba(253, 25, 23, 0.99);
   border-radius: 12px;
   border-color: rgba(160,16,14,0.99);

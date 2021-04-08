@@ -36,11 +36,8 @@
         <th >Guardian</th >
         <th >Mobile Number</th >
         <th >Home Number</th >
-        <th colspan="4" >Modify</th >
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th style="width: 150%" >Modify</th >
+
 
       </tr >
       </thead >
@@ -56,13 +53,13 @@
         <td data-th-text="${student.home}" ></td >
         <td data-th-if="${!studentRemoveBatch}" >
           <a data-th-href="${'/student/view/'+ student.id}" >
-            <button class="btn btn-info" style="width: 19%;border-radius: 12px;border-color:  rgba(71,123,11,0.99)" >View</button >
+            <button class="btn btn-success" style="width: 24%;border-radius: 12px;border-color:  rgba(71,123,11,0.99)" >View</button >
           </a >
           <a data-th-href="${'/student/edit/'+ student.id}" >
-            <button class="btn btn-success" style="width: 19%;border-radius: 12px;border-color: rgba(9, 118, 193, 0.99)" >Update</button >
+            <button class="btn btn-info ml-2" style="width: 24%;border-radius: 12px;border-color: rgba(9, 118, 193, 0.99);text-align: center" >Update</button >
           </a >
           <a data-th-href="${'/student/delete/'+ student.id}" >
-            <button class="btn btn-danger" style="width: 19%;border-radius: 12px;border-color:  rgba(160,16,14,0.99)">Delete</button >
+            <button class="btn btn-danger ml-2" style="width: 24%;border-radius: 12px;border-color:  rgba(160,16,14,0.99)">Delete</button >
           </a >
         </td >
         <td data-th-if="${studentRemoveBatch}" colspan="4" >
@@ -75,10 +72,7 @@
             <button type="submit" class="btn btn-danger" >Remove</button >
           </form >
         </td >
-<td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+
       </tr >
       </tbody >
     </table >

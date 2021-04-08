@@ -5,66 +5,71 @@
   <meta charset="UTF-8" >
   <title >Thymeleaf Springboot </title >
 </head >
-<body >
+<body  style="margin-top: 90px;">
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
-<div class="row bg-link" >
-  <div class="col-4" >
+<div class="card bg-gradient-light text-center">
+  <h1> Batch Details</h1>
+</div>
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <a href="/batch/add">
+      <button class="btn shadow mt-3" id="listb"> New Batch </button>
+    </a>
+  </div>
+</div>
 
-  </div >
-  <div class="col-4" >
-    <h1 >Batch Details</h1 >
-  </div >
-  <div class="col-4" >
-    <a href="/batch/add" >
-      <button class="btn btn-primary" align="center" >Batch Detail</button >
-    </a >
-  </div >
-</div >
-
-<div class="row container-fluid" >
-  <div class="col-sm-8" data-th-fragment="batchDetailsFragment" >
-    <div class="form-group" >
-      <label data-th-for="${code}" class="col-sm-3 control-label" >Class reference</label >
-      <div class="col-sm-6" >
-        <p type="text" id="code" class="form-control" data-th-text="${batchDetail.code}" >
+<div class=" container-fluid" >
+  <div data-th-fragment="batchDetailsFragment" >
+    <div class="form-group row" >
+      <div class="col-md-2"></div><div class="col-md-2">
+      <label data-th-for="${code}" class="control-label" >Class reference</label ></div>
+      <div class="col-md-4" >
+        <p type="text" id="code" class="form-control" data-th-text="${batchDetail.code}" ></p>
       </div >
     </div >
-    <div class="form-group" >
-      <label data-th-for="${year}" class="col-sm-3 control-label" >Academic Year</label >
-      <div class="col-sm-6" >
-        <p type="text" id="year" class="form-control" data-th-text="${batchDetail.year}" >
+    <div class="form-group row" >
+      <div class="col-md-2"></div><div class="col-md-2">
+      <label data-th-for="${year}" class=" control-label" >Academic Year</label ></div>
+      <div class="col-md-4" >
+        <p type="text" id="year" class="form-control" data-th-text="${batchDetail.year}" ></p>
       </div >
     </div >
-    <div class="form-group" >
-      <label data-th-for="${grade}" class="col-sm-3 control-label" >Grade</label >
-      <div class="col-sm-6" >
-        <p type="text" id="grade" class="form-control" data-th-text="${batchDetail.grade}" >
+    <div class="form-group row" >
+      <div class="col-md-2"></div><div class="col-md-2">
+      <label data-th-for="${grade}" class=" control-label" >Grade</label ></div>
+      <div class="col-md-4" >
+        <p type="text" id="grade" class="form-control" data-th-text="${batchDetail.grade}" ></p>
       </div >
     </div >
-    <div class="form-group" >
-      <label data-th-for="${teacherName}" class="col-sm-3 control-label" >Teacher</label >
-      <div class="col-sm-6" >
+    <div class="form-group row" >
+      <div class="col-md-2"></div><div class="col-md-2">
+      <label data-th-for="${teacherName}" class=" control-label" >Teacher</label ></div>
+      <div class="col-md-4" >
         <p type="text" id="teacherName" class="form-control" data-th-text="${batchDetail.teacher.firstName}" >
+        </p>
       </div >
     </div >
-    <div class="form-group" >
-      <label data-th-for="${'name'}" class="col-sm-3 control-label" > Name</label >
-      <div class="col-sm-6" >
-        <p type="text" id="name" class="form-control" data-th-text="${batchDetail.name}" >
+    <div class="form-group row" >
+      <div class="col-md-2"></div><div class="col-md-2">
+      <label data-th-for="${'name'}" class=" control-label" >Batch Name :</label ></div>
+      <div class="col-md-4" >
+        <p type="text" id="name" class="form-control" data-th-text="${batchDetail.name}" ></p>
       </div >
     </div >
-  </div >
 
-    <div class="row container-fluid" >
-        <div class="col-sm-2 col-sm-offset-2" >
-            <a href="/batch" >
-                <button type="link" class="btn btn-danger btn-block" >Back</button >
-            </a >
-        </div >
-    </div >
-</div >
 
+    <div class="form-group row">
+      <div class="col-md-5"></div>
+      <div class="col-md-4">
+        <a href="/hall" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 </body >
 </html >
