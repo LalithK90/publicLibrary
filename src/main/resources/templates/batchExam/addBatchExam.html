@@ -37,9 +37,9 @@
 
 <div class="container-fluid" >
   <form action="/batchExam" data-th-object="${batchExam}" method="post" >
-    <div class="form-row" >
-      <div class="col-4" >
-        <p >New Exam</p >
+    <div class="" >
+
+        <p style="color: black;text-align: center;font-size: x-large">New Exam</p >
         <input class="form-control" data-th-field="*{batch.id}" readonly type="hidden" >
         <div class="form-group" data-th-if="${addStatus}" >
           <label class="control-label" data-th-for="${id}" >Exam Code</label >
@@ -47,52 +47,57 @@
             <input type="hidden" readonly data-th-field="*{code}" placeholder="Index" class="form-control" autofocus >
             <input type="hidden" readonly data-th-field="*{id}" class="form-control" >
             <input class="form-control" data-th-field="*{liveDead}" readonly type="hidden" >
-          </div >
+
         </div >
+        </div>
+    </div>
         <!--start at-->
-        <div class="form-group" >
-          <label class="control-label" data-th-for="${startAt}" >Start Date Time</label >
-          <div class="col-sm-9" >
+        <div class="form-group row" >
+          <div class="col-md-2"></div><div class="col-md-2">
+            <label class="control-label " data-th-for="${startAt}" >Start Date Time :</label ></div>
+          <div class="col-md-4" >
             <input type="datetime-local" class="form-control "
                    data-th-field="*{startAt}" required >
           </div >
         </div >
         <!--end at-->
-        <div class="form-group" >
-          <label class="control-label" data-th-for="${endAt}" >End Date Time</label >
-          <div class="col-sm-9" >
+        <div class="form-group row" >
+          <div class="col-md-2"></div><div class="col-md-2">
+            <label class="control-label" data-th-for="${endAt}" >End Date Time :</label ></div>
+          <div class="col-md-4" >
             <input type="datetime-local" class="form-control "
                    data-th-field="*{endAt}" required >
           </div >
         </div >
         <!--remark-->
-        <div class="form-group" >
-          <label class="control-label" data-th-for="${remark}" >Remarks </label >
-          <div class="col-sm-9" >
+        <div class="form-group row" >
+          <div class="col-md-2"></div><div class="col-md-2">
+            <label class="control-label" data-th-for="${remark}" >Remarks : </label ></div>
+          <div class="col-md-4" >
             <textarea class="form-control " data-th-field="*{remark}" ></textarea >
           </div >
         </div >
-      </div >
-      <div class="col-8" >
-        <p class="form-row" >Already created Exam on this batch</p >
-        <div data-th-replace="~{batchExam/batchExam :: batchExamFragment}" ></div >
-      </div >
-    </div >
+
+<!--      <div class="col-8 text-center" >-->
+<!--        <p class="form-row " style="color: black;font-size: x-large" >Already created Exam on this batch</p >-->
+<!--        <div data-th-replace="~{batchExam/batchExam :: batchExamFragment}" ></div >-->
+<!--      </div >-->
+
+
 
     <!--button area-->
-    <div class="row container-fluid" >
-      <div class="col-sm-2 col-sm-offset-2" >
-        <a href="/batchExam/teacher" >
-          <button type="button" class="btn btn-danger btn-block" >Back</button >
-        </a >
-      </div >
-      <div class="col-sm-2 col-sm-offset-2" >
-        <button type="reset" class="btn btn-warning btn-block" >Clear Data</button >
-      </div >
-      <div class="col-sm-2 col-sm-offset-2" >
-        <button type="submit" class="btn btn-success btn-block" >Submit</button >
-      </div >
-    </div >
+    <div class="form-group row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+        <button type="submit" class="btn btn-primary mt-3 ml-2">Save</button>
+        <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
+      </div>
+    </div>
+
+      <p  style="color: black;font-size: x-large;text-align: center" >Already created Exam on this batch</p >
+      <div data-th-replace="~{batchExam/batchExam :: batchExamFragment}" ></div >
+
   </form >
 </div >
 <!--footer is included-->

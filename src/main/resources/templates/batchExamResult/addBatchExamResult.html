@@ -5,21 +5,16 @@
   <meta charset="UTF-8" >
   <title >Success Student Management System</title >
 </head >
-<body >
+<body  style="margin-top: 90px;">
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
-<div class="form-row bg-light" >
-  <div class="col-4" >
-  </div >
-  <div class="col-4" >
-    <h1 >Exam Management</h1 >
-  </div >
-  <div class="col-4" >
-    <a href="/batchExam/teacher" >
-      <button class="btn btn-primary" >Exam Management</button >
-    </a >
-  </div >
+<div class="card bg-gradient-light text-center">
+  <h1>Results</h1>
+</div>
+
+
+
 </div >
 <div id="accordianId" role="tablist" aria-multiselectable="true" >
   <div class="card" >
@@ -36,6 +31,14 @@
     </div >
   </div >
 </div >
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <a href="/batch">
+      <button class="btn shadow mt-3" id="listb">&nbsp;All exam results</button>
+    </a>
+  </div>
+</div>
 
 <div class="container-fluid" >
   <form action="/batchStudentExamResult" data-th-object="${batchExam}" method="post" >
@@ -118,19 +121,14 @@
     </div >
 
     <!--button area-->
-    <div class="row container-fluid" >
-      <div class="col-sm-2 col-sm-offset-2" >
-        <a href="/batchExam/teacher" >
-          <button type="button" class="btn btn-danger btn-block" >Back</button >
-        </a >
-      </div >
-      <div class="col-sm-2 col-sm-offset-2" >
-        <button type="reset" class="btn btn-warning btn-block" >Clear Data</button >
-      </div >
-      <div class="col-sm-2 col-sm-offset-2" >
-        <button type="submit" class="btn btn-success btn-block" >Submit</button >
-      </div >
-    </div >
+    <div class="form-group row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+        <button type="submit" class="btn btn-primary mt-3 ml-2">Save</button>
+        <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
+      </div>
+    </div>
   </form >
 </div >
 <!--footer is included-->
