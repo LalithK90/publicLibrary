@@ -39,18 +39,19 @@
   <form action="/batchExam" data-th-object="${batchExam}" method="post">
     <div class="" >
 
-      <p style="color: black;text-align: center;font-size: x-large"><span data-th-text="${addStatus==true?'New Exam':'Update Exam'}"></span></p >
+      <p style="color: black;text-align: center;font-size: x-large"><span data-th-text="${addStatus==true?'Update Exam':'New Exam'}"></span></p >
         <input class="form-control" data-th-field="*{batch.id}" readonly type="hidden" >
-        <div class="form-group" data-th-if="${addStatus}" >
-          <label class="control-label" data-th-for="${id}" >Exam Code</label >
-          <div class="col-sm-9" >
-            <input type="hidden" readonly data-th-field="*{code}" placeholder="Index" class="form-control" autofocus >
+        <div class="form-group row" data-th-if="${addStatus}" >
+          <div class="col-md-2"></div><div class="col-md-2">
+          <label class="control-label" data-th-for="${id}" >Exam Code</label ></div>
+          <div class="col-md-4" >
+            <input type="text" readonly data-th-field="*{code}" placeholder="Index" class="form-control" autofocus></div>
             <input type="hidden" readonly data-th-field="*{id}" class="form-control" >
             <input class="form-control" data-th-field="*{liveDead}" readonly type="hidden" >
 
         </div >
         </div>
-    </div>
+
         <!--start at-->
         <div class="form-group row" >
           <div class="col-md-2"></div><div class="col-md-2">
@@ -90,7 +91,7 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
-        <button type="submit" class="btn btn-primary mt-3 ml-2"><span data-th-text="${addStatus==true?'Save':'Update'}"></span></button>
+        <button type="submit" class="btn btn-primary mt-3 ml-2"><span data-th-text="${addStatus==true?'Update':'Save'}"></span></button>
         <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
       </div>
     </div>

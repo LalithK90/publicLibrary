@@ -65,6 +65,7 @@ public class BatchExamController {
                              .stream()
                              .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE) && x.getBatch().getTeacher().equals(user.getTeacher()))
                              .collect(Collectors.toList()));
+
     } else {
       model.addAttribute("batchExams",
                          batchExamService.findAll()
@@ -110,7 +111,7 @@ public class BatchExamController {
   }
 
 
-  @PostMapping("/save")
+  @PostMapping
   public String save(@ModelAttribute BatchExam batchExam, BindingResult bindingResult) {
     if ( bindingResult.hasErrors() ) {
       return "redirect:/batchExam" + batchExam.getBatch().getId();
@@ -131,11 +132,11 @@ public class BatchExamController {
       if ( student.getEmail() != null ) {
         String message = "Dear " + student.getFirstName() + "\n Your " + batchService.findById( batchExamDb.getBatch().getId()).getName() + " exam " +
             "would be held from " + batchExamDb.getStartAt() + " to " + batchExamDb.getEndAt() + ".\n Thanks \n " +
-            "Success Student";
+            "Wasity Institute";
 //        emailService.sendEmail(student.getEmail(), "Exam - Notification", message);
       }
     });
-    return "redirect:/batchExam/add/";
+    return "redirect:/batchExam/teacher";
   }
 
   @GetMapping( "/delete/{id}" )

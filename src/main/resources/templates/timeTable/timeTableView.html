@@ -57,9 +57,9 @@
            <a data-th-href="${'/timeTable/view/'+ timeTable.id}" >
               <button class="btn btn-success" style="border-color:  rgba(71,123,11,0.99)"> <i class="fa fa-folder-open"  ></i >View</button >
             </a >
-            <a data-th-if="${#strings.equals(timeTable.timeTableStatus,'NOTMARKED')}" action="/timeTable/edit" method="post" class="text-center text-dark p-1 font-weight-bold">
+            <form  style="background-color: transparent;" data-th-if="${#strings.equals(timeTable.timeTableStatus,'NOTMARKED')}"  action="/timeTable/edit" method="post" class="text-center text-dark p-1 font-weight-bold">
               <input type="hidden" name="date" data-th-value="${timeTableMap.date}" class="date" >
-              <button  class="btn btn-info "  style="border-color: rgba(9, 118, 193, 0.99);" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" ><i class="fa fa-edit" ></i >Edit</button ></a>
+              <button type="submit" class="btn btn-info "  style="border-color: rgba(9, 118, 193, 0.99);" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" ><i class="fa fa-edit" ></i >Edit</button ></form>
             <a data-th-href="${'/timeTable/delete/'+ timeTable.id}"><button class="btn btn-danger" style="border-color:  rgba(160,16,14,0.99)" onclick="return ConfirmDelete()" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')"><i  class="fa fa-trash" ></i >Delete</button></a>
             <a data-th-if="${#strings.equals(timeTable.timeTableStatus,'NOTMARKED')}" data-th-href="${'/timeTableStudentAttendance/'+ timeTable.id}" >
               <button class="btn btn-primary ml-2"style="border-color:  rgba(71,14,128,0.99)"data-sec-authorize="hasAnyAuthority('ROLE_TEACHER')" data-th-if="${attendanceStatus}" >Attendance</button >
