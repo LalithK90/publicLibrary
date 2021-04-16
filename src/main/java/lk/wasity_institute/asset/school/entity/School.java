@@ -21,7 +21,7 @@ public class School {
     @Column(nullable = false, length = 45, unique = true)
     private String name;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING)
     private LiveDead liveDead;
 
 

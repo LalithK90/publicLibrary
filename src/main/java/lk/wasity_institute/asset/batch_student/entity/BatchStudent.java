@@ -1,7 +1,7 @@
 package lk.wasity_institute.asset.batch_student.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch_student_exam_result.entity.BatchStudentExamResult;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.payment.entity.Payment;

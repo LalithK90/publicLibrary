@@ -1,7 +1,7 @@
 package lk.wasity_institute.asset.common_asset.controller;
 
-import lk.wasity_institute.asset.user_management.service.UserService;
-import lk.wasity_institute.util.service.DateTimeAgeService;
+import lk.succes_student_management.asset.user_management.service.UserService;
+import lk.succes_student_management.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

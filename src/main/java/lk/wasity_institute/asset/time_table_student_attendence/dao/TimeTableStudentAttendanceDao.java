@@ -1,7 +1,7 @@
 package lk.wasity_institute.asset.time_table_student_attendence.dao;
 
 
-import lk.wasity_institute.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
+import lk.succes_student_management.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

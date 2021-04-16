@@ -1,9 +1,9 @@
 package lk.wasity_institute.asset.teacher.service;
 
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.asset.teacher.dao.TeacherDao;
-import lk.wasity_institute.asset.teacher.entity.Teacher;
-import lk.wasity_institute.util.interfaces.AbstractService;
+import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
+import lk.succes_student_management.asset.teacher.dao.TeacherDao;
+import lk.succes_student_management.asset.teacher.entity.Teacher;
+import lk.succes_student_management.util.interfaces.AbstractService;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;

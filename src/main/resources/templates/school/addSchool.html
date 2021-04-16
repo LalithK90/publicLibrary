@@ -5,46 +5,51 @@
     <meta charset="UTF-8">
     <title>Success Student Management </title>
 </head>
-<body style="margin-top: 90px;">
+<body>
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
-<div class="card bg-gradient-light text-center">
-    <h1>New School</h1>
-</div>
-<div class="row">
-    <div class="col-9"></div>
-    <div class="col-3">
-        <a href="/subject">
-            <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Subject list</button>
+<div class="row bg-light">
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+        <h1>Add a School</h1>
+    </div>
+    <div class="col-4">
+        <a href="/school">
+            <button class="btn btn-primary">All Schools</button>
         </a>
     </div>
 </div>
 
-
 <div class="container">
     <form action="/school/save" data-th-object="${school}" method="post">
-        <div class="form-group row" data-th-if="${addStatus==false}">
-            <div class="col-md-4"></div><div class="col-md-4">
-            <label class=" control-label" data-th-for="${schoolId}">School ID</label>
-                <input type="text" data-th-field="*{id}" id="schoolId" placeholder="School ID" class="form-control" autofocus readonly></div>
+        <div class="form-group" data-th-if="${addStatus==false}">
+            <label class="col-sm-3 control-label" data-th-for="${classReferance}">School ID</label>
+            <div class="col-sm-9">
+                <input type="text" data-th-field="*{id}" id="schoolId" placeholder="School ID" class="form-control" autofocus>
                 <input type="text" data-th-field="*{liveDead}" hidden>
             </div>
-
-
-        <div class="form-group row">
-            <div class="col-md-4"></div><div class="col-md-4">
-            <label data-th-for="${name}" class=" control-label">School Name:</label>
-                <input type="text" data-th-field="*{name}" id="name" placeholder="School name" class="form-control" autofocus >
-        </div>
         </div>
 
-        <div class="form-group row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <a href="/school" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
-                <button type="submit" class="btn btn-primary mt-3 ml-2">Submit</button>
-                <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
+        <div class="form-group">
+            <label data-th-for="${name}" class="col-sm-3 control-label">School Name</label>
+            <div class="col-sm-9">
+                <input type="text" data-th-field="*{name}" id="name" placeholder="School name" class="form-control" autofocus>
+            </div>
+        </div>
+
+        <div class="row container-fluid">
+            <div class="col-sm-2 col-sm-offset-2">
+              <a href="/school"><button type="button" class="btn btn-danger btn-block">Back</button></a>
+            </div>
+
+            <div class="col-sm-2 col-sm-offset-2">
+                <button type="reset" class="btn btn-warning btn-block">Clear Data</button>
+            </div>
+
+            <div class="col-sm-2 col-sm-offset-2">
+                <button type="submit" class="btn btn-success btn-block">Submit</button>
             </div>
         </div>
     </form>

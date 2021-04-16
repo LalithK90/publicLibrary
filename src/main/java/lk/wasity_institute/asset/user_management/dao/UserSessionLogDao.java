@@ -1,8 +1,8 @@
 package lk.wasity_institute.asset.user_management.dao;
 
-import lk.wasity_institute.asset.user_management.entity.Enum.UserSessionLogStatus;
-import lk.wasity_institute.asset.user_management.entity.User;
-import lk.wasity_institute.asset.user_management.entity.UserSessionLog;
+import lk.succes_student_management.asset.user_management.entity.Enum.UserSessionLogStatus;
+import lk.succes_student_management.asset.user_management.entity.User;
+import lk.succes_student_management.asset.user_management.entity.UserSessionLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

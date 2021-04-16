@@ -1,9 +1,9 @@
 package lk.wasity_institute.asset.user_management.dao;
 
-import lk.wasity_institute.asset.employee.entity.Employee;
-import lk.wasity_institute.asset.student.entity.Student;
-import lk.wasity_institute.asset.teacher.entity.Teacher;
-import lk.wasity_institute.asset.user_management.entity.User;
+import lk.succes_student_management.asset.employee.entity.Employee;
+import lk.succes_student_management.asset.student.entity.Student;
+import lk.succes_student_management.asset.teacher.entity.Teacher;
+import lk.succes_student_management.asset.user_management.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.user_management.service;
 
+
 import lk.wasity_institute.asset.user_management.dao.RoleDao;
 import lk.wasity_institute.asset.user_management.entity.Role;
 import lk.wasity_institute.util.interfaces.AbstractService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Service
 @CacheConfig( cacheNames = {"role"} ) // tells Spring where to store cache for this class
-public class RoleService implements AbstractService<Role, Integer > {
+public class RoleService implements AbstractService< Role, Integer > {
     private final RoleDao roleDao;
 
     @Autowired

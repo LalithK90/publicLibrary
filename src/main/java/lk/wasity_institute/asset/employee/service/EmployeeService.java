@@ -2,10 +2,10 @@ package lk.wasity_institute.asset.employee.service;
 
 
 
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.asset.employee.dao.EmployeeDao;
-import lk.wasity_institute.asset.employee.entity.Employee;
-import lk.wasity_institute.util.interfaces.AbstractService;
+import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
+import lk.succes_student_management.asset.employee.dao.EmployeeDao;
+import lk.succes_student_management.asset.employee.entity.Employee;
+import lk.succes_student_management.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.data.domain.Example;

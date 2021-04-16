@@ -1,10 +1,10 @@
 package lk.wasity_institute.asset.hall.service;
 
 
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.asset.hall.dao.HallDao;
-import lk.wasity_institute.asset.hall.entity.Hall;
-import lk.wasity_institute.util.interfaces.AbstractService;
+import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
+import lk.succes_student_management.asset.hall.dao.HallDao;
+import lk.succes_student_management.asset.hall.entity.Hall;
+import lk.succes_student_management.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

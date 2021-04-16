@@ -1,16 +1,17 @@
 package lk.wasity_institute.asset.batch_student.service;
-import lk.wasity_institute.asset.batch.entity.Batch;
-import lk.wasity_institute.asset.batch_student.dao.BatchStudentDao;
-import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.asset.student.entity.Student;
-import lk.wasity_institute.util.interfaces.AbstractService;
+
+import lk.succes_student_management.asset.batch.entity.Batch;
+import lk.succes_student_management.asset.batch_student.dao.BatchStudentDao;
+import lk.succes_student_management.asset.batch_student.entity.BatchStudent;
+import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
+import lk.succes_student_management.asset.student.entity.Student;
+import lk.succes_student_management.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BatchStudentService implements AbstractService<BatchStudent, Integer> {
+public class BatchStudentService implements AbstractService< BatchStudent, Integer > {
   private final BatchStudentDao batchStudentDao;
 
   public BatchStudentService(BatchStudentDao batchStudentDao) {
@@ -26,7 +27,7 @@ public class BatchStudentService implements AbstractService<BatchStudent, Intege
   }
 
   public BatchStudent persist(BatchStudent batch) {
-    if(batch.getId() ==null){
+    if ( batch.getId() == null ) {
       batch.setLiveDead(LiveDead.ACTIVE);
     }
     return batchStudentDao.save(batch);
@@ -39,16 +40,16 @@ public class BatchStudentService implements AbstractService<BatchStudent, Intege
     return false;
   }
 
-  public List<BatchStudent> search(BatchStudent batch) {
+  public List< BatchStudent > search(BatchStudent batch) {
     return null;
   }
 
 
   public int countByBatch(Batch batch) {
-  return batchStudentDao.countByBatch(batch);
+    return (int) batchStudentDao.findByBatch(batch).stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).count();
   }
 
-  public List< BatchStudent> findByStudent(Student student) {
+  public List< BatchStudent > findByStudent(Student student) {
     return batchStudentDao.findByStudent(student);
   }
 
@@ -56,7 +57,7 @@ public class BatchStudentService implements AbstractService<BatchStudent, Intege
     return batchStudentDao.findByStudentAndBatch(student, batch);
   }
 
-  public List<BatchStudent> findByBatch(Batch batch) {
-  return batchStudentDao.findByBatch(batch);
+  public List< BatchStudent > findByBatch(Batch batch) {
+    return batchStudentDao.findByBatch(batch);
   }
 }

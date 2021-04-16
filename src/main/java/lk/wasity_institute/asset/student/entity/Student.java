@@ -3,7 +3,6 @@ package lk.wasity_institute.asset.student.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.school.entity.School;
@@ -12,11 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter
@@ -47,6 +41,9 @@ public class Student extends AuditEntity {
   private String mobile;
 
   private String home;
+
+  @Column( unique = true )
+  private String email;
 
   @Enumerated( EnumType.STRING )
   private LiveDead liveDead;

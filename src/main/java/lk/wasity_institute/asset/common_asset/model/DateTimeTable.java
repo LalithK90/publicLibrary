@@ -1,6 +1,6 @@
 package lk.wasity_institute.asset.common_asset.model;
 
-import lk.wasity_institute.asset.time_table.entity.TimeTable;
+import lk.succes_student_management.asset.time_table.entity.TimeTable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

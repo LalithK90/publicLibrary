@@ -1,11 +1,13 @@
 package lk.wasity_institute.asset.user_management.service;
 
-import lk.wasity_institute.asset.employee.entity.Employee;
-import lk.wasity_institute.asset.student.entity.Student;
+import lk.succes_student_management.asset.employee.entity.Employee;
+import lk.succes_student_management.asset.student.entity.Student;
+import lk.succes_student_management.asset.teacher.entity.Teacher;
+import lk.succes_student_management.asset.user_management.dao.UserDao;
+import lk.succes_student_management.asset.user_management.entity.User;
+import lk.succes_student_management.util.interfaces.AbstractService;
 import lk.wasity_institute.asset.teacher.entity.Teacher;
-import lk.wasity_institute.asset.user_management.dao.UserDao;
 import lk.wasity_institute.asset.user_management.entity.User;
-import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.data.domain.Example;

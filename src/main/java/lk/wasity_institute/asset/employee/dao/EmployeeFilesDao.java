@@ -2,8 +2,8 @@ package lk.wasity_institute.asset.employee.dao;
 
 
 
-import lk.wasity_institute.asset.employee.entity.Employee;
-import lk.wasity_institute.asset.employee.entity.EmployeeFiles;
+import lk.succes_student_management.asset.employee.entity.Employee;
+import lk.succes_student_management.asset.employee.entity.EmployeeFiles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

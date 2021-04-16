@@ -3,10 +3,9 @@
 <!--Styles, meta data, and title are included-->
 <head data-th-replace="~{fragments/header :: headerFragment}" >
   <meta charset="UTF-8" >
-  <title >Wasity Student Management System</title >
+  <title >Success Student Management System</title >
 </head >
-
-<body style="margin-top: 90px;">
+<body >
 
 
 <!--Nav bar is included-->
@@ -24,8 +23,8 @@
     </a >
   </div >
 </div >
-<div class="container-fluid" >
-  <form action="/student/save" data-th-object="${student}" method="post" id="form" >
+<div class="container" >
+  <form action="/student/save" data-th-object="${student}" method="post" >
     <!--index-->
     <div class="form-group" data-th-if="${addStatus==false}" >
       <label class="col-6 control-label" data-th-for="${id}" >Index</label >
@@ -130,7 +129,15 @@
           </div >
         </div >
       </div >
-      <div class="col-6" ></div >
+      <div class="col-sm-6" >
+        <!--email-->
+        <div class="form-group" >
+          <label class="col-6 control-label" data-th-for="${email}" >Email</label >
+          <div class="col-6" >
+            <input type="text" id="email" class="form-control" data-th-field="*{email}" >
+          </div >
+        </div >
+      </div >
     </div >
     <!--school-->
     <div class="form-group" >
@@ -250,9 +257,9 @@
         </a >
       </div >
 
-      <div class="col-4 col-sm-offset-2">
-        <button type="reset" class="btn btn-warning btn-block">Clear Data</button>
-      </div>
+      <div class="col-4" >
+        <button type="reset" class="btn btn-warning btn-block" >Clear Data</button >
+      </div >
 
       <div class="col-4" >
         <button type="submit" class="btn btn-success btn-block" >Submit</button >

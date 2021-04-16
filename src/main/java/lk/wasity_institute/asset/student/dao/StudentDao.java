@@ -1,8 +1,8 @@
 package lk.wasity_institute.asset.student.dao;
 
 
-import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.student.entity.Student;
+import lk.succes_student_management.asset.batch.entity.enums.Grade;
+import lk.succes_student_management.asset.student.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

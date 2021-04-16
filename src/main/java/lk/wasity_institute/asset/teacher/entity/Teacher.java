@@ -1,10 +1,9 @@
 package lk.wasity_institute.asset.teacher.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.asset.subject.entity.Subject;
 import lk.wasity_institute.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,11 +11,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter

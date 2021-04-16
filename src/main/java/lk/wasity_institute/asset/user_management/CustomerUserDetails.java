@@ -1,6 +1,6 @@
 package lk.wasity_institute.asset.user_management;
 
-import lk.wasity_institute.asset.user_management.entity.User;
+import lk.succes_student_management.asset.user_management.entity.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

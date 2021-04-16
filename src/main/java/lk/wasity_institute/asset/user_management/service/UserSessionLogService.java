@@ -1,10 +1,10 @@
 package lk.wasity_institute.asset.user_management.service;
 
-import lk.wasity_institute.asset.user_management.dao.UserSessionLogDao;
-import lk.wasity_institute.asset.user_management.entity.Enum.UserSessionLogStatus;
-import lk.wasity_institute.asset.user_management.entity.User;
-import lk.wasity_institute.asset.user_management.entity.UserSessionLog;
-import lk.wasity_institute.util.interfaces.AbstractService;
+import lk.succes_student_management.asset.user_management.dao.UserSessionLogDao;
+import lk.succes_student_management.asset.user_management.entity.Enum.UserSessionLogStatus;
+import lk.succes_student_management.asset.user_management.entity.User;
+import lk.succes_student_management.asset.user_management.entity.UserSessionLog;
+import lk.succes_student_management.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;

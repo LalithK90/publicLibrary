@@ -312,8 +312,7 @@
                 <label class="control-label" for="createdAt" >Created At :</label >
               </div >
               <div class="col-md-8" >
-                <input id="createdAt"  data-th-text="${{createdAt}}" class="form-control" type="text"
-                       readonly />
+                <p id="createdAt"  data-th-text="${{employee.createdAt}}" class="form-control" ></p>
               </div >
             </div >
           </div >
@@ -345,38 +344,6 @@
 <!--script include-->
 <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
 
-<!--<script >-->
-<!--    $(document).ready(function () {-->
-<!--        imageSrcAttributeCheck();-->
-<!--    });-->
-
-<!--    function readURL(input) {-->
-<!--        if (input.files && input.files[0]) {-->
-<!--            let reader = new FileReader();-->
-
-<!--            reader.onload = function (e) {-->
-<!--                $('#image').attr('src', e.target.result);-->
-<!--            }-->
-
-<!--            reader.readAsDataURL(input.files[0]); // convert to base64 string-->
-<!--        }-->
-<!--    }-->
-
-<!--    //display selected image-->
-<!--    $("#imgUpload").change(function () {-->
-<!--        $("#image").toggle('show');-->
-<!--        readURL(this);-->
-
-<!--    });-->
-
-<!--    //image is not -> showing area hide-->
-<!--    function imageSrcAttributeCheck() {-->
-<!--        let attribute = $("#image").attr("src");-->
-<!--        if (attribute === '') {-->
-<!--            $("#image").toggle('hide');-->
-<!--        }-->
-<!--    }-->
-<!--</script >-->
 <script >
   $(document).ready(function () {
     imageSrcAttributeCheck();

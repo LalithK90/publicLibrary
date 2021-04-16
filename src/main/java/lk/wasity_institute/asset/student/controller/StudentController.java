@@ -1,16 +1,16 @@
 package lk.wasity_institute.asset.student.controller;
 
 
-import lk.wasity_institute.asset.batch.controller.BatchController;
-import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
-import lk.wasity_institute.asset.common_asset.model.enums.Gender;
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.asset.school.service.SchoolService;
-import lk.wasity_institute.asset.student.entity.Student;
-import lk.wasity_institute.asset.student.service.StudentService;
-import lk.wasity_institute.util.interfaces.AbstractController;
-import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
+import lk.succes_student_management.asset.batch.controller.BatchController;
+import lk.succes_student_management.asset.batch.entity.enums.Grade;
+import lk.succes_student_management.asset.batch_student.service.BatchStudentService;
+import lk.succes_student_management.asset.common_asset.model.enums.Gender;
+import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
+import lk.succes_student_management.asset.school.service.SchoolService;
+import lk.succes_student_management.asset.student.entity.Student;
+import lk.succes_student_management.asset.student.service.StudentService;
+import lk.succes_student_management.util.interfaces.AbstractController;
+import lk.succes_student_management.util.service.MakeAutoGenerateNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

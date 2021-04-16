@@ -1,11 +1,11 @@
 package lk.wasity_institute.asset.hall.controller;
 
 
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.asset.hall.entity.Hall;
-import lk.wasity_institute.asset.hall.entity.enums.HallCondition;
-import lk.wasity_institute.asset.hall.service.HallService;
-import lk.wasity_institute.util.interfaces.AbstractController;
+import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
+import lk.succes_student_management.asset.hall.entity.Hall;
+import lk.succes_student_management.asset.hall.entity.enums.HallCondition;
+import lk.succes_student_management.asset.hall.service.HallService;
+import lk.succes_student_management.util.interfaces.AbstractController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

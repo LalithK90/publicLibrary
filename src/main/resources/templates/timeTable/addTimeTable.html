@@ -6,21 +6,6 @@
   <title >Success TimeTable Management</title >
 </head >
 <body >
-<!--Nav bar is included-->
-<!--<nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >-->
-
-<!--<div class="row bg-secondary" >-->
-<!--  <div class="col-4" >-->
-<!--  </div >-->
-<!--  <div class="col-4" >-->
-<!--    <h1 >TimeTable Management - Add New TimeTable</h1 >-->
-<!--  </div >-->
-<!--  <div class="col-4" >-->
-<!--    <a href="/timeTable" >-->
-<!--      <button class="btn btn-primary" >View All On Time Table</button >-->
-<!--    </a >-->
-<!--  </div >-->
-<!--</div >-->
 
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
@@ -61,6 +46,9 @@
             <input type="text" class="form-control" data-th-name="${'batches.timeTables[__${index.index}__].code'}"
                    data-th-value="${batches.timeTables[__${index.index}__].code}" required
                    readonly >
+            <input type="text" class="form-control" data-th-name="${'batches.timeTables[__${index.index}__].id'}"
+                   data-th-value="${batches.timeTables[__${index.index}__].id}" required
+                   readonly >
           </th >
           <th >
             <input type="text" class="form-control"
@@ -97,7 +85,7 @@
               <option value="" >Please select</option >
               <option data-th-each="hall : ${halls}"
                       data-th-value="${hall.id}"
-                      data-th-text="${hall.number}" ></option >
+                      data-th-text="${'Hall Number : '+hall.number+' Seats : '+ hall.seatCount}" ></option >
             </select >
           </th >
           <th data-th-if="${!addStatus}" >

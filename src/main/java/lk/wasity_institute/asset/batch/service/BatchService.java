@@ -1,12 +1,12 @@
 package lk.wasity_institute.asset.batch.service;
 
 
-import lk.wasity_institute.asset.batch.dao.BatchDao;
-import lk.wasity_institute.asset.batch.entity.Batch;
-import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
-import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.util.interfaces.AbstractService;
+import lk.succes_student_management.asset.batch.dao.BatchDao;
+import lk.succes_student_management.asset.batch.entity.Batch;
+import lk.succes_student_management.asset.batch.entity.enums.ClassDay;
+import lk.succes_student_management.asset.batch.entity.enums.Grade;
+import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
+import lk.succes_student_management.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;

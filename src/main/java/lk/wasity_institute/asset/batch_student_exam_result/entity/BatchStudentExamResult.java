@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.batch_student_exam_result.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
