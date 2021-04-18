@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.batch.dao;
 
 
+
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
@@ -12,7 +13,7 @@ import java.util.List;
 
 
 @Repository
-public interface BatchDao extends JpaRepository< Batch, Integer > {
+public interface BatchDao extends JpaRepository<Batch, Integer > {
 
   Batch findFirstByOrderByIdDesc();
 

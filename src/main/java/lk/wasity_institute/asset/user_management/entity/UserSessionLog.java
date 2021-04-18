@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.user_management.entity;
 
+
 import lk.wasity_institute.asset.user_management.entity.Enum.UserSessionLogStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

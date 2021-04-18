@@ -1,10 +1,12 @@
 package lk.wasity_institute.asset.time_table.service;
 
 
+
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.time_table.dao.TimeTableDao;
 import lk.wasity_institute.asset.time_table.entity.TimeTable;
+import lk.wasity_institute.asset.time_table.entity.enums.TimeTableStatus;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TimeTableService implements AbstractService< TimeTable, Integer > {
+public class TimeTableService implements AbstractService<TimeTable, Integer > {
   private final TimeTableDao timeTableDao;
 
   public TimeTableService(TimeTableDao timeTableDao) {
@@ -31,6 +33,7 @@ public class TimeTableService implements AbstractService< TimeTable, Integer > {
   public TimeTable persist(TimeTable timeTable) {
     if ( timeTable.getId() == null ) {
       timeTable.setLiveDead(LiveDead.ACTIVE);
+      timeTable.setTimeTableStatus(TimeTableStatus.NOTMARKED);
     }
     return timeTableDao.save(timeTable);
   }
@@ -52,7 +55,8 @@ public class TimeTableService implements AbstractService< TimeTable, Integer > {
   }
 
   public boolean availableTimeTableCheck(LocalDateTime from, LocalDateTime to, Batch batch) {
-    List< TimeTable > timeTables = timeTableDao.findByBatchAndStartAtIsBetween(batch, from, to);
+    TimeTableStatus timeTableStatus = TimeTableStatus.NOTMARKED;
+    List< TimeTable > timeTables = timeTableDao.findByBatchAndStartAtIsBetweenAndTimeTableStatus(batch, from, to,timeTableStatus);
     return timeTables.isEmpty();
   }
 

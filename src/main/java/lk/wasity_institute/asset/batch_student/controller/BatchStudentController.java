@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.batch_student.controller;
 
+
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
@@ -71,7 +72,7 @@ public class BatchStudentController {
     model.addAttribute("batchDetail", batch);
     model.addAttribute("teacherDetail", batch.getTeacher());
     //already registered student on this batch
-    List< Student > registeredStudent = new ArrayList<>();
+    List<Student> registeredStudent = new ArrayList<>();
     batch.getBatchStudents()
             .stream()
             .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))

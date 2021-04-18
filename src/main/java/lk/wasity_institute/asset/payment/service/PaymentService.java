@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.payment.service;
 
 
+
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.payment.dao.PaymentDao;
@@ -8,11 +9,13 @@ import lk.wasity_institute.asset.payment.entity.Payment;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.Year;
 import java.util.List;
 
 @Service
-public class PaymentService implements AbstractService< Payment, Integer > {
+public class PaymentService implements AbstractService<Payment, Integer > {
   private final PaymentDao paymentDao;
 
   public PaymentService(PaymentDao paymentDao) {
@@ -49,7 +52,15 @@ public class PaymentService implements AbstractService< Payment, Integer > {
     return paymentDao.findFirstByOrderByIdDesc();
   }
 
-  public Payment findByMonthAndBatchStudent(Month month, BatchStudent batchStudent) {
-    return paymentDao.findByBatchStudentAndMonth(batchStudent, month);
+  public Payment findByMonthAndBatchStudent(Month month, BatchStudent batchStudent, Year year) {
+    return paymentDao.findByBatchStudentAndMonthAndYear(batchStudent, month,year);
+  }
+
+/*  public Payment findByMonthAndBatchStudentAndPaymentStatus(Month month, BatchStudent batchStudent, PaymentStatus noPaid) {
+    return paymentDao.findByMonthAndBatchStudentAndPaymentStatus(batchStudent, month,noPaid);
+  }*/
+
+  public List< Payment > findByCreatedAtIsBetween(LocalDateTime startAt, LocalDateTime endAt) {
+    return paymentDao.findByCreatedAtIsBetween(startAt, endAt);
   }
 }

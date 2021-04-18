@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.school.controller;
 
 
+
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.school.entity.School;
 import lk.wasity_institute.asset.school.service.SchoolService;

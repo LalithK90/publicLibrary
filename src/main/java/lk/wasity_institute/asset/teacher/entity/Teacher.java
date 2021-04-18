@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.teacher.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;

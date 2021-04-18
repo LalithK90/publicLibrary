@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.student.service;
 
 
+
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.student.dao.StudentDao;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentService implements AbstractService< Student, Integer > {
+public class StudentService implements AbstractService<Student, Integer > {
     private final StudentDao studentDao;
 
     public StudentService(StudentDao studentDao) {

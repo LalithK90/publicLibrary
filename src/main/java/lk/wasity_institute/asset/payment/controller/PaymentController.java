@@ -3,12 +3,15 @@ package lk.wasity_institute.asset.payment.controller;
 
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
+import lk.wasity_institute.asset.common_asset.model.TwoDate;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.payment.entity.Payment;
 import lk.wasity_institute.asset.payment.entity.enums.PaymentStatus;
 import lk.wasity_institute.asset.payment.service.PaymentService;
 import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.asset.student.service.StudentService;
+import lk.wasity_institute.util.service.DateTimeAgeService;
+import lk.wasity_institute.util.service.EmailService;
 import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +20,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,23 +35,43 @@ public class PaymentController {
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
   private final StudentService studentService;
   private final BatchStudentService batchStudentService;
+  private final DateTimeAgeService dateTimeAgeService;
+  private final EmailService emailService;
 
   public PaymentController(PaymentService paymentService, MakeAutoGenerateNumberService makeAutoGenerateNumberService
-      , StudentService studentService, BatchStudentService batchStudentService) {
+      , StudentService studentService, BatchStudentService batchStudentService, DateTimeAgeService dateTimeAgeService
+      , EmailService emailService) {
     this.paymentService = paymentService;
     this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
     this.studentService = studentService;
     this.batchStudentService = batchStudentService;
+    this.dateTimeAgeService = dateTimeAgeService;
+    this.emailService = emailService;
+  }
+
+  private String commonFindAll(LocalDate from, LocalDate to, Model model) {
+
+    LocalDateTime startAt = dateTimeAgeService.dateTimeToLocalDateStartInDay(from);
+    LocalDateTime endAt = dateTimeAgeService.dateTimeToLocalDateEndInDay(to);
+
+
+    model.addAttribute("payments",
+                       paymentService.findByCreatedAtIsBetween(startAt, endAt));
+
+    model.addAttribute("message",
+                       "Following table show details belongs from " + from + " to " + to +
+                           "there month. if you need to more please search using above method");
+    return "payment/payment";
   }
 
   @GetMapping
   public String findAll(Model model) {
-    model.addAttribute("payments",
-                       paymentService.findAll()
-                           .stream()
-                           .filter(x -> x.getCreatedAt().toLocalDate().equals(LocalDate.now()))
-                           .collect(Collectors.toList()));
-    return "payment/payment";
+    return commonFindAll(LocalDate.now(), LocalDate.now(), model);
+  }
+
+  @PostMapping
+  public String findAllSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    return commonFindAll(twoDate.getStartDate(), twoDate.getEndDate(), model);
   }
 
   @GetMapping( "/add" )
@@ -59,7 +83,7 @@ public class PaymentController {
   @GetMapping( "/add/{id}" )
   public String form(@PathVariable( "id" ) Integer id, Model model) {
     Student student = studentService.findById(id);
-    List< BatchStudent > batchStudents = batchStudentService.findByStudent(student)
+    List<BatchStudent> batchStudents = batchStudentService.findByStudent(student)
         .stream()
         .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))
         .collect(Collectors.toList());
@@ -67,11 +91,11 @@ public class PaymentController {
 
     List< BatchStudent > batchStudentPayment = new ArrayList<>();
 
-
+    Year year = Year.now();
     batchStudents.forEach(y -> {
-      List< Payment > payments = new ArrayList<>();
+      List<Payment> payments = new ArrayList<>();
       months.forEach(x -> {
-        Payment payment = paymentService.findByMonthAndBatchStudent(x, y);
+        Payment payment = paymentService.findByMonthAndBatchStudent(x, y, year);
         if ( payment == null ) {
           Payment newPayment = new Payment();
           newPayment.setPaymentStatus(PaymentStatus.NO_PAID);
@@ -79,6 +103,7 @@ public class PaymentController {
           newPayment.setBatchStudent(y);
           newPayment.setAmount(y.getBatch().getTeacher().getFee());
           newPayment.setMonth(x);
+          newPayment.setYear(year);
           payments.add(newPayment);
         } else {
           payments.add(payment);
@@ -118,26 +143,55 @@ public class PaymentController {
   }
 
   @PostMapping( "/batchStudent/save" )
-  public String persist(@Valid @ModelAttribute Student student, BindingResult bindingResult) {
+  public String persist(@Valid @ModelAttribute Student student, BindingResult bindingResult, Model model) {
     if ( bindingResult.hasErrors() ) {
       return "redirect:/payment/add/" + student.getId();
     }
-    HashSet< Payment > payments = new HashSet<>();
-    student.getBatchStudents().forEach(x -> x.getPayments().forEach(y -> {
-      if ( !y.getPaymentStatus().equals(PaymentStatus.NO_PAID) ) {
-        y.setBatchStudent(x);
-        commonSave(y);
-        payments.add(paymentService.persist(y));
-      }
-    }));
+    List< Payment > payments = new ArrayList<>();
 
-    //todo -> need to do print
-    return "redirect:/payment";
+
+    for ( int i = 0; i < student.getBatchStudents().size(); i++ ) {
+      if ( student.getBatchStudents().get(i).getPayments() != null ) {
+        for ( int k = 0; k < student.getBatchStudents().get(i).getPayments().size(); k++ ) {
+          if ( student.getBatchStudents().get(i).getPayments().get(k).getAmount() != null ) {
+            if ( student.getBatchStudents().get(i).getPayments().get(k).getPaymentStatus() != null && !student.getBatchStudents().get(i).getPayments().get(k).getPaymentStatus().equals(PaymentStatus.NO_PAID) ) {
+              student.getBatchStudents().get(i).getPayments().get(k).setBatchStudent(student.getBatchStudents().get(i));
+              payments.add(paymentService.persist(commonSave(student.getBatchStudents().get(i).getPayments().get(k))));
+            }
+          }
+        }
+      }
+    }
+
+
+    List< Payment > withBatchStudent = new ArrayList<>();
+    payments.forEach(x -> {
+      x.setBatchStudent(batchStudentService.findById(x.getBatchStudent().getId()));
+      withBatchStudent.add(x);
+
+    });
+
+    StringBuilder paymentInfo = new StringBuilder();
+    for ( Payment payment : withBatchStudent ) {
+      paymentInfo.append("\n\t\t\t\t Payment Code \t\t").append(payment.getCode()).append("\t\t\t\t Month \t\t").append(payment.getMonth()).append("\tYear \t\t").append(payment.getYear()).append(
+          " \t\t\t\t Amount \t\t ").append(payment.getAmount()).append("\t\t\t\t Paid At \t\t").append(payment.getCreatedAt().toLocalDate()).append(" \t\t\t\tCreated By\t\t").append(payment.getCreatedBy());
+    }
+
+
+    Student studentDb = studentService.findById(student.getId());
+    if ( studentDb.getEmail() != null ) {
+      String message =
+          "Dear " + studentDb.getFirstName() + "\n Your following payment was accepted\n" + paymentInfo + "\n Thanks " +
+              "\n\n Success Student";
+      emailService.sendEmail(studentDb.getEmail(), "Payment - Notification", message);
+    }
+
+    model.addAttribute("payments", withBatchStudent);
+    return "payment/paymentPrint";
   }
 
-  private void commonSave(Payment payment) {
+  private Payment commonSave(Payment payment) {
     if ( payment.getId() == null ) {
-      // need to create auto generated registration number
       Payment lastPayment = paymentService.lastStudentOnDB();
       if ( lastPayment == null ) {
         payment.setCode("SSP" + makeAutoGenerateNumberService.numberAutoGen(null));
@@ -146,6 +200,7 @@ public class PaymentController {
         payment.setCode("SSP" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
       }
     }
+    return payment;
   }
 
   @GetMapping( "/delete/{id}" )

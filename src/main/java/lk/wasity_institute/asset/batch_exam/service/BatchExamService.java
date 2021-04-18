@@ -1,8 +1,10 @@
 package lk.wasity_institute.asset.batch_exam.service;
 
+
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch_exam.dao.BatchExamDao;
 import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
+import lk.wasity_institute.asset.batch_exam.entity.enums.ExamStatus;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BatchExamService implements AbstractService< BatchExam, Integer > {
+public class BatchExamService implements AbstractService<BatchExam, Integer > {
   private final BatchExamDao batchExamDao;
 
   public BatchExamService(BatchExamDao batchExamDao) {
@@ -28,6 +30,7 @@ public class BatchExamService implements AbstractService< BatchExam, Integer > {
   public BatchExam persist(BatchExam batchExam) {
     if ( batchExam.getId() == null ) {
       batchExam.setLiveDead(LiveDead.ACTIVE);
+      batchExam.setExamStatus(ExamStatus.PENDING);
     }
     return batchExamDao.save(batchExam);
   }

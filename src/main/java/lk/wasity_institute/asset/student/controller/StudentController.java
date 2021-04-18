@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.student.controller;
 
 
+
 import lk.wasity_institute.asset.batch.controller.BatchController;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
@@ -23,8 +24,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping( "/student" )
-public class StudentController implements AbstractController< Student, Integer > {
+  @RequestMapping( "/student" )
+public class StudentController implements AbstractController<Student, Integer > {
   private final StudentService studentService;
   private final BatchStudentService batchStudentService;
   private final SchoolService schoolService;
@@ -67,6 +68,7 @@ public class StudentController implements AbstractController< Student, Integer >
 
   @GetMapping( "/add" )
   public String form(Model model) {
+
     return commonThing(model, new Student(), true);
   }
 

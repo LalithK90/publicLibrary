@@ -1,5 +1,6 @@
 package lk.wasity_institute;
 
+
 import lk.wasity_institute.asset.common_asset.model.enums.CivilStatus;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.Title;

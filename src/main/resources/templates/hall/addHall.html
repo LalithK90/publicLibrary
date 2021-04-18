@@ -1,85 +1,101 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <!--Styles, meta data, and title are included-->
-<head data-th-replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Success Student Management System</title>
-</head>
-<body style="margin-top: 90px;">
+<head data-th-replace="~{fragments/header :: headerFragment}" >
+  <meta charset="UTF-8" >
+  <title >Success Student Management System</title >
+</head >
+<body >
 <!--Nav bar is included-->
-<nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
+<nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
-<div class="card bg-gradient-light text-center">
-    <h1>New Hall</h1>
-</div>
-<div class="row">
-    <div class="col-9"></div>
-    <div class="col-3">
-        <a href="/hall">
-            <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Hall list</button>
-        </a>
-    </div>
-</div>
+<div class="row bg-light" >
+  <div class="col-4" >
+  </div >
+  <div class="col-4" >
+    <h1 >Add new Hall</h1 >
+  </div >
+  <div class="col-4" >
+    <a href="/hall" >
+      <button class="btn btn-primary" >View All</button >
+    </a >
+  </div >
+</div >
 
-<div class="container-fluid">
-    <form action="/hall/save" data-th-object="${hall}" method="post">
-        <div class=" row form-group">
-            <div class="col-md-2"></div><div class="col-md-2">
-            <label class=" control-label mr-4" data-th-for="${number}">Hall ID:</label></div>
-          <div class="col-md-4">
-                <input type="text" data-th-field="*{number}" id="hallId" placeholder="Hall Number" class="form-control" autofocus>
-                <input type="text" data-th-if="${addStatus==false}" data-th-field="*{id}" id="id" placeholder="Hall Number" class="form-control" autofocus hidden>
-                <input type="text" data-th-if="${addStatus==false}" data-th-field="*{liveDead}" i placeholder="Hall Number" class="form-control" autofocus hidden>
-          </div>
-        </div>
-        <div class=" row form-group">
-            <div class="col-md-2"></div><div class="col-md-2">
-            <label class=" control-label" data-th-for="${seatCount}">Seating Count:</label></div>
-            <div class="col-md-4">
-                <input type="text" data-th-field="*{seatCount}" id="seatCount" placeholder="Seating Count" class="form-control" autofocus>
-            </div>
-        </div>
-        <div class=" row form-group">
-            <div class="col-md-2"></div><div class="col-md-2">
-            <label class="control-label" data-th-for="${hallCondition}">Hall Condition:</label></div>
-            <div class="col-md-4">
-                <div class="custom-control custom-checkbox custom-control-inline "
-                     data-th-each="hallCondition,index : ${hallConditions}">
-                    <input class="custom-control-input gender" required
-                           data-th-name="${'hallCondition'}"
-                           data-th-value="${hallCondition}"
-                           data-th-id="${index.index}+${hallCondition}" type="radio"
-                           data-th-checked="${hallCondition==hallCondition}"/>
-                    <label class="custom-control-label"
-                           data-th-for="${index.index}+${hallCondition}"
-                           data-th-text="${hallCondition.hallCondition}"> radio
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class=" row form-group">
-            <div class="col-md-2"></div><div class="col-md-2">
-            <label class= "control-label" data-th-for="${hallLocation}">Hall Location:</label></div>
-            <div class="col-md-4 ">
-                <select id="hallLocation" class="form-control" data-th-field="*{hallLocation}">
-                    <option value="1st Floor">First floor</option>
-                    <option value="2nd Floor">Second floor</option>
-                    <option value="3rd Floor">Third floor</option>
-                </select>
-            </div>
-        </div>
+<div class="container" >
+  <form action="/hall/save" data-th-object="${hall}" method="post" >
+    <div class="form-group" >
+      <label class="col-sm-3 control-label" data-th-for="${number}" >Hall ID</label >
+      <div class="col-sm-5" >
+        <input type="text" data-th-field="*{number}" id="hallId" placeholder="Hall Number" class="form-control"
+               autofocus required>
+        <input type="text" data-th-if="${addStatus==false}" data-th-field="*{id}" id="id" placeholder="Hall Number"
+               class="form-control" autofocus hidden >
+        <input type="text" data-th-if="${addStatus==false}" data-th-field="*{liveDead}"  placeholder="Hall Number"
+               class="form-control" autofocus hidden >
 
-        <div class="form-group row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
-                <button type="submit" class="btn btn-primary mt-3 ml-2"><span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span ></button>
-                <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
-            </div>
-        </div>
+      </div >
+    </div >
+    <div class="form-group" >
+      <label class="col-sm-3 control-label" data-th-for="${seatCount}" >Seating Count</label >
+      <div class="col-sm-5" >
+        <input type="number" min="0" data-th-field="*{seatCount}" id="seatCount" placeholder="Seating Count" class="form-control"
+               autofocus >
+      </div >
+    </div >
+    <div class="form-group" >
+      <label class="col-sm-3 control-label" data-th-for="${hallCondition}" >Hall Condition</label >
+      <div class="col-sm-5" >
+        <div class="custom-control custom-checkbox custom-control-inline "
+             data-th-each="hallCondition,index : ${hallConditions}" >
+          <input class="custom-control-input gender" required
+                 data-th-name="${'hallCondition'}"
+                 data-th-value="${hallCondition}"
+                 data-th-id="${index.index}+${hallCondition}" type="radio"
+                 data-th-checked="${hallCondition==hallCondition}" />
+          <label class="custom-control-label"
+                 data-th-for="${index.index}+${hallCondition}"
+                 data-th-text="${hallCondition.hallCondition}" > radio
+          </label >
+        </div >
+      </div >
+    </div >
+    <div class="form-group" >
+      <label class="col-sm-3 control-label" data-th-for="${hallLocation}" >Hall Location</label >
+      <div class="col-sm-5" >
+        <select id="hallLocation" class="form-control" data-th-field="*{hallLocation}" >
+          <option value="1st Floor" >First floor</option >
+          <option value="2nd Floor" >Second floor</option >
+          <option value="3rd Floor" >Third floor</option >
+        </select >
+      </div >
+    </div >
 
-    </form> <!-- /form -->
-</div> <!-- ./container -->
-</body>
-</html>
+    <div class="row container-fluid" >
+      <div class="col-sm-2 col-sm-offset-2" >
+        <a href="/hall" >
+          <button type="button" class="btn btn-danger btn-block" >Back</button >
+        </a >
+      </div >
+
+      <div class="col-sm-2 col-sm-offset-2" >
+        <button type="reset" class="btn btn-warning btn-block" >Clear Data</button >
+      </div >
+
+      <div class="col-sm-2 col-sm-offset-2" >
+        <button type="submit" class="btn btn-success btn-block" >Submit</button >
+      </div >
+    </div >
+  </form > <!-- /form -->
+</div > <!-- ./container -->
+
+
+
+<!--footer is included-->
+<div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
+<!--script is included-->
+<div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
+
+
+</body >
+</html >

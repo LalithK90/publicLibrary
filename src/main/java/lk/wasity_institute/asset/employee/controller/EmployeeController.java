@@ -1,6 +1,9 @@
 package lk.wasity_institute.asset.employee.controller;
 
 
+
+
+
 import lk.wasity_institute.asset.common_asset.model.enums.CivilStatus;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
@@ -70,7 +73,7 @@ public class EmployeeController {
   //Send all employee data
   @RequestMapping
   public String employeePage(Model model) {
-    List< Employee > employees = new ArrayList<>();
+    List<Employee> employees = new ArrayList<>();
     for ( Employee employee : employeeService.findAll()
         .stream()
         .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
@@ -173,7 +176,7 @@ public class EmployeeController {
 
     } catch ( Exception e ) {
       ObjectError error = new ObjectError("employee",
-                                          "There is already in the system. <br>System message -->" + e.toString());
+                                          "There is already in the system. System message -->" + e.toString());
       result.addError(error);
       if ( employee.getId() != null ) {
         model.addAttribute("addStatus", true);

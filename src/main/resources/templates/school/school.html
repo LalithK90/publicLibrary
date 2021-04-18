@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <title>Student Management System</title>
 </head>
-<body style="margin-top: 90px;">
+<body>
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
-<div class="card bg-gradient-light text-center">
-    <h1> Subjects list</h1>
-</div>
-<div class="row">
-    <div class="col-9"></div>
-    <div class="col-3">
+<div class="row bg-link">
+    <div class="col-4">
+
+    </div>
+    <div class="col-4">
+        <h1>School Management</h1>
+    </div>
+    <div class="col-4">
         <a href="/school/add">
-            <button class="btn shadow mt-3" id="listb">New School </button>
+            <button class="btn btn-primary" align="center">New School</button>
         </a>
     </div>
 </div>
@@ -28,8 +30,8 @@
             <tr>
                 <th>Index</th>
                 <th>School name</th>
-<th></th>
-                <th >Modify</th>
+
+                <th>Modify</th>
 
             </tr>
             </thead>
@@ -38,13 +40,13 @@
                 <td data-th-text="${index.count}"></td>
                 <td data-th-text="${school.name}"></td>
 
-<td></td>
+
                 <td>
                      <a data-th-href="${'/school/edit/'+ school.id}">
-                        <button class="btn btn-info"  style="width: 19%;border-radius: 12px;border-color: rgba(9, 118, 193, 0.99)">Edit</button>
+                        <button class="btn btn-success">Edit</button>
                     </a>
                     <a data-th-href="${'/school/delete/'+ school.id}">
-                        <button class="btn btn-danger ml-2 " style="width: 19%;border-radius: 12px;border-color:  rgba(160,16,14,0.99)">Delete</button>
+                        <button class="btn btn-danger">Delete</button>
                     </a>
                 </td>
             </tr>

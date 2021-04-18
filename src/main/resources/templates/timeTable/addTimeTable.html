@@ -5,18 +5,21 @@
   <meta charset="UTF-8" >
   <title >Success TimeTable Management</title >
 </head >
-<body style="margin-top: 70px;">
-<!--Nav bar is included-->
-<nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
+<body >
 
-<div class="card bg-gradient-light text-center">
-  <h1>New Teacher</h1>
-</div>
-<div class="row">
-  <div class="col-9"></div>
-  <div class="col-3">
-    <a href="/teacher">
-      <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Teacher list</button>
+<!--Nav bar is included-->
+<nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
+
+<div class="row bg-link">
+  <div class="col-4">
+
+  </div>
+  <div class="col-4">
+    <h1>Timetable Management</h1>
+  </div>
+  <div class="col-4">
+    <a href="/timeTable/add">
+      <button class="btn btn-primary" align="center">New Time</button>
     </a>
   </div>
 </div>
@@ -42,6 +45,9 @@
           <th data-th-if="${!addStatus}" >
             <input type="text" class="form-control" data-th-name="${'batches.timeTables[__${index.index}__].code'}"
                    data-th-value="${batches.timeTables[__${index.index}__].code}" required
+                   readonly >
+            <input type="text" class="form-control" data-th-name="${'batches.timeTables[__${index.index}__].id'}"
+                   data-th-value="${batches.timeTables[__${index.index}__].id}" required
                    readonly >
           </th >
           <th >
@@ -79,7 +85,7 @@
               <option value="" >Please select</option >
               <option data-th-each="hall : ${halls}"
                       data-th-value="${hall.id}"
-                      data-th-text="${hall.number}" ></option >
+                      data-th-text="${'Hall Number : '+hall.number+' Seats : '+ hall.seatCount}" ></option >
             </select >
           </th >
           <th data-th-if="${!addStatus}" >

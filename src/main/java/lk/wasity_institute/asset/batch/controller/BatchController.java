@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/batch" )
-public class BatchController implements AbstractController< Batch, Integer > {
+public class BatchController implements AbstractController<Batch, Integer > {
   private final BatchService batchService;
   private final TeacherService teacherService;
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
@@ -117,6 +117,7 @@ public class BatchController implements AbstractController< Batch, Integer > {
     }
 
     batchService.persist(batch);
+
     return "redirect:/batch";
 
   }

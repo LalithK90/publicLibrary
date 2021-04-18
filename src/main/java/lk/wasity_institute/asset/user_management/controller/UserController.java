@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.user_management.controller;
 
 
+
 import lk.wasity_institute.asset.employee.entity.Employee;
 import lk.wasity_institute.asset.employee.entity.enums.EmployeeStatus;
 import lk.wasity_institute.asset.employee.service.EmployeeService;
@@ -30,6 +31,7 @@ public class UserController {
   private final EmployeeService employeeService;
   private final TeacherService teacherService;
   private final StudentService studentService;
+
 
   @Autowired
   public UserController(UserService userService, EmployeeService employeeService, RoleService roleService,
@@ -62,6 +64,19 @@ public class UserController {
 
   @GetMapping( value = "/edit/{id}" )
   public String editUserFrom(@PathVariable( "id" ) Integer id, Model model) {
+    User user = userService.findById(id);
+    //employee
+    if ( user.getEmployee() != null ) {
+      model.addAttribute("employee", user.getEmployee());
+    }
+    //teacher
+    if ( user.getTeacher() != null ) {
+      model.addAttribute("teacher", user.getTeacher());
+    }
+    //student
+    if ( user.getStudent() != null ) {
+      model.addAttribute("student", user.getStudent());
+    }
     model.addAttribute("user", userService.findById(id));
     model.addAttribute("addStatus", false);
     return commonCode(model);
@@ -84,7 +99,9 @@ public class UserController {
         .collect(Collectors.toList());
 
     if ( employees.size() == 1 ) {
-      model.addAttribute("user", new User());
+      User user = new User();
+      user.setEmployee(employees.get(0));
+      model.addAttribute("user", user);
       model.addAttribute("employee", employees.get(0));
       model.addAttribute("addStatus", true);
       return commonCode(model);
@@ -103,15 +120,25 @@ public class UserController {
   // Above method support to send data to front end - All List, update, edit
   //Bellow method support to do back end function save, delete, update, search
 
-  @PostMapping( value = {"/add", "/update"} )
+  @PostMapping( value = {"/save", "/update"} )
   public String addUser(@Valid @ModelAttribute User user, BindingResult result, Model model) {
 
-    if ( userService.findUserByEmployee(user.getEmployee()) != null ) {
-      ObjectError error = new ObjectError("employee", "This employee already defined as a user");
-      result.addError(error);
+    if ( user.getId() ==null ) {
+      if ( user.getEmployee() != null && userService.findUserByEmployee(user.getEmployee()) != null ) {
+        ObjectError error = new ObjectError("employee", "This employee already defined as a user");
+        result.addError(error);
+      }
+      if ( user.getTeacher() != null && userService.findUserByTeacher(user.getTeacher()) != null ) {
+        ObjectError error = new ObjectError("teacher", "This teacher already defined as a user");
+        result.addError(error);
+      }
+      if ( user.getStudent() != null && userService.findUserByStudent(user.getStudent()) != null ) {
+        ObjectError error = new ObjectError("student", "This teacher student defined as a user");
+        result.addError(error);
+      }
     }
     if ( result.hasErrors() ) {
-      model.addAttribute("addStatus", false);
+      model.addAttribute("addStatus", true);
       model.addAttribute("user", user);
       return commonCode(model);
     }
@@ -124,10 +151,12 @@ public class UserController {
       userService.persist(dbUser);
       return "redirect:/user";
     }
-    Employee employee = employeeService.findById(user.getEmployee().getId());
 
-    // userService.persist(user);
-    user.setEnabled(employee.getEmployeeStatus().equals(EmployeeStatus.WORKING));
+
+    if ( user.getEmployee() != null ) {
+      Employee employee = employeeService.findById(user.getEmployee().getId());
+      user.setEnabled(employee.getEmployeeStatus().equals(EmployeeStatus.WORKING));
+    }
     user.setRoles(user.getRoles());
     user.setEnabled(true);
     userService.persist(user);
@@ -164,8 +193,10 @@ public class UserController {
         .collect(Collectors.toList());
 
     if ( teachers.size() == 1 ) {
-      model.addAttribute("user", new User());
-      model.addAttribute("employee", teachers.get(0));
+      User user = new User();
+      user.setTeacher(teachers.get(0));
+      model.addAttribute("user", user);
+      model.addAttribute("teacher", teachers.get(0));
       model.addAttribute("addStatus", true);
       return commonCode(model);
     }
@@ -197,8 +228,10 @@ public class UserController {
         .collect(Collectors.toList());
 
     if ( students.size() == 1 ) {
-      model.addAttribute("user", new User());
-      model.addAttribute("employee", students.get(0));
+      User user = new User();
+      user.setStudent(students.get(0));
+      model.addAttribute("user", user);
+      model.addAttribute("student", students.get(0));
       model.addAttribute("addStatus", true);
       return commonCode(model);
     }

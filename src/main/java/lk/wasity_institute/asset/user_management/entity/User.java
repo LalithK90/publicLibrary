@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.user_management.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lk.wasity_institute.asset.employee.entity.Employee;
 import lk.wasity_institute.asset.student.entity.Student;

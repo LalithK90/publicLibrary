@@ -48,6 +48,9 @@ public class Student extends AuditEntity {
 
   private String home;
 
+  @Column( unique = true )
+  private String email;
+
   @Enumerated( EnumType.STRING )
   private LiveDead liveDead;
 
@@ -58,7 +61,7 @@ public class Student extends AuditEntity {
   private School school;
 
   @OneToMany(mappedBy = "student",cascade ={ CascadeType.MERGE, CascadeType.PERSIST})
-  private List< BatchStudent > batchStudents;
+  private List<BatchStudent> batchStudents;
 
 
 }

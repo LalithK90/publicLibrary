@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.hall.controller;
 
 
+
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.hall.entity.Hall;
 import lk.wasity_institute.asset.hall.entity.enums.HallCondition;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/hall" )
-public class HallController implements AbstractController< Hall, Integer > {
+public class HallController implements AbstractController<Hall, Integer > {
   private final HallService hallService;
 
   public HallController(HallService hallService) {

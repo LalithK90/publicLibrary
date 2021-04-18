@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.time_table_student_attendence.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.common_asset.model.enums.AttendanceStatus;

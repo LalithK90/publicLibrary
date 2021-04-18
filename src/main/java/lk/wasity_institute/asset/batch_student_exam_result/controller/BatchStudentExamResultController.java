@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.batch_student_exam_result.controller;
 
+
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
 import lk.wasity_institute.asset.batch_exam.service.BatchExamService;
@@ -43,7 +44,7 @@ public class BatchStudentExamResultController {
   public String addAttendance(@PathVariable Integer id, Model model) {
     BatchExam batchExam = batchExamService.findById(id);
 
-    List< BatchStudentExamResult > batchStudentExamResults = new ArrayList<>();
+    List<BatchStudentExamResult> batchStudentExamResults = new ArrayList<>();
 
     batchStudentService.findByBatch(batchExam.getBatch()).forEach(x -> {
       BatchStudentExamResult batchStudentExamResult = new BatchStudentExamResult();
@@ -93,8 +94,10 @@ public class BatchStudentExamResultController {
         }
       }
       batchStudentExamResultService.persist(x);
-
     });
+  BatchExam batchExamDb =   batchExamService.findById(batchExam.getId());
+  batchExamDb.setExamStatus(batchExam.getExamStatus());
+  batchExamService.persist(batchExamDb);
     return "redirect:/batchExam/teacher";
   }
 }

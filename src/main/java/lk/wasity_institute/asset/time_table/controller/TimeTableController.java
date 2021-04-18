@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.time_table.controller;
 
 
+
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.service.BatchService;
@@ -9,6 +10,7 @@ import lk.wasity_institute.asset.common_asset.model.DateTimeTable;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.hall.service.HallService;
 import lk.wasity_institute.asset.student.entity.Student;
+import lk.wasity_institute.asset.student.service.StudentService;
 import lk.wasity_institute.asset.subject.service.SubjectService;
 import lk.wasity_institute.asset.teacher.entity.Teacher;
 import lk.wasity_institute.asset.teacher.service.TeacherService;
@@ -17,6 +19,7 @@ import lk.wasity_institute.asset.time_table.service.TimeTableService;
 import lk.wasity_institute.asset.user_management.entity.User;
 import lk.wasity_institute.asset.user_management.service.UserService;
 import lk.wasity_institute.util.service.DateTimeAgeService;
+import lk.wasity_institute.util.service.EmailService;
 import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,13 +49,16 @@ public class TimeTableController {
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
   private final DateTimeAgeService dateTimeAgeService;
   private final UserService userService;
+  private final StudentService studentService;
+  private final EmailService emailService;
 
 
   public TimeTableController(TimeTableService timeTableService, HallService hallService,
                              SubjectService subjectService, TeacherService teacherService, BatchService batchService,
                              BatchStudentService batchStudentService,
                              MakeAutoGenerateNumberService makeAutoGenerateNumberService,
-                             DateTimeAgeService dateTimeAgeService, UserService userService) {
+                             DateTimeAgeService dateTimeAgeService, UserService userService,
+                             StudentService studentService, EmailService emailService) {
     this.timeTableService = timeTableService;
     this.hallService = hallService;
     this.subjectService = subjectService;
@@ -62,6 +68,8 @@ public class TimeTableController {
     this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
     this.dateTimeAgeService = dateTimeAgeService;
     this.userService = userService;
+    this.studentService = studentService;
+    this.emailService = emailService;
   }
 
   @GetMapping
@@ -73,19 +81,19 @@ public class TimeTableController {
 
   @GetMapping( "/byDate" )
   public String byDate(Model model) {
-    List< TimeTable > timeTables = timeTableService.findAll();
+    List<TimeTable> timeTables = timeTableService.findAll();
     return common(timeTables, model);
   }
 
   @GetMapping( "/teacher" )
   public String byTeacher(Model model) {
     User authUser = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
-//todo need to think teacher as user
+
     Teacher teacher = new Teacher();
-    List< TimeTable > timeTables = timeTableService.findAll();
-//        .stream()
-//        .filter(x -> x.getBatch().getTeacher().equals(teacher))
-//        .collect(Collectors.toList());
+    List< TimeTable > timeTables = timeTableService.findAll()
+        .stream()
+        .filter(x -> x.getBatch().getTeacher().equals(teacher))
+        .collect(Collectors.toList());
 
     return common(timeTables, model);
   }
@@ -94,7 +102,7 @@ public class TimeTableController {
     HashSet< LocalDate > classDates = new HashSet<>();
     timeTables.forEach(x -> classDates.add(x.getStartAt().toLocalDate()));
 
-    List< DateTimeTable > dateTimeTables = new ArrayList<>();
+    List<DateTimeTable> dateTimeTables = new ArrayList<>();
 
     for ( LocalDate classDate : classDates ) {
       DateTimeTable dateTimeTable = new DateTimeTable();
@@ -129,7 +137,7 @@ public class TimeTableController {
   public String findById(@PathVariable Integer id, Model model) {
     TimeTable timeTable = timeTableService.findById(id);
     model.addAttribute("timeTableDetail", timeTable);
-    List< Student > students = new ArrayList<>();
+    List<Student> students = new ArrayList<>();
     timeTable.getBatch()
         .getBatchStudents()
         .stream()
@@ -144,11 +152,6 @@ public class TimeTableController {
   public String editGet(@PathVariable( "date" ) @DateTimeFormat( pattern = "yyyy-MM-dd" ) LocalDate date, Model model) {
     return commonThing(model, date, false);
   }
-//  @GetMapping( "/edit/{id}" )
-//  public String edit(@PathVariable Integer id, Model model) {
-//    return commonThing(model, timeTableService.findById(id), false);
-//  }
-
 
   @PostMapping( "/edit" )
   public String editPost(@RequestParam( "date" ) @DateTimeFormat( pattern = "yyyy-MM-dd" ) LocalDate date,
@@ -172,8 +175,15 @@ public class TimeTableController {
           timeTable.setCode("SSTM" + makeAutoGenerateNumberService.numberAutoGen(lastTimeTable.getCode().substring(4)).toString());
         }
       }
-//todo need to send email to student who register in relevant batch
-      timeTableService.persist(timeTable);
+     TimeTable timeTableDb = timeTableService.persist(timeTable);
+      timeTableDb.getBatch().getBatchStudents().forEach(x->{
+        Student student = studentService.findById(x.getId());
+        if(student.getEmail()!=null){
+          String message = "Dear "+ student.getFirstName()+"\n Your "+timeTableDb.getBatch().getName()+" class would be held from "+ timeTableDb.getStartAt()+" to "+ timeTableDb.getEndAt() +"\n Thanks \n Success Student";
+          emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
+        }
+      });
+
     }
 
     return "redirect:/timeTable";
@@ -207,19 +217,14 @@ public class TimeTableController {
         timeTable.setBatch(batch1);
         timeTables.add(timeTable);
       }
-      System.out.println("time table size " + timeTables.size());
       batchSend.setTimeTables(timeTables);
     } else {
-      System.out.println("add status false");
       List< TimeTable > timeTables = timeTableService.findByCreatedAtIsBetween(from, to);
-      System.out.println("date " + date + "  form " + from + "size " + timeTables.size());
       batchSend.setTimeTables(timeTables);
     }
 
 
     model.addAttribute("batches", batchSend);
-//    model.addAttribute("batches", batchService.findAll());
-
     model.addAttribute("addStatus", addStatus);
     model.addAttribute("date", date);
     model.addAttribute("liveDeads", LiveDead.values());

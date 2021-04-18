@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.user_management.service;
 
+
 import lk.wasity_institute.asset.employee.entity.Employee;
 import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.asset.teacher.entity.Teacher;
@@ -96,6 +97,14 @@ public class UserService implements AbstractService< User, Integer > {
   @Cacheable
   public boolean findByStudent(Student student) {
     return userDao.findByStudent(student) == null;
+  }
+
+  public User findUserByTeacher(Teacher teacher) {
+    return userDao.findByTeacher(teacher);
+  }
+
+  public User findUserByStudent(Student student) {
+    return userDao.findByStudent(student);
   }
 
 

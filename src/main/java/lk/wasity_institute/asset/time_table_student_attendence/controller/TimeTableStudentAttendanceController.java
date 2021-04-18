@@ -1,9 +1,11 @@
 package lk.wasity_institute.asset.time_table_student_attendence.controller;
 
+
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
 import lk.wasity_institute.asset.common_asset.model.enums.AttendanceStatus;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.time_table.entity.TimeTable;
+import lk.wasity_institute.asset.time_table.entity.enums.TimeTableStatus;
 import lk.wasity_institute.asset.time_table.service.TimeTableService;
 import lk.wasity_institute.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
 import lk.wasity_institute.asset.time_table_student_attendence.service.TimeTableStudentAttendanceService;
@@ -44,7 +46,7 @@ public class TimeTableStudentAttendanceController {
     batchStudentService.findByBatch(timeTableService.findById(id).getBatch())
         .stream()
         .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))
-        .collect(Collectors.toList()).forEach(x->{
+        .collect(Collectors.toList()).forEach(x -> {
       TimeTableStudentAttendance timeTableStudentAttendance = new TimeTableStudentAttendance();
       timeTableStudentAttendance.setTimeTable(timeTable);
       timeTableStudentAttendance.setBatchStudent(x);
@@ -76,10 +78,14 @@ public class TimeTableStudentAttendanceController {
             x.setCode("SSA" + makeAutoGenerateNumberService.numberAutoGen(null));
           }
         }
-    var y=    timeTableStudentAttendanceService.persist(x);
+        var y = timeTableStudentAttendanceService.persist(x);
         System.out.println(y.getCode());
       }
     });
+    TimeTable timeTableDb = timeTableService.findById(timeTable.getId());
+    timeTableDb.setTimeTableStatus(TimeTableStatus.MARK);
+    timeTableService.persist(timeTable);
+
     return "redirect:/timeTable/teacher";
   }
 }

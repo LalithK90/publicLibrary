@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.common_asset.model;
 
+
 import lk.wasity_institute.asset.time_table.entity.TimeTable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DateTimeTable {
-  private List< TimeTable > timeTables;
+  private List<TimeTable> timeTables;
   private LocalDate date;
 }

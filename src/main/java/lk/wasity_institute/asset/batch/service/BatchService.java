@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.batch.service;
 
 
+
 import lk.wasity_institute.asset.batch.dao.BatchDao;
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
@@ -13,7 +14,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
-public class BatchService implements AbstractService< Batch, Integer > {
+public class BatchService implements AbstractService<Batch, Integer > {
   private final BatchDao batchDao;
 
   public BatchService(BatchDao batchDao) {

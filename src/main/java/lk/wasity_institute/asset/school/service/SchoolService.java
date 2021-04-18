@@ -1,6 +1,7 @@
 package lk.wasity_institute.asset.school.service;
 
 
+
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.school.dao.SchoolDao;
 import lk.wasity_institute.asset.school.entity.School;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SchoolService implements AbstractService< School, Integer > {
+public class SchoolService implements AbstractService<School, Integer > {
 
   private final SchoolDao schoolDao;
 
