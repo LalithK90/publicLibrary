@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
+import lk.wasity_institute.asset.batch.entity.enums.Medium;
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
@@ -32,7 +33,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/batch" )
-public class BatchController implements AbstractController<Batch, Integer > {
+public class BatchController implements AbstractController< Batch, Integer > {
   private final BatchService batchService;
   private final TeacherService teacherService;
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
@@ -53,20 +54,21 @@ public class BatchController implements AbstractController<Batch, Integer > {
   @GetMapping
   public String findAll(Model model) {
     model.addAttribute("batchs",
-                       batchService.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList()));
+            batchService.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList()));
     return "batch/batch";
   }
 
   private String commonMethod(Model model, Batch batch, boolean addStatus) {
     model.addAttribute("grades", Grade.values());
     model.addAttribute("classDays", ClassDay.values());
+    model.addAttribute("mediums", Medium.values());
     model.addAttribute("teachers", teacherService.findAll());
     model.addAttribute("batch", batch);
     model.addAttribute("addStatus", addStatus);
     model.addAttribute("subjectUrl", MvcUriComponentsBuilder
-        .fromMethodName(TeacherController.class, "findId", "")
-        .build()
-        .toString());
+            .fromMethodName(TeacherController.class, "findId", "")
+            .build()
+            .toString());
     return "batch/addBatch";
   }
 
@@ -91,13 +93,13 @@ public class BatchController implements AbstractController<Batch, Integer > {
                         RedirectAttributes redirectAttributes, Model model) {
     if ( batch.getId() == null ) {
       Batch batchDbDayAndStartAndEndTime =
-          batchService.findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetween(batch.getYear(), batch.getClassDay()
-              , batch.getStartAt(), batch.getEndAt(), batch.getStartAt(), batch.getEndAt());
+              batchService.findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetween(batch.getYear(), batch.getClassDay()
+                      , batch.getStartAt(), batch.getEndAt(), batch.getStartAt(), batch.getEndAt());
 
 
       if ( batchDbDayAndStartAndEndTime != null ) {
         ObjectError error = new ObjectError("batch",
-                                            "This batch is already in the system. ");
+                "This batch is already in the system. ");
         bindingResult.addError(error);
         return commonMethod(model, batch, true);
       }
@@ -117,7 +119,6 @@ public class BatchController implements AbstractController<Batch, Integer > {
     }
 
     batchService.persist(batch);
-
     return "redirect:/batch";
 
   }
@@ -134,10 +135,10 @@ public class BatchController implements AbstractController<Batch, Integer > {
     MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(batchService.findByGrade(grade));
 
     SimpleBeanPropertyFilter forBatch = SimpleBeanPropertyFilter
-        .filterOutAllExcept("id", "name");
+            .filterOutAllExcept("id", "name");
 
     FilterProvider filters = new SimpleFilterProvider()
-        .addFilter("Batch", forBatch);
+            .addFilter("Batch", forBatch);
 
     mappingJacksonValue.setFilters(filters);
 
@@ -167,10 +168,10 @@ public class BatchController implements AbstractController<Batch, Integer > {
     MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(notAssignBatch);
 
     SimpleBeanPropertyFilter forBatch = SimpleBeanPropertyFilter
-        .filterOutAllExcept("id", "name");
+            .filterOutAllExcept("id", "name");
 
     FilterProvider filters = new SimpleFilterProvider()
-        .addFilter("Batch", forBatch);
+            .addFilter("Batch", forBatch);
 
     mappingJacksonValue.setFilters(filters);
 
@@ -183,10 +184,10 @@ public class BatchController implements AbstractController<Batch, Integer > {
     MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(batchService.findById(id).getTeacher());
 
     SimpleBeanPropertyFilter forTeacher = SimpleBeanPropertyFilter
-        .filterOutAllExcept("id", "firstName", "fee");
+            .filterOutAllExcept("id", "firstName", "fee");
 
     FilterProvider filters = new SimpleFilterProvider()
-        .addFilter("Teacher", forTeacher);
+            .addFilter("Teacher", forTeacher);
 
     mappingJacksonValue.setFilters(filters);
 

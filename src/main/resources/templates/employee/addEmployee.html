@@ -3,36 +3,23 @@
 <head data-th-replace="~{fragments/header :: headerFragment}" >
   <meta charset="UTF-8" >
 </head >
-<body >
+<body style="margin-top: 90px;" >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
 
-<div class="container  form-Border" >
-  <div class="row text-center formManagement border-info" >
-    <div class="col" >
-      <a class="btn btn-outline-info" href="/home" >
-        Back To Home
-      </a >
-    </div >
-
-    <div class="col" >
-      <a href="/employee" class="btn btn-info" >
-        View Employees
-      </a >
-    </div >
-  </div >
-  <div class="row text-center" >
-    <div class="col" >
-      <h4 class="text-info text-center" >
-        <strong >
-          <span data-th-text="${addStatus==true?'New Employee':'Update Employee Details'}" ></span >
-        </strong >
-      </h4 >
-    </div >
-  </div >
-</div >
+<div class="card bg-gradient-light text-center">
+  <h1>New Batch</h1>
+</div>
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <a href="/employee">
+      <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Employee list</button>
+    </a>
+  </div>
+</div>
 <!--Form Content - start -->
-<div class="container-fluid bg-light formBorder" >
+<div class="container-fluid  " >
   <div class="col-sm-12 flex-column " >
     <form id="form" class="form-horizontal" data-th-action="${addStatus==true?'/employee/save':'/employee/update'}"
           data-th-object="${employee}" method="POST" enctype="multipart/form-data" >
@@ -280,24 +267,27 @@
 <!--          Employee status in add form-->
 
           <!--Image-->
+          <!--Image-->
           <div class="form-row text-right" >
-            <div class="form-row " >
-              <div class="col-md-3 mr-5" >
-                <label class="control-label" >Image</label >
-                <input type="file" name="file" id="imgUpload"
-                       accept="image/png, image/jpeg" />
-              </div >
-              <div class="col-md-3" ></div >
-              <div class="col-md-3 ml-5" >
-                <!--photo details-->
-                <img class="img-fluid ml-5" data-th-if="${addStatus==false && file!=null}" data-th-src="${file.url}"
-                     id="image" alt=""
-                     style="height: 100px; width: 100%;" >
-                <img class="img-fluid ml-5" data-th-if="${addStatus==true}" src="" id="image" alt=""
-                     style="height: 100px; width: 100%" >
-              </div >
+
+            <div class="col-md-4 " >
+              <label class="control-label" data-th-for="${imgUpload}" >Image:</label ></div>
+            <div class="col-md-8 mt-3">
+              <input type="file" name="file" id="imgUpload" class=""
+                     accept="image/png, image/jpeg" />
+            </div>
+
+            <div class="col-md-3" ></div >
+            <div class="col-md-3 ml-5" >
+              <!--photo details-->
+              <img class="img-fluid ml-5" data-th-if="${addStatus==false && file!=null}" data-th-src="${file.url}"
+                   id="image" alt=""
+                   style="height: 100px; width: 100%;" >
+              <img class="img-fluid ml-5" data-th-if="${addStatus==true}" src="" id="image" alt=""
+                   style="height: 100px; width: 100%" >
             </div >
           </div >
+        </div >
           <!--Created by and created at-->
           <div id="updateStatus" data-th-if="${addStatus==false}" >
             <div class="form-row text-right" >
@@ -321,15 +311,14 @@
         </div >
         <div class="form-group col-md-12 col-sm-12 text-left flex-column " >
           <!--Button-->
-          <div class="form-group col-md-12 col-sm-12 text-center flex-column " >
-            <button class="btn btn-success" type="submit" tabindex="21" >
-              <i class="fa fa-save " style="font-size: 20px" ></i >&nbsp;
-              &nbsp;<span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span >
-            </button >
-            <button class="btn btn-danger" type="reset" >
-              <i class="fa fa-redo" ></i > <span id="reset" >Reset</span >
-            </button >
-          </div >
+          <div class="form-group row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+              <button type="submit" class="btn btn-primary mt-3 ml-2">Save</button>
+              <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
+            </div>
+          </div>
         </div >
         <div class="form-row" >
           <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >

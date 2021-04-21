@@ -5,53 +5,52 @@
   <meta charset="UTF-8" >
   <title >Thymeleaf Springboot </title >
 </head >
-<body >
+<body  style="margin-top: 90px;">
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-
-<div class="row bg-light" >
-  <div class="col-4" >
-  </div >
-  <div class="col-4" >
-    <h1 >Create a Batch</h1 >
-  </div >
-  <div class="col-4" >
-    <a href="/batch" >
-      <button class="btn btn-primary" >All Batch</button >
-    </a >
-  </div >
-</div >
+<div class="card bg-gradient-light text-center">
+  <h1>New Batch</h1>
+</div>
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <a href="/batch">
+      <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Batch list</button>
+    </a>
+  </div>
+</div>
 
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container" >
+<div class="container-fluid" >
   <form action="/batch/save" data-th-object="${batch}" method="post" >
     <!--id-->
-    <div class="form-group text-right" data-th-if="${addStatus==false}" >
-      <div class="col-6" >
-        <label data-th-for="${id}" >Id</label >
-      </div >
-      <div class="col-6" >
-        <label >
+    <div class="form-group row text-right" data-th-if="${addStatus==false}" >
+      <div class="col-md-2"></div><div class="col-md-2">
+      <label data-th-for="${id}" >Id</label ></div>
+
+      <div class="col-md-4" >
+
           <input class="form-control" data-th-field="*{id}" readonly type="text" >
           <input class="form-control" data-th-field="*{liveDead}" readonly type="hidden" >
-        </label >
+
       </div >
     </div >
     <!--reference-->
-    <div class="form-group" data-th-if="${addStatus==false}" >
-      <label class="col-6 control-label" data-th-for="${'code'}" >Batch Ref</label >
-      <div class="col-6" >
+    <div class="form-group row " data-th-if="${addStatus==false}" >
+      <div class="col-md-1"></div><div class="col-md-2">
+      <label class=" control-label" data-th-for="${'code'}" >Batch Ref</label ></div>
+      <div class="col-md-4" >
         <input type="text" data-th-field="*{code}" id="batchId" placeholder="Batch ID" class="form-control"
                autofocus readonly >
       </div >
     </div >
-    <div class="row">
-      <div class="col-6">
+
         <!--academicYear-->
-        <div class="form-group" >
-          <label class="col-6 control-label" data-th-for="${'year'}" >Academic Year</label >
-          <div class="col-6" >
+        <div class="form-group row" >
+          <div class="col-md-1"></div><div class="col-md-2">
+          <label class=" control-label" data-th-for="${'year'}" >Academic Year :</label ></div>
+          <div  class="col-md-4">
             <select id="year" class="form-control" data-th-field="*{year}" required >
               <option value="2021" >2021</option >
               <option value="2022" >2022</option >
@@ -62,14 +61,18 @@
               <option value="2027" >2027</option >
               <option value="2028" >2028</option >
             </select >
-          </div >
-        </div >
-      </div>
-      <div class="col-6">
+        </div>
+        </div>
+
+
+
+
         <!--grade-->
-        <div class="form-group" >
-          <label class="col-6 control-label" data-th-for="${'grade'}" >Grade</label >
-          <div class="col-6" >
+        <div class="form-group row ">
+                  <div class="col-md-1"></div><div class="col-md-2">
+
+<label class="control-label" data-th-for="${'grade'}" >Grade :</label ></div>
+          <div class="col-md-4" >
             <select id="grade" class="form-control" data-th-field="*{grade}" required >
               <option value="" >Select the Grade</option >
               <option data-th-each="grade : ${grades}"
@@ -77,30 +80,44 @@
                       data-th-value="${grade}" ></option >
             </select >
           </div >
-        </div >
-      </div>
-    </div>
+        </div>
+<!--medium-->
+      <div class="form-group row" >
+          <div class="col-md-1"></div><div class="col-md-2">
+          <label class=" control-label" data-th-for="${'medium'}" >Medium</label ></div>
+          <div class="col-md-4" >
+              <select id="medium" class="form-control" data-th-field="*{medium}" required >
+                  <option value="" >Select the Medium</option >
+                  <option data-th-each="medium : ${mediums}"
+                          data-th-text="${medium.medium}"
+                          data-th-value="${medium}" ></option >
+              </select >
+          </div >
+      </div >
 
-    <div class="row">
-      <div class="col-6">
+
+
         <!--teacherName-->
-        <div class="form-group" >
-          <label data-th-for="${'teacher'}" class="col-6 control-label" >Teacher Name</label >
-          <div class="col-6" >
+        <div class="form-group row " >
+          <div class="col-md-1"></div><div class="col-md-2">
+
+          <label data-th-for="${'teacher'}" class=" control-label" >Teacher Name :</label ></div>
+          <div class="col-md-4" >
             <select id="teacher" class="form-control" data-th-field="*{teacher}" required >
               <option value="" >Select the Teacher</option >
               <option data-th-each="teacher : ${teachers}"
-                      data-th-text="${teacher.firstName+'_'+teacher.fee}"
+                      data-th-text="${teacher.firstName}"
                       data-th-value="${teacher.id}" ></option >
             </select >
           </div >
         </div >
-      </div>
-      <div class="col-6">
+
         <!--classDay-->
-        <div class="form-group" >
-          <label data-th-for="${'classDay'}" class="col-6 control-label" >Class Day</label >
-          <div class="col-6" >
+        <div class="form-group row " >
+          <div class="col-md-1"></div><div class="col-md-2">
+
+          <label data-th-for="${'classDay'}" class=" control-label" >Class Day :</label ></div>
+          <div class="col-md-4" >
             <select id="classDay" class="form-control" data-th-field="*{classDay}" required >
               <option value="" >Select Day</option >
               <option data-th-each="classDay : ${classDays}"
@@ -109,40 +126,45 @@
             </select >
           </div >
         </div >
-      </div>
-    </div>
-    <div class="row">
+
+
       <!--opening hours from - to-->
-      <div class="form-group" >
-        <label data-th-for="${name}" class="col-6 control-label" >Time Period</label >
-        <div class="row" >
-          <div class="container">
-            <div class="form-group" >
-              <label for="startAt" >FROM (opening hours 08:00 to 20:00) :</label >
+      <div class="form-group row " >
+        <div class="col-md-1"></div><div class="col-md-2">
+
+        <label data-th-for="${name}" class=" control-label" style="color: black">Time Period</label ></div></div>
+
+            <div class="form-group row " >
+              <div class="col-md-1"></div><div class="col-md-2">
+
+              <label for="startAt" >FROM (opening hours 08:00 to 20:00) :</label ></div>
+              <div class="col-md-4">
               <input class="form-control" id="startAt" data-th-field="*{startAt}" type="time" step="3600" min="08:00"
                      max="20:00" />
             </div >
           </div>
-          <div class="container">
-            <div class="form-group" >
-              <label for="endAt" >TO (opening hours 08:00 to 20:00) :</label >
+
+            <div class="form-group row " >
+              <div class="col-md-1"></div><div class="col-md-2">
+
+              <label for="endAt" >TO (opening hours 08:00 to 20:00) :</label ></div>
+              <div class="col-md-4">
               <input class="form-control" id="endAt" data-th-field="*{endAt}" type="time" step="3600" min="08:00"
                      max="20:00" />
             </div >
           </div>
-        </div >
-      </div >
-    </div>
-    <div class="row">
+
+
       <!--batchName-->
-      <div class="col-12" >
-        <label data-th-for="${name}" class="control-label col-4" >Batch Name</label >
-        <div class="col-8" >
+      <div class="form-group row " >
+        <div class="col-md-1"></div><div class="col-md-2">
+        <label data-th-for="${name}"  >Batch Name :</label ></div>
+        <div class="col-md-4" >
           <input type="text" data-th-field="*{name}" id="name" placeholder="Batch Name" class="form-control"
                  autofocus readonly >
         </div >
       </div >
-    </div>
+
     <!--error-->
     <div class="form-group" >
       <label  data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
@@ -150,19 +172,14 @@
         <li  data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="text-danger" ></li >
       </ul >
     </div >
-    <div class="row container-fluid" >
-      <div class="col-sm-2 col-sm-offset-2" >
-        <a href="/batch"><button type="button" class="btn btn-danger btn-block" >Back</button ></a>
-      </div >
-
-      <div class="col-sm-2 col-sm-offset-2" >
-        <button type="reset" class="btn btn-warning btn-block" >Clear Data</button >
-      </div >
-
-      <div class="col-sm-2 col-sm-offset-2" >
-        <button type="submit" class="btn btn-success btn-block" >Submit</button >
-      </div >
-    </div >
+    <div class="form-group row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+        <button type="submit" class="btn btn-primary mt-3 ml-2">Save</button>
+        <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
+      </div>
+    </div>
   </form > <!-- /form -->
 </div >
 <input type="hidden" id="subjectUrl" data-th-value="${subjectUrl}" >
@@ -171,7 +188,7 @@
 <!--script include-->
 <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
 <script >
-    $("#teacher, #grade, #year,#startAt, #endAt, #classDay").change(function () {
+    $("#teacher, #grade,#medium, #year,#startAt, #endAt").change(function () {
         let id = $("#teacher").val();
         let startDateTime = $(`#startAt`).val();
         let endDateTime = $("#endAt").val();
@@ -195,6 +212,7 @@
                     }
                     $("#name").val($("#year").val()
                         + "-" + $("#grade").val()
+                        + "-" + $("#medium").val()
                         + "-" + $("#teacher option:selected").html().toUpperCase()
                         + "-" + resp.name.toUpperCase()
                         + "-" + day

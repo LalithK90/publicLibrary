@@ -3,6 +3,7 @@ package lk.wasity_institute.asset.student.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
+import lk.wasity_institute.asset.batch.entity.enums.Medium;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
@@ -15,6 +16,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -36,9 +38,13 @@ public class Student extends AuditEntity {
   private Gender gender;
 
   @DateTimeFormat( pattern = "yyyy-MM-dd" )
-  private LocalDate dob;
+  private LocalDate dateOfBirth;
 
   private String address;
+
+  @Size( max = 12, min = 10, message = "NIC number is contained numbers between 9 and X/V or 12 " )
+  @Column( unique = true )
+  private String nic;
 
   private String city;
 
@@ -56,6 +62,9 @@ public class Student extends AuditEntity {
 
   @Enumerated( EnumType.STRING )
   private Grade grade;
+
+  @Enumerated( EnumType.STRING )
+  private Medium medium;
 
   @ManyToOne
   private School school;

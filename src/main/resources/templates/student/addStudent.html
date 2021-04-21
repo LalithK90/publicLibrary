@@ -82,13 +82,34 @@
           </div >
         </div >
 
+
+        <!--Nic-->
+        <div class="form-row text-right" >
+          <div class="col-md-4" >
+            <label class="control-label" data-th-for="${NationalID}" >NIC No :</label >
+          </div >
+          <div class="col-md-8" >
+            <input data-th-field="*{nic}" class="form-control" tabindex="6" type="text"
+                   maxlength="12"
+                   minlength="10" required />
+            <span class="error" id="nicError" data-th-errors="*{nic}"
+                  data-th-if="${#fields.hasErrors('nic')}" >Error NIC Number</span >
+          </div >
+        </div >
+
       </div >
       <div class="col-6" >
-        <!--dateOfBirth-->
-        <div class="form-group" >
-          <label class="col-6 control-label" data-th-for="${dob}" >Date of birth</label >
-          <div class="col-6" >
-            <input type="date" id="dob" class="form-control" data-th-field="*{dob}" >
+        <!--Date of birth-->
+        <div class="form-row text-right" >
+          <div class="col-md-4" >
+            <label class="control-label" for="dateOfBirth" >Birth date :</label >
+          </div >
+          <div class="col-md-8" >
+            <input id="dateOfBirth" data-th-field="*{dateOfBirth}" class="form-control" tabindex="8"
+                   placeholder="Ex: 1990 - 01 - 20"
+                   required type="date" />
+            <span id="dateOfBirthError" data-th-errors="*{dateOfBirth}"
+                  data-th-if="${#fields.hasErrors('dateOfBirth')}" class="error" >Error Birthday</span >
           </div >
         </div >
       </div >
@@ -125,6 +146,18 @@
               <option data-th-each="grade : ${grades}"
                       data-th-text="${grade.grade}"
                       data-th-value="${grade}" ></option >
+            </select >
+          </div >
+        </div >
+        <!--medium-->
+        <div class="form-group" >
+          <label class="col-sm-1 control-label" data-th-for="${'medium'}" >Medium</label >
+          <div class="col-sm-5" >
+            <select id="medium" class="form-control" data-th-field="*{medium}" required >
+              <option value="" >Select the Grade</option >
+              <option data-th-each="medium : ${mediums}"
+                      data-th-text="${medium.medium}"
+                      data-th-value="${medium}" ></option >
             </select >
           </div >
         </div >

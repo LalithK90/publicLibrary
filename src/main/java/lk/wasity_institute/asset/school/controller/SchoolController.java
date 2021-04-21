@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -55,12 +56,24 @@ public class SchoolController {
 
   @PostMapping( value = {"/save", "/update"} )
   public String addSchool(@Valid @ModelAttribute School school,
-                          BindingResult result, Model model) {
-    if ( result.hasErrors() ) {
+                          BindingResult bindingResult, Model model) {
+    if ( bindingResult.hasErrors() ) {
       return commonMethod(model, true, school);
     }
+//    try {
+//      schoolService.persist(school);
+//    }
+//    catch (Exception e){
+//      ObjectError error = new ObjectError("school",
+//              "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+//      bindingResult.addError(error);
+//      model.addAttribute("school",school);
+//      model.addAttribute("addStatus", true);
+//      return "school/addSchool";
+//    }
     schoolService.persist(school);
     return "redirect:/school";
+
   }
 
 
@@ -72,3 +85,4 @@ public class SchoolController {
 
 
 }
+

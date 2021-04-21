@@ -183,7 +183,7 @@ public class PaymentController {
       String message =
           "Dear " + studentDb.getFirstName() + "\n Your following payment was accepted\n" + paymentInfo + "\n Thanks " +
               "\n\n Success Student";
-      emailService.sendEmail(studentDb.getEmail(), "Payment - Notification", message);
+//      emailService.sendEmail(studentDb.getEmail(), "Payment - Notification", message);
     }
 
     model.addAttribute("payments", withBatchStudent);

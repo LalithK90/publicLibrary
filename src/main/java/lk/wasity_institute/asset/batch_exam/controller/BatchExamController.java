@@ -129,7 +129,7 @@ public class BatchExamController {
         String message = "Dear " + student.getFirstName() + "\n Your " + batchService.findById( batchExamDb.getBatch().getId()).getName() + " exam " +
             "would be held from " + batchExamDb.getStartAt() + " to " + batchExamDb.getEndAt() + ".\n Thanks \n " +
             "Success Student";
-        emailService.sendEmail(student.getEmail(), "Exam - Notification", message);
+//        emailService.sendEmail(student.getEmail(), "Exam - Notification", message);
       }
     });
     return "redirect:/batchExam/teacher";
