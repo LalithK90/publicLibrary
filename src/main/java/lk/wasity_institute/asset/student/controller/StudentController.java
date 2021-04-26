@@ -118,7 +118,6 @@ public class StudentController implements AbstractController<Student, Integer > 
       batchStudentService.persist(x);
     });
 
-
     return "redirect:/student";
 
   }

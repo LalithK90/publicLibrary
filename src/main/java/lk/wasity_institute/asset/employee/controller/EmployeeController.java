@@ -143,7 +143,9 @@ public class EmployeeController {
 
 
     //after save employee files and save employee
-    Employee employeeSaved = employeeService.persist(employee);
+
+      Employee employeeSaved = employeeService.persist(employee);
+
     //if employee state is not working he or she cannot access to the system
     if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
       User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));

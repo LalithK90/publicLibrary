@@ -26,7 +26,7 @@
     <form action="/hall/save" data-th-object="${hall}" method="post">
         <div class=" row form-group">
             <div class="col-md-2"></div><div class="col-md-2">
-            <label class=" control-label mr-4" data-th-for="${number}">Hall ID:</label></div>
+            <label class=" control-label mr-4" data-th-for="${number}">Hall Number :</label></div>
           <div class="col-md-4">
                 <input type="text" data-th-field="*{number}" id="hallId" placeholder="Hall Number" class="form-control" autofocus>
                 <input type="text" data-th-if="${addStatus==false}" data-th-field="*{id}" id="id" placeholder="Hall Number" class="form-control" autofocus hidden>
@@ -77,6 +77,13 @@
                 <button type="submit" class="btn btn-primary mt-3 ml-2"><span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span ></button>
                 <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
             </div>
+        </div>
+
+        <div class="alert alert-warning alert-dismissible fade show " role="alert" data-th-if="${#fields.hasErrors('*')}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong><span  data-th-each="err : ${#fields.errors('*')}" data-th-text="${#fields.errors('*')}"></span></strong>
         </div>
 
     </form> <!-- /form -->

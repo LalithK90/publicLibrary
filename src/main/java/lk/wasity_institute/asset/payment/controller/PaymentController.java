@@ -195,10 +195,10 @@ public class PaymentController {
     if ( payment.getId() == null ) {
       Payment lastPayment = paymentService.lastStudentOnDB();
       if ( lastPayment == null ) {
-        payment.setCode("SSP" + makeAutoGenerateNumberService.numberAutoGen(null));
+        payment.setCode("WIP" + makeAutoGenerateNumberService.numberAutoGen(null));
       } else {
         String lastNumber = lastPayment.getCode().substring(3);
-        payment.setCode("SSP" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
+        payment.setCode("WIP" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
       }
     }
     return payment;

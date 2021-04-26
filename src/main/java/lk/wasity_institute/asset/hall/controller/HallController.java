@@ -10,6 +10,7 @@ import lk.wasity_institute.util.interfaces.AbstractController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -64,7 +65,17 @@ public class HallController implements AbstractController<Hall, Integer > {
       return "hall/addHall";
     }
 
-    hallService.persist(hall);
+    try{hallService.persist(hall);
+    }catch (Exception e){
+      ObjectError error = new ObjectError("hall",
+              "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+      bindingResult.addError(error);
+      model.addAttribute("hall", hall);
+      model.addAttribute("addStatus", true);
+      return "hall/addHall";
+    }
+
+
     return "redirect:/hall";
 
   }
