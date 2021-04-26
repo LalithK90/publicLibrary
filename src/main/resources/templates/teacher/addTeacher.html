@@ -42,7 +42,21 @@
                 <input type="text" id="registrationId" class="form-control" data-th-field="*{registrationId}">
             </div>
         </div>
-
+<!--title-->
+            <div class="form-group row text-right" >
+                <div class="col-md-3" >
+                    <label class="control-label" for="title" >Title :</label >
+                </div >
+                <div class="col-md-8" >
+                    <select id="title" data-th-field="*{title}" class="form-control" tabindex="3" required >
+                        <option value="" >Please select</option >
+                        <option data-th-each="titles : ${title}"
+                                data-th-text="${titles.title}"
+                                data-th-value="${titles}"
+                                data-th-selected="${titles==teacher.title?'selected':'unselected'}" ></option >
+                    </select >
+                </div >
+            </div >
 
                 <!--firstName-->
                 <div class="form-group row text-right">
@@ -92,7 +106,7 @@
                     <div class="col-md-3">
                         <label class=" control-label" data-th-for="${mobile}">Mobile number :</label></div>
                     <div class="col-md-8">
-                        <input type="tel" id="mobile" class="form-control" data-th-field="*{mobile}">
+                        <input type="text" id="mobile" class="form-control" data-th-field="*{mobile}">
                     </div>
                 </div>
 
