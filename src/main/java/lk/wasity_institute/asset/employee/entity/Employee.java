@@ -2,9 +2,11 @@ package lk.wasity_institute.asset.employee.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.wasity_institute.asset.common_asset.model.FileInfo;
 import lk.wasity_institute.asset.common_asset.model.enums.CivilStatus;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.common_asset.model.enums.Title;
 import lk.wasity_institute.asset.employee.entity.enums.Designation;
 import lk.wasity_institute.asset.employee.entity.enums.EmployeeStatus;
 import lk.wasity_institute.util.audit.AuditEntity;
@@ -15,11 +17,9 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Entity
 @Getter
