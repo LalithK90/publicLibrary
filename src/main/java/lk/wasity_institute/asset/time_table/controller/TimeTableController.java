@@ -1,7 +1,6 @@
 package lk.wasity_institute.asset.time_table.controller;
 
 
-
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.service.BatchService;
@@ -81,7 +80,7 @@ public class TimeTableController {
 
   @GetMapping( "/byDate" )
   public String byDate(Model model) {
-    List<TimeTable> timeTables = timeTableService.findAll();
+    List< TimeTable > timeTables = timeTableService.findAll();
     return common(timeTables, model);
   }
 
@@ -102,7 +101,7 @@ public class TimeTableController {
     HashSet< LocalDate > classDates = new HashSet<>();
     timeTables.forEach(x -> classDates.add(x.getStartAt().toLocalDate()));
 
-    List<DateTimeTable> dateTimeTables = new ArrayList<>();
+    List< DateTimeTable > dateTimeTables = new ArrayList<>();
 
     for ( LocalDate classDate : classDates ) {
       DateTimeTable dateTimeTable = new DateTimeTable();
@@ -137,7 +136,7 @@ public class TimeTableController {
   public String findById(@PathVariable Integer id, Model model) {
     TimeTable timeTable = timeTableService.findById(id);
     model.addAttribute("timeTableDetail", timeTable);
-    List<Student> students = new ArrayList<>();
+    List< Student > students = new ArrayList<>();
     timeTable.getBatch()
         .getBatchStudents()
         .stream()
@@ -175,25 +174,18 @@ public class TimeTableController {
           timeTable.setCode("WITM" + makeAutoGenerateNumberService.numberAutoGen(lastTimeTable.getCode().substring(4)).toString());
         }
       }
-//     TimeTable timeTableDb = timeTableService.persist(timeTable);
-//      if (!timeTableDb.getBatch().getBatchStudents().isEmpty()) {
-//        timeTableDb.getBatch().getBatchStudents().forEach(x->{
-//          Student student = studentService.findById(x.getId());
-//          if(student.getEmail()!=null){
-//            String message = "Dear "+ student.getFirstName()+"\n Your "+timeTableDb.getBatch().getName()+" class would be held from "+ timeTableDb.getStartAt()+" to "+ timeTableDb.getEndAt() +"\n Thanks \n Wasity Institute";
-//            emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
-//          }
-//        });
-//      }
-
-//      TimeTable timeTableDb = timeTableService.persist(timeTable);
-//      timeTableDb.getBatch().getBatchStudents().forEach(x->{
-//        Student student = studentService.findById(x.getId());
-//        if(student.getEmail()!=null){
-//          String message = "Dear "+ student.getFirstName()+"\n Your "+timeTableDb.getBatch().getName()+" class would be held from "+ timeTableDb.getStartAt()+" to "+ timeTableDb.getEndAt() +"\n Thanks \n Success Student";
-//          emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
-//        }
-//      });
+      TimeTable timeTableDb = timeTableService.persist(timeTable);
+      if ( !timeTableDb.getBatch().getBatchStudents().isEmpty() ) {
+        timeTableDb.getBatch().getBatchStudents().forEach(x -> {
+          Student student = studentService.findById(x.getId());
+          if ( student.getEmail() != null ) {
+            String message = "Dear " + student.getFirstName() + "\n Your " + timeTableDb.getBatch().getName() + " " +
+                "class would be held from " + timeTableDb.getStartAt() + " to " + timeTableDb.getEndAt() + "\n Thanks" +
+                " \n Wasity Institute";
+            emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
+          }
+        });
+      }
 
 
     }
