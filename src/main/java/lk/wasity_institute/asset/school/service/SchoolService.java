@@ -1,10 +1,11 @@
 package lk.wasity_institute.asset.school.service;
 
 
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.school.dao.SchoolDao;
-import lk.succes_student_management.asset.school.entity.School;
-import lk.succes_student_management.util.interfaces.AbstractService;
+
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.school.dao.SchoolDao;
+import lk.wasity_institute.asset.school.entity.School;
+import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SchoolService implements AbstractService< School, Integer > {
+public class SchoolService implements AbstractService<School, Integer > {
 
   private final SchoolDao schoolDao;
 

@@ -1,9 +1,10 @@
 package lk.wasity_institute.asset.batch.dao;
 
 
-import lk.succes_student_management.asset.batch.entity.Batch;
-import lk.succes_student_management.asset.batch.entity.enums.ClassDay;
-import lk.succes_student_management.asset.batch.entity.enums.Grade;
+
+import lk.wasity_institute.asset.batch.entity.Batch;
+import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
+import lk.wasity_institute.asset.batch.entity.enums.Grade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 
 @Repository
-public interface BatchDao extends JpaRepository< Batch, Integer > {
+public interface BatchDao extends JpaRepository<Batch, Integer > {
 
   Batch findFirstByOrderByIdDesc();
 

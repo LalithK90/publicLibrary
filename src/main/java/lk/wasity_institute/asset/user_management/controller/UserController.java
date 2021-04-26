@@ -1,16 +1,17 @@
 package lk.wasity_institute.asset.user_management.controller;
 
 
-import lk.succes_student_management.asset.employee.entity.Employee;
-import lk.succes_student_management.asset.employee.entity.enums.EmployeeStatus;
-import lk.succes_student_management.asset.employee.service.EmployeeService;
-import lk.succes_student_management.asset.student.entity.Student;
-import lk.succes_student_management.asset.student.service.StudentService;
-import lk.succes_student_management.asset.teacher.entity.Teacher;
-import lk.succes_student_management.asset.teacher.service.TeacherService;
-import lk.succes_student_management.asset.user_management.entity.User;
-import lk.succes_student_management.asset.user_management.service.RoleService;
-import lk.succes_student_management.asset.user_management.service.UserService;
+
+import lk.wasity_institute.asset.employee.entity.Employee;
+import lk.wasity_institute.asset.employee.entity.enums.EmployeeStatus;
+import lk.wasity_institute.asset.employee.service.EmployeeService;
+import lk.wasity_institute.asset.student.entity.Student;
+import lk.wasity_institute.asset.student.service.StudentService;
+import lk.wasity_institute.asset.teacher.entity.Teacher;
+import lk.wasity_institute.asset.teacher.service.TeacherService;
+import lk.wasity_institute.asset.user_management.entity.User;
+import lk.wasity_institute.asset.user_management.service.RoleService;
+import lk.wasity_institute.asset.user_management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

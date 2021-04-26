@@ -1,14 +1,15 @@
 package lk.wasity_institute.asset.time_table_student_attendence.controller;
 
-import lk.succes_student_management.asset.batch_student.service.BatchStudentService;
-import lk.succes_student_management.asset.common_asset.model.enums.AttendanceStatus;
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.time_table.entity.TimeTable;
-import lk.succes_student_management.asset.time_table.entity.enums.TimeTableStatus;
-import lk.succes_student_management.asset.time_table.service.TimeTableService;
-import lk.succes_student_management.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
-import lk.succes_student_management.asset.time_table_student_attendence.service.TimeTableStudentAttendanceService;
-import lk.succes_student_management.util.service.MakeAutoGenerateNumberService;
+
+import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
+import lk.wasity_institute.asset.common_asset.model.enums.AttendanceStatus;
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.time_table.entity.TimeTable;
+import lk.wasity_institute.asset.time_table.entity.enums.TimeTableStatus;
+import lk.wasity_institute.asset.time_table.service.TimeTableService;
+import lk.wasity_institute.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
+import lk.wasity_institute.asset.time_table_student_attendence.service.TimeTableStudentAttendanceService;
+import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,7 +42,7 @@ public class TimeTableStudentAttendanceController {
   @GetMapping( "/{id}" )
   public String attendanceForm(@PathVariable( "id" ) Integer id, Model model) {
     TimeTable timeTable = timeTableService.findById(id);
-    List< TimeTableStudentAttendance > timeTableStudentAttendances = new ArrayList<>();
+    List<TimeTableStudentAttendance> timeTableStudentAttendances = new ArrayList<>();
     batchStudentService.findByBatch(timeTableService.findById(id).getBatch())
         .stream()
         .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))

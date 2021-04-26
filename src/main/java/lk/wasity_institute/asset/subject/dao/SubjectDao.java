@@ -1,7 +1,8 @@
 package lk.wasity_institute.asset.subject.dao;
 
 
-import lk.succes_student_management.asset.subject.entity.Subject;
+
+import lk.wasity_institute.asset.subject.entity.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

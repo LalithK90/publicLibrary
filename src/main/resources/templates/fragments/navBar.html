@@ -4,24 +4,24 @@
 
 
 <!-- Topbar -->
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" th:fragment="navBarFragment">
+<nav class="navbar navbar-expand navbar-light bg-gradient-dark topbar text-white fixed-top shadow" th:fragment="navBarFragment">
 
     <div class="col">
         <a class="navbar-brand" href="/home">
-            <img data-th-src="${'/img/navbarlogo.png'}" alt="Nav bar logo">
+            <img data-th-src="${'/img/newlogo.jpg'}" alt="Nav bar logo" style="height: 100px;width: 100px;border-radius: 50%">
         </a>
     </div>
 
     <div class="col">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/home" id="navbarLink"
+                <a class="nav-link text-white" href="/home" id="navbarLink"
                    aria-haspopup="true" aria-expanded="false">
                     Home
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Management Functions
                 </a>
@@ -39,7 +39,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Services
                 </a>
@@ -55,7 +55,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Reports
                 </a>
@@ -122,11 +122,11 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown " data-sec-authorize="isAuthenticated()">
-                        <a href="/logout" class="nav-link"> <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Log
+                        <a href="/logout" class="nav-link text-white"> <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Log
                             out</a>
                     </li>
                     <li class="nav-item dropdown " data-sec-authorize="!isAuthenticated()">
-                        <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Login</a>
+                        <a href="/login" class="nav-link text-white"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Login</a>
                     </li>
                 </ul>
             </div>

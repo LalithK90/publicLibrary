@@ -1,17 +1,18 @@
 package lk.wasity_institute.asset.batch_student.service;
 
-import lk.succes_student_management.asset.batch.entity.Batch;
-import lk.succes_student_management.asset.batch_student.dao.BatchStudentDao;
-import lk.succes_student_management.asset.batch_student.entity.BatchStudent;
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.student.entity.Student;
-import lk.succes_student_management.util.interfaces.AbstractService;
+
+import lk.wasity_institute.asset.batch.entity.Batch;
+import lk.wasity_institute.asset.batch_student.dao.BatchStudentDao;
+import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.student.entity.Student;
+import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BatchStudentService implements AbstractService< BatchStudent, Integer > {
+public class BatchStudentService implements AbstractService<BatchStudent, Integer > {
   private final BatchStudentDao batchStudentDao;
 
   public BatchStudentService(BatchStudentDao batchStudentDao) {

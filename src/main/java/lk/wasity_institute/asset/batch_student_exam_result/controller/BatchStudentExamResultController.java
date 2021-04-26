@@ -1,14 +1,15 @@
 package lk.wasity_institute.asset.batch_student_exam_result.controller;
 
-import lk.succes_student_management.asset.batch.service.BatchService;
-import lk.succes_student_management.asset.batch_exam.entity.BatchExam;
-import lk.succes_student_management.asset.batch_exam.service.BatchExamService;
-import lk.succes_student_management.asset.batch_student.service.BatchStudentService;
-import lk.succes_student_management.asset.batch_student_exam_result.entity.BatchStudentExamResult;
-import lk.succes_student_management.asset.batch_student_exam_result.service.BatchStudentExamResultService;
-import lk.succes_student_management.asset.common_asset.model.enums.AttendanceStatus;
-import lk.succes_student_management.asset.common_asset.model.enums.ResultGrade;
-import lk.succes_student_management.util.service.MakeAutoGenerateNumberService;
+
+import lk.wasity_institute.asset.batch.service.BatchService;
+import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
+import lk.wasity_institute.asset.batch_exam.service.BatchExamService;
+import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
+import lk.wasity_institute.asset.batch_student_exam_result.entity.BatchStudentExamResult;
+import lk.wasity_institute.asset.batch_student_exam_result.service.BatchStudentExamResultService;
+import lk.wasity_institute.asset.common_asset.model.enums.AttendanceStatus;
+import lk.wasity_institute.asset.common_asset.model.enums.ResultGrade;
+import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,7 +44,7 @@ public class BatchStudentExamResultController {
   public String addAttendance(@PathVariable Integer id, Model model) {
     BatchExam batchExam = batchExamService.findById(id);
 
-    List< BatchStudentExamResult > batchStudentExamResults = new ArrayList<>();
+    List<BatchStudentExamResult> batchStudentExamResults = new ArrayList<>();
 
     batchStudentService.findByBatch(batchExam.getBatch()).forEach(x -> {
       BatchStudentExamResult batchStudentExamResult = new BatchStudentExamResult();

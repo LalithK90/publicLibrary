@@ -3,16 +3,20 @@ package lk.wasity_institute.asset.employee.controller;
 
 
 
-import lk.succes_student_management.asset.common_asset.model.enums.*;
-import lk.succes_student_management.asset.employee.entity.Employee;
-import lk.succes_student_management.asset.employee.entity.EmployeeFiles;
-import lk.succes_student_management.asset.employee.entity.enums.Designation;
-import lk.succes_student_management.asset.employee.entity.enums.EmployeeStatus;
-import lk.succes_student_management.asset.employee.service.EmployeeFilesService;
-import lk.succes_student_management.asset.employee.service.EmployeeService;
-import lk.succes_student_management.asset.user_management.entity.User;
-import lk.succes_student_management.asset.user_management.service.UserService;
-import lk.succes_student_management.util.service.MakeAutoGenerateNumberService;
+
+import lk.wasity_institute.asset.common_asset.model.enums.CivilStatus;
+import lk.wasity_institute.asset.common_asset.model.enums.Gender;
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.common_asset.model.enums.Title;
+import lk.wasity_institute.asset.employee.entity.Employee;
+import lk.wasity_institute.asset.employee.entity.EmployeeFiles;
+import lk.wasity_institute.asset.employee.entity.enums.Designation;
+import lk.wasity_institute.asset.employee.entity.enums.EmployeeStatus;
+import lk.wasity_institute.asset.employee.service.EmployeeFilesService;
+import lk.wasity_institute.asset.employee.service.EmployeeService;
+import lk.wasity_institute.asset.user_management.entity.User;
+import lk.wasity_institute.asset.user_management.service.UserService;
+import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -69,7 +73,7 @@ public class EmployeeController {
   //Send all employee data
   @RequestMapping
   public String employeePage(Model model) {
-    List< Employee > employees = new ArrayList<>();
+    List<Employee> employees = new ArrayList<>();
     for ( Employee employee : employeeService.findAll()
         .stream()
         .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))

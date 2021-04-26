@@ -2,10 +2,12 @@ package lk.wasity_institute.asset.employee.service;
 
 
 
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.employee.dao.EmployeeDao;
-import lk.succes_student_management.asset.employee.entity.Employee;
-import lk.succes_student_management.util.interfaces.AbstractService;
+
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.employee.dao.EmployeeDao;
+import lk.wasity_institute.asset.employee.entity.Employee;
+import lk.wasity_institute.asset.employee.entity.enums.EmployeeStatus;
+import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.data.domain.Example;
@@ -18,7 +20,7 @@ import java.util.List;
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
 @CacheConfig( cacheNames = "employee" )
-public class EmployeeService implements AbstractService< Employee, Integer > {
+public class EmployeeService implements AbstractService<Employee, Integer > {
 
     private final EmployeeDao employeeDao;
 
@@ -42,7 +44,8 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
     @Transactional
     public Employee persist(Employee employee) {
         if(employee.getId()==null){
-            employee.setLiveDead(LiveDead.ACTIVE);}
+            employee.setLiveDead(LiveDead.ACTIVE);
+            employee.setEmployeeStatus(EmployeeStatus.WORKING);}
         return employeeDao.save(employee);
     }
 

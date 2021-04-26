@@ -4,34 +4,22 @@
     <meta charset="UTF-8">
     <title>Thymeleaf Springboot </title>
 </head>
-<body>
+<body style="margin-top: 90px;">
 <nav   data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
 <!--heading Area-->
 <div class="container-fluid  form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a href="/home" id="btnHome" class="btn btn-outline-info">
-                &nbsp;Back To Home&nbsp;
+    <div class="card bg-gradient-light text-center">
+        <h1>Employee List</h1>
+    </div>
+    <div class="row">
+        <div class="col-9"></div>
+        <div class="col-3">
+            <a href="/employee/add">
+                <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Add Employee</button>
             </a>
         </div>
-
-        <div class="col">
-            <a class="btn btn-info" href="/employee/add"><i class="fa fa-plus"></i>
-                &nbsp;Add New</a>
-        </div>
-
     </div>
-    <div class="row text-center">
-        <div class="col">
-            <h4 class="text-info text-center">
-                <strong>
-                    Employee Management
-                </strong>
-            </h4>
-        </div>
-    </div>
-</div>
 <div class="container-fluid formBorder text-center">
     <div class="col">
         <div class="col" id="employeeListPresent"   data-th-if="${not #lists.isEmpty(employees)}">

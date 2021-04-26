@@ -1,12 +1,13 @@
 package lk.wasity_institute.asset.time_table.service;
 
 
-import lk.succes_student_management.asset.batch.entity.Batch;
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.time_table.dao.TimeTableDao;
-import lk.succes_student_management.asset.time_table.entity.TimeTable;
-import lk.succes_student_management.asset.time_table.entity.enums.TimeTableStatus;
-import lk.succes_student_management.util.interfaces.AbstractService;
+
+import lk.wasity_institute.asset.batch.entity.Batch;
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.time_table.dao.TimeTableDao;
+import lk.wasity_institute.asset.time_table.entity.TimeTable;
+import lk.wasity_institute.asset.time_table.entity.enums.TimeTableStatus;
+import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TimeTableService implements AbstractService< TimeTable, Integer > {
+public class TimeTableService implements AbstractService<TimeTable, Integer > {
   private final TimeTableDao timeTableDao;
 
   public TimeTableService(TimeTableDao timeTableDao) {

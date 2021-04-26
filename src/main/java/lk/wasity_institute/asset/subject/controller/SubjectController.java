@@ -1,11 +1,12 @@
 package lk.wasity_institute.asset.subject.controller;
 
 
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.subject.entity.Subject;
-import lk.succes_student_management.asset.subject.service.SubjectService;
-import lk.succes_student_management.util.interfaces.AbstractController;
-import lk.succes_student_management.util.service.MakeAutoGenerateNumberService;
+
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.subject.entity.Subject;
+import lk.wasity_institute.asset.subject.service.SubjectService;
+import lk.wasity_institute.util.interfaces.AbstractController;
+import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +18,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping( "/subject" )
-public class SubjectController implements AbstractController< Subject, Integer > {
+public class SubjectController implements AbstractController<Subject, Integer > {
   private final SubjectService subjectService;
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 

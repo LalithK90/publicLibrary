@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Success Student Management System</title>
 </head>
-<body>
+<body >
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
@@ -25,7 +25,8 @@
 </div>
 <div class="container">
     <form action="/payment/save" data-th-object="${payment}" method="post">
-        <div class="form-group">
+        <div class="form-group row text-right">
+            <div class="col-md-2"></div><div class="col-md-2">
             <label class="col-sm-3 control-label" data-th-for="${id}">Tran ID</label>
             <div class="col-sm-9">
                 <input data-th-field="*{id}" id="id" placeholder="Transaction ID" class="form-control"  type="text" autofocus>

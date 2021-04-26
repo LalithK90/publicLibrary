@@ -4,11 +4,17 @@ import lk.wasity_institute.asset.user_management.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
@@ -65,56 +71,56 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-/*    http.csrf().disable();
-    http.authorizeRequests().antMatchers("/").permitAll();*/
+   http.csrf().disable();
+    http.authorizeRequests().antMatchers("/").permitAll();
 
 
-    http
-        .authorizeRequests(
-            authorizeRequests ->
-                authorizeRequests
-                    //Anytime users can access without login
-                    //to see actuator details
-                    .antMatchers(ALL_PERMIT_URL).permitAll()
-                    //this is used the normal admin to give access every url mapping
-                    .antMatchers("/category/**").hasAnyRole("ADMIN", "MANAGER")
-//todo: security configuration
-                    .anyRequest()
-                    .authenticated())
-        // Login form
-        .formLogin(
-            formLogin ->
-                formLogin
-                    .loginPage("/login")
-                    .loginProcessingUrl("/login")
-                    //Username and password for validation
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .successHandler(customAuthenticationSuccessHandler())
-                    .failureUrl("/login?error")
-                  )
-        //Logout controlling
-        .logout(
-            logout ->
-                logout
-                    .logoutUrl("/logout")
-                    .logoutSuccessHandler(customLogoutSuccessHandler())
-                    .deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true))
-        //session management
-        .sessionManagement(
-            sessionManagement ->
-                sessionManagement
-                    .sessionFixation().migrateSession()
-                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                    .invalidSessionUrl("/login")
-                    .maximumSessions(1)
-                    .expiredUrl("/login")
-                    .sessionRegistry(sessionRegistry()))
-        //Cross site disable
-        .csrf(AbstractHttpConfigurer::disable)
-        .exceptionHandling();
+//    http
+//        .authorizeRequests(
+//            authorizeRequests ->
+//                authorizeRequests
+//                    //Anytime users can access without login
+//                    //to see actuator details
+//                    .antMatchers(ALL_PERMIT_URL).permitAll()
+//                    //this is used the normal admin to give access every url mapping
+//                    .antMatchers("/category/**").hasAnyRole("ADMIN", "MANAGER")
+////todo: security configuration
+//                    .anyRequest()
+//                    .authenticated())
+//        // Login form
+//        .formLogin(
+//            formLogin ->
+//                formLogin
+//                    .loginPage("/login")
+//                    .loginProcessingUrl("/login")
+//                    //Username and password for validation
+//                    .usernameParameter("username")
+//                    .passwordParameter("password")
+//                    .successHandler(customAuthenticationSuccessHandler())
+//                    .failureUrl("/login?error")
+//                  )
+//        //Logout controlling
+//        .logout(
+//            logout ->
+//                logout
+//                    .logoutUrl("/logout")
+//                    .logoutSuccessHandler(customLogoutSuccessHandler())
+//                    .deleteCookies("JSESSIONID")
+//                    .invalidateHttpSession(true)
+//                    .clearAuthentication(true))
+//        //session management
+//        .sessionManagement(
+//            sessionManagement ->
+//                sessionManagement
+//                    .sessionFixation().migrateSession()
+//                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                    .invalidSessionUrl("/login")
+//                    .maximumSessions(1)
+//                    .expiredUrl("/login")
+//                    .sessionRegistry(sessionRegistry()))
+//        //Cross site disable
+//        .csrf(AbstractHttpConfigurer::disable)
+//        .exceptionHandling();
 
   }
 }

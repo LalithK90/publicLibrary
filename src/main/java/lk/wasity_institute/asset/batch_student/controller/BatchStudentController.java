@@ -1,12 +1,13 @@
 package lk.wasity_institute.asset.batch_student.controller;
 
-import lk.succes_student_management.asset.batch.entity.Batch;
-import lk.succes_student_management.asset.batch.service.BatchService;
-import lk.succes_student_management.asset.batch_student.entity.BatchStudent;
-import lk.succes_student_management.asset.batch_student.service.BatchStudentService;
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.student.entity.Student;
-import lk.succes_student_management.asset.student.service.StudentService;
+
+import lk.wasity_institute.asset.batch.entity.Batch;
+import lk.wasity_institute.asset.batch.service.BatchService;
+import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
+import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.student.entity.Student;
+import lk.wasity_institute.asset.student.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -71,7 +72,7 @@ public class BatchStudentController {
     model.addAttribute("batchDetail", batch);
     model.addAttribute("teacherDetail", batch.getTeacher());
     //already registered student on this batch
-    List< Student > registeredStudent = new ArrayList<>();
+    List<Student> registeredStudent = new ArrayList<>();
     batch.getBatchStudents()
             .stream()
             .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))

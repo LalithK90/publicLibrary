@@ -1,25 +1,26 @@
 package lk.wasity_institute.asset.time_table.controller;
 
 
-import lk.succes_student_management.asset.batch.entity.Batch;
-import lk.succes_student_management.asset.batch.entity.enums.ClassDay;
-import lk.succes_student_management.asset.batch.service.BatchService;
-import lk.succes_student_management.asset.batch_student.service.BatchStudentService;
-import lk.succes_student_management.asset.common_asset.model.DateTimeTable;
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.hall.service.HallService;
-import lk.succes_student_management.asset.student.entity.Student;
-import lk.succes_student_management.asset.student.service.StudentService;
-import lk.succes_student_management.asset.subject.service.SubjectService;
-import lk.succes_student_management.asset.teacher.entity.Teacher;
-import lk.succes_student_management.asset.teacher.service.TeacherService;
-import lk.succes_student_management.asset.time_table.entity.TimeTable;
-import lk.succes_student_management.asset.time_table.service.TimeTableService;
-import lk.succes_student_management.asset.user_management.entity.User;
-import lk.succes_student_management.asset.user_management.service.UserService;
-import lk.succes_student_management.util.service.DateTimeAgeService;
-import lk.succes_student_management.util.service.EmailService;
-import lk.succes_student_management.util.service.MakeAutoGenerateNumberService;
+
+import lk.wasity_institute.asset.batch.entity.Batch;
+import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
+import lk.wasity_institute.asset.batch.service.BatchService;
+import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
+import lk.wasity_institute.asset.common_asset.model.DateTimeTable;
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.hall.service.HallService;
+import lk.wasity_institute.asset.student.entity.Student;
+import lk.wasity_institute.asset.student.service.StudentService;
+import lk.wasity_institute.asset.subject.service.SubjectService;
+import lk.wasity_institute.asset.teacher.entity.Teacher;
+import lk.wasity_institute.asset.teacher.service.TeacherService;
+import lk.wasity_institute.asset.time_table.entity.TimeTable;
+import lk.wasity_institute.asset.time_table.service.TimeTableService;
+import lk.wasity_institute.asset.user_management.entity.User;
+import lk.wasity_institute.asset.user_management.service.UserService;
+import lk.wasity_institute.util.service.DateTimeAgeService;
+import lk.wasity_institute.util.service.EmailService;
+import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -80,7 +81,7 @@ public class TimeTableController {
 
   @GetMapping( "/byDate" )
   public String byDate(Model model) {
-    List< TimeTable > timeTables = timeTableService.findAll();
+    List<TimeTable> timeTables = timeTableService.findAll();
     return common(timeTables, model);
   }
 
@@ -101,7 +102,7 @@ public class TimeTableController {
     HashSet< LocalDate > classDates = new HashSet<>();
     timeTables.forEach(x -> classDates.add(x.getStartAt().toLocalDate()));
 
-    List< DateTimeTable > dateTimeTables = new ArrayList<>();
+    List<DateTimeTable> dateTimeTables = new ArrayList<>();
 
     for ( LocalDate classDate : classDates ) {
       DateTimeTable dateTimeTable = new DateTimeTable();
@@ -136,7 +137,7 @@ public class TimeTableController {
   public String findById(@PathVariable Integer id, Model model) {
     TimeTable timeTable = timeTableService.findById(id);
     model.addAttribute("timeTableDetail", timeTable);
-    List< Student > students = new ArrayList<>();
+    List<Student> students = new ArrayList<>();
     timeTable.getBatch()
         .getBatchStudents()
         .stream()

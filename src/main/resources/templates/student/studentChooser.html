@@ -5,25 +5,21 @@
   <meta charset="UTF-8" >
   <title >Student Management</title >
 </head >
-<body >
+<body style="margin-top: 90px;" >
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
-<div class="row bg-secondary" >
-  <div class="col-4" >
-    <a href="/payment/add" >
-      <button class="btn btn-info" >New Time Slot Add</button >
-    </a >
-  </div >
-  <div class="col-4" >
-    <h1 >Choose Student Payment</h1 >
-  </div >
-  <div class="col-4" >
-    <a href="/payment" >
-      <button class="btn btn-primary" >View All Payment</button >
-    </a >
-  </div >
-</div >
+<div class="card bg-gradient-light text-center">
+<h1>Search Students</h1>
+</div>
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <a href="/payment">
+      <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Payment list</button>
+    </a>
+  </div>
+</div>
 <!--Student detail-->
 <div class="container-fluid" data-th-fragment="timeTableDetail" >
   <form action="/student/search" method="post" >
@@ -32,7 +28,7 @@
       <div class="col-md-4" >
         <label class="control-label" for="searchValue" >Search Value :</label >
       </div >
-      <div class="col-md-8" >
+      <div class="col-md-4" >
         <select type="date" id="searchValue" class="form-control" required >
           <option value="" disabled>Selected Value</option >
           <option value="name" >Name</option >
@@ -46,16 +42,19 @@
       <div class="col-md-4" >
         <label class="control-label" for="value" >Enter Value :</label >
       </div >
-      <div class="col-md-8" >
+      <div class="col-md-4" >
         <input type="text" id="value" class="form-control" required >
       </div >
     </div >
     <!--Button-->
-    <div class="form-batch col-md-12 col-sm-12 text-center flex-column " >
-      <button class="btn btn-success" id="buttonSubmit" tabindex="21" type="submit" >
-        Send
+    <div class="form-row">
+    <div class="col-md-5"></div>
+
+      <button class="btn btn-primary mt-4" id="buttonSubmit" tabindex="21" type="submit" style="width: 12%" >
+        Submit
       </button >
     </div >
+
   </form >
 </div >
 <!--student list-->

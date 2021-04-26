@@ -1,9 +1,10 @@
 package lk.wasity_institute.asset.payment.dao;
 
 
-import lk.succes_student_management.asset.batch_student.entity.BatchStudent;
-import lk.succes_student_management.asset.payment.entity.Payment;
-import lk.succes_student_management.asset.payment.entity.enums.PaymentStatus;
+
+import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
+import lk.wasity_institute.asset.payment.entity.Payment;
+import lk.wasity_institute.asset.payment.entity.enums.PaymentStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

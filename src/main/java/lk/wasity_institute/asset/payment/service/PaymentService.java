@@ -1,11 +1,12 @@
 package lk.wasity_institute.asset.payment.service;
 
 
-import lk.succes_student_management.asset.batch_student.entity.BatchStudent;
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.payment.dao.PaymentDao;
-import lk.succes_student_management.asset.payment.entity.Payment;
-import lk.succes_student_management.util.interfaces.AbstractService;
+
+import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.payment.dao.PaymentDao;
+import lk.wasity_institute.asset.payment.entity.Payment;
+import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ import java.time.Year;
 import java.util.List;
 
 @Service
-public class PaymentService implements AbstractService< Payment, Integer > {
+public class PaymentService implements AbstractService<Payment, Integer > {
   private final PaymentDao paymentDao;
 
   public PaymentService(PaymentDao paymentDao) {

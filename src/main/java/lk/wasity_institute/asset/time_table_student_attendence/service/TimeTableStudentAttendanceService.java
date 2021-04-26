@@ -2,17 +2,18 @@ package lk.wasity_institute.asset.time_table_student_attendence.service;
 
 
 
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.time_table_student_attendence.dao.TimeTableStudentAttendanceDao;
-import lk.succes_student_management.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
-import lk.succes_student_management.util.interfaces.AbstractService;
+
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.time_table_student_attendence.dao.TimeTableStudentAttendanceDao;
+import lk.wasity_institute.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
+import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TimeTableStudentAttendanceService implements AbstractService< TimeTableStudentAttendance, Integer > {
+public class TimeTableStudentAttendanceService implements AbstractService<TimeTableStudentAttendance, Integer > {
   private final TimeTableStudentAttendanceDao timeTableStudentAttendanceDao;
 
   public TimeTableStudentAttendanceService(TimeTableStudentAttendanceDao timeTableStudentAttendanceDao) {

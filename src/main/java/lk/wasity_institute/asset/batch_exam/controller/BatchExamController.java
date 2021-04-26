@@ -1,18 +1,19 @@
 package lk.wasity_institute.asset.batch_exam.controller;
 
-import lk.succes_student_management.asset.batch.entity.Batch;
-import lk.succes_student_management.asset.batch.service.BatchService;
-import lk.succes_student_management.asset.batch_exam.entity.BatchExam;
-import lk.succes_student_management.asset.batch_exam.service.BatchExamService;
-import lk.succes_student_management.asset.common_asset.model.enums.LiveDead;
-import lk.succes_student_management.asset.student.entity.Student;
-import lk.succes_student_management.asset.student.service.StudentService;
-import lk.succes_student_management.asset.teacher.entity.Teacher;
-import lk.succes_student_management.asset.teacher.service.TeacherService;
-import lk.succes_student_management.asset.user_management.entity.User;
-import lk.succes_student_management.asset.user_management.service.UserService;
-import lk.succes_student_management.util.service.EmailService;
-import lk.succes_student_management.util.service.MakeAutoGenerateNumberService;
+
+import lk.wasity_institute.asset.batch.entity.Batch;
+import lk.wasity_institute.asset.batch.service.BatchService;
+import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
+import lk.wasity_institute.asset.batch_exam.service.BatchExamService;
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.student.entity.Student;
+import lk.wasity_institute.asset.student.service.StudentService;
+import lk.wasity_institute.asset.teacher.entity.Teacher;
+import lk.wasity_institute.asset.teacher.service.TeacherService;
+import lk.wasity_institute.asset.user_management.entity.User;
+import lk.wasity_institute.asset.user_management.service.UserService;
+import lk.wasity_institute.util.service.EmailService;
+import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -128,7 +129,7 @@ public class BatchExamController {
         String message = "Dear " + student.getFirstName() + "\n Your " + batchService.findById( batchExamDb.getBatch().getId()).getName() + " exam " +
             "would be held from " + batchExamDb.getStartAt() + " to " + batchExamDb.getEndAt() + ".\n Thanks \n " +
             "Success Student";
-        emailService.sendEmail(student.getEmail(), "Exam - Notification", message);
+//        emailService.sendEmail(student.getEmail(), "Exam - Notification", message);
       }
     });
     return "redirect:/batchExam/teacher";

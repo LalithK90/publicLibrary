@@ -3,9 +3,10 @@ package lk.wasity_institute.asset.employee.controller;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import lk.succes_student_management.asset.employee.entity.Employee;
-import lk.succes_student_management.asset.employee.entity.enums.Designation;
-import lk.succes_student_management.asset.employee.service.EmployeeService;
+
+import lk.wasity_institute.asset.employee.entity.Employee;
+import lk.wasity_institute.asset.employee.entity.enums.Designation;
+import lk.wasity_institute.asset.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
