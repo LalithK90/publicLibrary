@@ -4,9 +4,10 @@ package lk.wasity_institute.asset.batch.controller;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.batch.entity.enums.Medium;
+//import lk.wasity_institute.asset.batch.entity.enums.Medium;
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
@@ -14,6 +15,7 @@ import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.student.service.StudentService;
 import lk.wasity_institute.asset.teacher.controller.TeacherController;
 import lk.wasity_institute.asset.teacher.service.TeacherService;
+import lk.wasity_institute.util.interfaces.AbstractController;
 import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
@@ -59,7 +61,7 @@ public class BatchController implements AbstractController< Batch, Integer > {
   private String commonMethod(Model model, Batch batch, boolean addStatus) {
     model.addAttribute("grades", Grade.values());
     model.addAttribute("classDays", ClassDay.values());
-    model.addAttribute("mediums", Medium.values());
+   // model.addAttribute("mediums", Medium.values());
     model.addAttribute("teachers", teacherService.findAll());
     model.addAttribute("batch", batch);
     model.addAttribute("addStatus", addStatus);

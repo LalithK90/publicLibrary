@@ -1,14 +1,26 @@
 package lk.wasity_institute.configuration;
 
 
+import lk.wasity_institute.asset.user_management.entity.Enum.UserSessionLogStatus;
+import lk.wasity_institute.asset.user_management.entity.User;
 import lk.wasity_institute.asset.user_management.entity.UserSessionLog;
 import lk.wasity_institute.asset.user_management.service.UserService;
 import lk.wasity_institute.asset.user_management.service.UserSessionLogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Component( "customLogoutSuccessHandler" )
 public class CustomLogoutSuccessHandler extends
-        SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
+                                        SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
     @Autowired
     private UserSessionLogService userSessionLogService;
     @Autowired

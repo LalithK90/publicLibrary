@@ -4,7 +4,7 @@ package lk.wasity_institute.asset.batch.entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.batch.entity.enums.Medium;
+//import lk.wasity_institute.asset.batch.entity.enums.Medium;
 import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
@@ -15,6 +15,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -38,8 +39,10 @@ public class Batch extends AuditEntity {
   @Enumerated( EnumType.STRING )
   private Grade grade;
 
+/*
   @Enumerated( EnumType.STRING )
   private Medium medium;
+*/
 
   @Enumerated( EnumType.STRING )
   private LiveDead liveDead;

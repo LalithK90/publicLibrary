@@ -4,7 +4,7 @@ package lk.wasity_institute.asset.student.controller;
 
 import lk.wasity_institute.asset.batch.controller.BatchController;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.batch.entity.enums.Medium;
+/*import lk.wasity_institute.asset.batch.entity.enums.Medium;*/
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
@@ -55,7 +55,7 @@ public class StudentController implements AbstractController<Student, Integer > 
     model.addAttribute("student", student);
     model.addAttribute("addStatus", addStatus);
     model.addAttribute("grades", Grade.values());
-    model.addAttribute("mediums", Medium.values());
+   // model.addAttribute("mediums", Medium.values());
     model.addAttribute("liveDeads", LiveDead.values());
     model.addAttribute("schools", schoolService.findAll().stream()
         .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))
