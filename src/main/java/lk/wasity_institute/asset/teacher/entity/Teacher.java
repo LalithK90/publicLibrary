@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.common_asset.model.enums.Title;
 import lk.wasity_institute.asset.subject.entity.Subject;
 import lk.wasity_institute.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -50,6 +51,9 @@ public class Teacher extends AuditEntity {
 
   @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
   private String mobile;
+
+  @Enumerated( EnumType.STRING )
+  private Title title;
 
   @Enumerated( EnumType.STRING )
   private LiveDead liveDead;

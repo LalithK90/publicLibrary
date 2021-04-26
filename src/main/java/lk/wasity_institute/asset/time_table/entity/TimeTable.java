@@ -31,7 +31,7 @@ public class TimeTable extends AuditEntity {
 
   private String lesson;
 
-  private String remark;
+//  private String remark;
 
   @Enumerated(EnumType.STRING)
   private TimeTableStatus timeTableStatus;

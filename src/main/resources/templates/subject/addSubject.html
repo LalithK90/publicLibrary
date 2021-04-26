@@ -10,7 +10,7 @@
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
 <div class="card bg-gradient-light text-center">
-  <h1>New Subject</h1>
+  <h1><span data-th-text="${addStatus==true?'New Subject':'Update Subject Details'}"></span></h1>
 </div>
 <div class="row">
   <div class="col-9"></div>
@@ -50,16 +50,24 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
-        <button type="submit" class="btn btn-primary mt-3 ml-2">Save</button>
+        <button type="submit" class="btn btn-primary mt-3 ml-2"><span data-th-text="${addStatus==true?'Save':'Update'}"></span></button>
         <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
       </div>
     </div>
-    <div class="form-row" >
-      <label data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
-      <ul >
-        <li data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="bg-danger text-white" ></li >
-      </ul >
-    </div >
+    <div class="alert alert-warning alert-dismissible fade show " role="alert" data-th-if="${#fields.hasErrors('*')}">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong><span  data-th-each="err : ${#fields.errors('*')}" data-th-text="${#fields.errors('*')}"></span></strong>
+    </div>
+
+
+<!--    <div class="form-row" >-->
+<!--      <label data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >-->
+<!--      <ul >-->
+<!--        <li data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="bg-danger text-white" ></li >-->
+<!--      </ul >-->
+<!--    </div >-->
   </form >
 </div >
 <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >

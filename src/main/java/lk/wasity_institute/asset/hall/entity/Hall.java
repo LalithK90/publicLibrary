@@ -11,10 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -28,8 +25,9 @@ public class Hall extends AuditEntity {
     @Enumerated( EnumType.STRING )
     private LiveDead liveDead;
 
-    private String name;
+//    private String name;
 
+    @Column( unique = true )
     private String number;
 
     @Enumerated( EnumType.STRING )

@@ -5,19 +5,21 @@
   <meta charset="UTF-8" >
   <title >Success Student Management System</title >
 </head >
-<body >
+<body style="margin-top: 90px;">
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
-<div class="row bg-light" >
-  <div class="col-4" ></div >
-  <div class="col-4" >
-    <h1 >Student Management</h1 >
-  </div >
-  <div class="col-4" ><a href="/student/add" >
-    <button class="btn btn-primary" >Register a new Student</button >
-  </a ></div >
-</div >
+<div class="card bg-gradient-light text-center">
+  <h1>Student List</h1>
+</div>
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <a href="/student/add">
+      <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;New Student </button>
+    </a>
+  </div>
+</div>
 
 <div class="row" >
   <div class="container-fluid">
@@ -33,7 +35,7 @@
           <th >Guardian</th >
           <th >Mobile Number</th >
           <th >Home Number</th >
-          <th >Modify</th >
+          <th style="width:20%;" >Modify</th >
         </tr >
         </thead >
         <tbody >
@@ -61,7 +63,7 @@
             <a data-th-href="${'/student/view/'+ student.id}" >
               <button class="btn btn-info" >View</button >
             </a >
-            <form action="/batchStudent/removeBatch" method="post">
+            <form style="background-color:transparent;" action="/batchStudent/removeBatch" method="post">
               <input type="hidden" name="batch" data-th-value="${batchDetail.id}" >
               <input type="hidden" name="student" data-th-value="${student.id}" >
               <button type="submit" class="btn btn-danger" >Remove</button >

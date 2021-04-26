@@ -4,31 +4,21 @@
   <meta charset="UTF-8" >
   <title >Success Student Management</title >
 </head >
-<body >
+<body style="margin-top: 90px;">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
 <!--Page header -->
-<div class="container-fluid bg-light form-Border" >
-  <div class="row text-center formManagement border-info" >
-    <div class="col" >
-      <a class="btn btn-primary" href="/home" >
-        <i class="fa fa-home" style="font-size: 20px" ></i > &nbsp; Home
-      </a >
-    </div >
-    <div class="col" >
-      <h4 class="text-dark text-center" >
-        <strong >
-          <span id="formHeader" data-th-text="${addStatus==true?'New User':'Update User'}" ></span >
-        </strong >
-      </h4 >
-    </div >
-    <div class="col" >
-      <a href="/user" class="btn btn-primary" >
-        <i class="fa fa-list" ></i >&nbsp; View List
-      </a >
-    </div >
-  </div >
-</div >
+<div class="card bg-gradient-light text-center"><h1>
+  <span id="formHeader" data-th-text="${addStatus==true?'New Teacher User':'Update Teacher User'}" ></span ></h1>
+</div>
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <a href="/user">
+      <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp; User list</button>
+    </a>
+  </div>
+</div>
 <!--Employee find-->
 <div class="container-fluid bg-light formBorder" data-th-if="${employeeDetailShow==false}" >
   <div class="col-sm-12 flex-column " >
@@ -64,7 +54,7 @@
         </div >
         <div class="col-3 flex-column" >
           <div class="form-batch" >
-            <div class="" >
+<!--            <div class="" >-->
               <div class="col-2" >
                 <label class="control-label" ></label >
               </div >
@@ -73,7 +63,7 @@
                   <i class="fa fa-search " style="font-size: 20px" ></i >&nbsp; &nbsp;Search
                 </button >
               </div >
-            </div >
+<!--            </div >-->
           </div >
         </div >
       </div >

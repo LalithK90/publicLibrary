@@ -8,7 +8,7 @@
 
 
 <div class="card bg-gradient-light text-center">
-  <h1>New Batch</h1>
+  <h1 > <span data-th-text="${addStatus==true?'New Employee':'Update Employee Details'}" ></span ></h1>
 </div>
 <div class="row">
   <div class="col-9"></div>
@@ -90,7 +90,7 @@
           <!--Nic-->
           <div class="form-row text-right" >
             <div class="col-md-4" >
-              <label class="control-label" for="NationalID" >NIC No :</label >
+              <label class="control-label" data-th-for="${NationalID}" >NIC No :</label >
             </div >
             <div class="col-md-8" >
               <input data-th-field="*{nic}" class="form-control" tabindex="6" type="text"
@@ -103,7 +103,7 @@
           <!--Gender-->
           <div class="form-row text-right" >
             <div class="col-md-4 text-right" >
-              <label class="control-label" for="gender" >Gender :</label >
+              <label class="control-label" data-th-for="${gender}" >Gender :</label >
             </div >
             <div class="col-md-8 text-left" >
               <div class="custom-control custom-checkbox custom-control-inline "
@@ -187,8 +187,8 @@
             </div >
             <div class="col-md-8" >
               <input id="mobileOne" data-th-field="*{mobileOne}" class="form-control mobile" tabindex="13"
-                     type="text"
-                     maxlength="10" min="9"
+                     type="tel"
+                     maxlength="10" min="10"
                      required />
               <span class="error" data-th-errors="*{mobileOne}"
                     data-th-if="${#fields.hasErrors('mobileOne')}"
@@ -202,8 +202,9 @@
             </div >
             <div class="col-md-8" >
               <input id="mobileTwo" data-th-field="*{mobileTwo}" class="form-control mobile" tabindex="14"
-                     type="text"
-                     maxlength="10" min="9" />
+                     type="tel"
+
+                     maxlength="10" min="10" />
               <span class="error" data-th-errors="*{mobileTwo}"
                     data-th-if="${#fields.hasErrors('mobileTwo')}"
                     id="mobileTwoError" >Error Mobile Number</span >
@@ -215,9 +216,9 @@
               <label class="control-label" for="land" >Land No :</label >
             </div >
             <div class="col-md-8" >
-              <input id="land" data-th-field="*{land}" class="form-control land" type="text" tabindex="15"
+              <input id="land" data-th-field="*{land}" class="form-control land" type="tel" tabindex="15"
                      maxlength="10"
-                     min="9" />
+                     min="10"  />
               <span class="error" data-th-errors="*{land}"
                     data-th-if="${#fields.hasErrors('land')}" id="landError" >Error Land Number</span >
             </div >
@@ -270,7 +271,7 @@
           <!--Image-->
           <div class="form-row text-right" >
 
-            <div class="col-md-4 " >
+            <div class="col-md-4" >
               <label class="control-label" data-th-for="${imgUpload}" >Image:</label ></div>
             <div class="col-md-8 mt-3">
               <input type="file" name="file" id="imgUpload" class=""
@@ -291,7 +292,7 @@
           <!--Created by and created at-->
           <div id="updateStatus" data-th-if="${addStatus==false}" >
             <div class="form-row text-right" >
-              <div class="col-md-4" >
+              <div class="col-md-2" >
                 <label class="control-label" for="createdBy" >Created By :</label >
               </div >
               <div class="col-md-8" >
@@ -315,19 +316,27 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
-              <button type="submit" class="btn btn-primary mt-3 ml-2">Save</button>
+              <button type="submit" class="btn btn-primary mt-3 ml-2"><span data-th-text="${addStatus==true?'Save':'Update'}" ></span ></button>
               <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
             </div>
           </div>
         </div >
-        <div class="form-row" >
-          <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
-          <ul >
-            <li id="error" data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="error" ></li >
-          </ul >
-        </div >
-      </div >
+<!--        <div class="form-row" >-->
+<!--          <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >-->
+<!--          <ul >-->
+<!--            <li id="error" data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="error" ></li >-->
+<!--          </ul >-->
+<!--        </div >-->
+
+      <div class="alert alert-warning alert-dismissible fade show " role="alert" data-th-if="${#fields.hasErrors('*')}">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong><span  data-th-each="err : ${#fields.errors('*')}" data-th-text="${#fields.errors('*')}"></span></strong>
+      </div>
+
     </form >
+  </div >
   </div >
 </div >
 <!--footer include-->

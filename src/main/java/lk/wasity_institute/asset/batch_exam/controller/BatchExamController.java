@@ -4,6 +4,7 @@ package lk.wasity_institute.asset.batch_exam.controller;
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
+import lk.wasity_institute.asset.batch_exam.entity.enums.ExamStatus;
 import lk.wasity_institute.asset.batch_exam.service.BatchExamService;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.student.entity.Student;
@@ -83,6 +84,7 @@ public class BatchExamController {
     batchExam.setStartAt(LocalDateTime.now());
     model.addAttribute("batchExams", batch.getBatchExams());
     model.addAttribute("batchExam", batchExam);
+    model.addAttribute("examstatus", ExamStatus.values());
     return "batchExam/addBatchExam";
   }
 
@@ -102,6 +104,7 @@ public class BatchExamController {
     model.addAttribute("batchExams", batchService.findById(batchExam.getBatch().getId()).getBatchExams());
     model.addAttribute("batchDetail", batchExam.getBatch());
     model.addAttribute("batchExam", batchExam);
+    model.addAttribute("examstatus", ExamStatus.values());
     model.addAttribute("addStatus", true);
     return "batchExam/addBatchExam";
   }
@@ -116,9 +119,9 @@ public class BatchExamController {
       BatchExam lastBatchExam = batchExamService.lastBatchExamDB();
       if ( lastBatchExam != null ) {
         String lastNumber = lastBatchExam.getCode().substring(3);
-        batchExam.setCode("SSB" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
+        batchExam.setCode("WIB" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
       } else {
-        batchExam.setCode("SSB" + makeAutoGenerateNumberService.numberAutoGen(null));
+        batchExam.setCode("WIB" + makeAutoGenerateNumberService.numberAutoGen(null));
       }
     }
 
@@ -132,7 +135,7 @@ public class BatchExamController {
 //        emailService.sendEmail(student.getEmail(), "Exam - Notification", message);
       }
     });
-    return "redirect:/batchExam/teacher";
+    return "redirect:/batchExam/add/";
   }
 
   @GetMapping( "/delete/{id}" )

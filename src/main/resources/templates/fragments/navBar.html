@@ -31,7 +31,7 @@
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TEACHER')" class="dropdown-item" href="/batch	"> Class Management  </a>
 <!--               todo: meka wena ekakta wenama damu <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_HR', 'MANAGER',)" class="dropdown-item" href="/employee"> Employee Management </a>-->
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER', 'ROLE_CASHIER',)" class="dropdown-item" href="/payment">Payment Management</a>
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TEACHER')" class="dropdown-item" href="/timeTable"> Timetable Managemet</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TEACHER')" class="dropdown-item" href="/timeTable"> Timetable Management</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TEACHER',)" class="dropdown-item" href="/batchExam/teacher">Exam Management</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TEACHER')" class="dropdown-item" href="/batchStudent">Student-Class Allocation </a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TEACHER' )" class="dropdown-item" href="/timeTable/teacher">Time slot Management</a>
@@ -47,10 +47,12 @@
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')" class="dropdown-item" href="/school/add" >New School</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN')" class="dropdown-item" href="/hall/add">New Hall</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_ACC')" class="dropdown-item" href="/subject/add">New Subject</a>
-<!--                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_HR')" class="dropdown-item" href="	/employee/add	">	New Employee	</a>-->
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_CA', 'ROLE_ACC')" class="dropdown-item" href="	/payment/needToPay	">	New Payment 	</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_HR')" class="dropdown-item" href="	/employee/add	">	New Employee	</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_CASHIER')" class="dropdown-item" href="	/payment/needToPay	">	New Payment 	</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_HR','ROLE_MANAGER')" class="dropdown-item" href="	/role/add	">New System Role</a>
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_HR','ROLE_MANAGER')" class="dropdown-item" href="	/user/add	">	New User 	</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_HR','ROLE_MANAGER')" class="dropdown-item" href="	/user/add	">	New Employee User 	</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_HR','ROLE_MANAGER')" class="dropdown-item" href="/user/teacherAdd	">	New Teacher User 	</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_HR','ROLE_MANAGER')" class="dropdown-item" href="/user/studentAdd	">	New Student User 	</a>
 
                 </div>
             </li>
@@ -109,8 +111,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user-tie fa-lg"></i>&nbsp;&nbsp;
-                            <span data-th-text="${#authentication.name}"></span>
+                            <i class="fas fa-user-tie fa-lg text-white"></i>&nbsp;&nbsp;
+                            <span class="text-white" data-th-text="${#authentication.name}"></span>
+
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">

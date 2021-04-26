@@ -16,6 +16,7 @@ import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -44,9 +45,9 @@ public class StudentController implements AbstractController<Student, Integer > 
   @GetMapping
   public String findAll(Model model) {
     model.addAttribute("students", studentService.findAll()
-        .stream()
-        .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))
-        .collect(Collectors.toList()));
+            .stream()
+            .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))
+            .collect(Collectors.toList()));
     model.addAttribute("studentRemoveBatch", false);
     return "student/student";
   }
@@ -58,77 +59,102 @@ public class StudentController implements AbstractController<Student, Integer > 
    // model.addAttribute("mediums", Medium.values());
     model.addAttribute("liveDeads", LiveDead.values());
     model.addAttribute("schools", schoolService.findAll().stream()
-        .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))
-        .collect(Collectors.toList()));
+            .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))
+            .collect(Collectors.toList()));
     model.addAttribute("gender", Gender.values());
     model.addAttribute("batchUrl", MvcUriComponentsBuilder
-        .fromMethodName(BatchController.class, "findByGrade", "")
-        .build()
-        .toString());
+            .fromMethodName(BatchController.class, "findByGrade", "")
+            .build()
+            .toString());
+//    model.addAttribute("batchUrlM", MvcUriComponentsBuilder
+//            .fromMethodName(BatchController.class, "findByMedium", "")
+//            .build()
+//            .toString());
+
+
     return "student/addStudent";
   }
 
-  @GetMapping( "/add" )
+  @GetMapping("/add")
   public String form(Model model) {
 
     return commonThing(model, new Student(), true);
   }
 
-  @GetMapping( "/view/{id}" )
+  @GetMapping("/view/{id}")
   public String findById(@PathVariable Integer id, Model model) {
     model.addAttribute("studentDetail", studentService.findById(id));
     return "student/student-detail";
   }
 
-  @GetMapping( "/edit/{id}" )
+  @GetMapping("/edit/{id}")
   public String edit(@PathVariable Integer id, Model model) {
     return commonThing(model, studentService.findById(id), false);
   }
 
-  @PostMapping( "/save" )
+  @PostMapping("/save")
   public String persist(@Valid @ModelAttribute Student student, BindingResult bindingResult,
                         RedirectAttributes redirectAttributes, Model model) {
-    if ( bindingResult.hasErrors() ) {
+    if (bindingResult.hasErrors()) {
       return commonThing(model, student, true);
     }
 
 //there are two different situation
     //1. new Student -> need to generate new number
     //2. update student -> no required to generate number
-    if ( student.getId() == null ) {
+    if (student.getId() == null) {
       // need to create auto generated registration number
       Student lastStudent = studentService.lastStudentOnDB();
-      if ( lastStudent != null ) {
+      if (lastStudent != null) {
         String lastNumber = lastStudent.getRegNo().substring(3);
-        student.setRegNo("SSS" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
+        student.setRegNo("WIS" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
       } else {
-        student.setRegNo("SSS" + makeAutoGenerateNumberService.numberAutoGen(null));
+        student.setRegNo("WIS" + makeAutoGenerateNumberService.numberAutoGen(null));
       }
     }
-    studentService.persist(student);
+   studentService.persist(student);
     student.getBatchStudents().forEach(x -> {
       x.setStudent(student);
       batchStudentService.persist(x);
     });
+
     return "redirect:/student";
 
   }
 
-  @GetMapping( "/delete/{id}" )
+  @GetMapping("/delete/{id}")
   public String delete(@PathVariable Integer id, Model model) {
     studentService.delete(id);
     return "redirect:/student";
   }
 
-  @PostMapping( "/search" )
+  @PostMapping("/search")
   public String search(@ModelAttribute Student student, Model model) {
-    List< Student > students = studentService.search(student);
+    List<Student> students = studentService.search(student);
 
-    if ( students.isEmpty() ) {
+    if (students.isEmpty()) {
       model.addAttribute("student", true);
       return "student/studentChooser";
-    } else if ( students.size() == 1 ) {
+    } else if (students.size() == 1) {
       return "redirect:/payment/add/" + students.get(0).getId();
+    } else {
+      model.addAttribute("students", students);
+      return "student/studentChooser";
+    }
+
+
+  }
+
+
+  @PostMapping("/search/ByName")
+  public String searchByName(@ModelAttribute Student student, Model model) {
+    List<Student> students = studentService.searchByName(student);
+
+    if (students.isEmpty()) {
+      model.addAttribute("student", true);
+      return "student/studentChooser";
+    } else if (students.size() == 1) {
+      return "redirect:/payment/add/" + students.get(0).getFirstName();
     } else {
       model.addAttribute("students", students);
       return "student/studentChooser";

@@ -73,9 +73,9 @@ public class TimeTableStudentAttendanceController {
           //registration number format => SSS200001
           if ( lastTimeTable != null ) {
             String lastNumber = lastTimeTable.getCode().substring(3);
-            x.setCode("SSA" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
+            x.setCode("WIA" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
           } else {
-            x.setCode("SSA" + makeAutoGenerateNumberService.numberAutoGen(null));
+            x.setCode("WIA" + makeAutoGenerateNumberService.numberAutoGen(null));
           }
         }
         var y = timeTableStudentAttendanceService.persist(x);

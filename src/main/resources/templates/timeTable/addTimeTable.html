@@ -15,7 +15,7 @@
 
   </div>
   <div class="col-4">
-    <h1>Timetable Management</h1>
+    <h1><span data-th-text="${addStatus==true?'New TimeTable':'Update TimeTable Details'}"></span></h1>
   </div>
   <div class="col-4">
     <a href="/timeTable/add">
@@ -41,43 +41,43 @@
           <th data-th-if="${!addStatus}" >Comment</th >
         </tr >
         <tr data-th-each="batch, index : ${batches.timeTables}" >
-          <th data-th-if="${!addStatus}" data-th-text="${index.count}" ></th >
-          <th data-th-if="${!addStatus}" >
+          <td data-th-if="${!addStatus}" data-th-text="${index.count}" ></td >
+          <td data-th-if="${!addStatus}" >
             <input type="text" class="form-control" data-th-name="${'batches.timeTables[__${index.index}__].code'}"
                    data-th-value="${batches.timeTables[__${index.index}__].code}" required
                    readonly >
             <input type="text" class="form-control" data-th-name="${'batches.timeTables[__${index.index}__].id'}"
                    data-th-value="${batches.timeTables[__${index.index}__].id}" required
                    readonly >
-          </th >
-          <th >
+          </td >
+          <td >
             <input type="text" class="form-control"
                    data-th-value="${batches.timeTables[__${index.index}__].batch.name}" required readonly >
             <input type="hidden" class="form-control" data-th-name="${'timeTables[__${index.index}__].batch.id'}"
                    data-th-value="${batches.timeTables[__${index.index}__].batch.id}" required readonly >
-          </th >
-          <th >
+          </td >
+          <td >
             <input type="text" class="form-control"
                    data-th-value="${batches.timeTables[__${index.index}__].batch.count}" required
                    readonly >
-          </th >
-          <th >
+          </td >
+          <td >
             <input type="text" class="form-control" data-th-name="${'timeTables[__${index.index}__].lesson'}"
                    data-th-value="${batches.timeTables[__${index.index}__].lesson}" required >
-          </th >
-          <th >
+          </td >
+          <td >
             <input type="datetime-local" class="form-control startAt"
                    data-th-id="${'sAt'+index.index}"
                    data-th-name="${'timeTables[__${index.index}__].startAt'}"
                    data-th-value="${batches.timeTables[__${index.index}__].startAt}" required >
-          </th >
-          <th >
+          </td >
+          <td >
             <input type="datetime-local" class="form-control endAt"
                    data-th-id="${'eAt'+index.index}"
                    data-th-name="${'timeTables[__${index.index}__].endAt'}"
                    data-th-value="${batches.timeTables[__${index.index}__].endAt}" required >
-          </th >
-          <th >
+          </td >
+          <td >
             <select data-th-name="${'timeTables[__${index.index}__].hall.id'}"
                     data-th-id="${'hAt'+index.index}"
                     data-th-value="${batches.timeTables[__${index.index}__].hall}" required
@@ -87,8 +87,8 @@
                       data-th-value="${hall.id}"
                       data-th-text="${'Hall Number : '+hall.number+' Seats : '+ hall.seatCount}" ></option >
             </select >
-          </th >
-          <th data-th-if="${!addStatus}" >
+          </td >
+          <td data-th-if="${!addStatus}" >
             <div class="col" >
               <div class="custom-control custom-checkbox custom-control-inline "
                    data-th-each="liveDead : ${liveDeads}" >
@@ -103,12 +103,12 @@
                 </label >
               </div >
             </div >
-          </th >
-          <th data-th-if="${!addStatus}" >
+          </td >
+          <td data-th-if="${!addStatus}" >
             <input type="text" class="form-control"
                    data-th-name="${'timeTables[__${index.index}__].remark'}"
                    data-th-value="${batches.timeTables[__${index.index}__].remark}" required >
-          </th >
+          </td >
         </tr >
       </table >
     </div >

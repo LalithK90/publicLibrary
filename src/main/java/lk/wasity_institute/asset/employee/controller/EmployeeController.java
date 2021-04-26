@@ -135,15 +135,17 @@ public class EmployeeController {
     if ( employee.getId() == null ) {
       Employee lastEmployee = employeeService.lastEmployee();
       if ( lastEmployee.getCode() == null ) {
-        employee.setCode("SSME" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+        employee.setCode("WIME" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
       } else {
-        employee.setCode("SSME" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(4)).toString());
+        employee.setCode("WIME" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(4)).toString());
       }
     }
 
 
     //after save employee files and save employee
-    Employee employeeSaved = employeeService.persist(employee);
+
+      Employee employeeSaved = employeeService.persist(employee);
+
     //if employee state is not working he or she cannot access to the system
     if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
       User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));

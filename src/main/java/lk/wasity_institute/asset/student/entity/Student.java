@@ -33,6 +33,8 @@ public class Student extends AuditEntity {
 
   private String lastName;
 
+  private String ExamYear;
+
   @Enumerated( EnumType.STRING )
   private Gender gender;
 
@@ -49,8 +51,10 @@ public class Student extends AuditEntity {
 
   private String guardian;
 
+  @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
   private String mobile;
 
+  @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
   private String home;
 
   @Column( unique = true )

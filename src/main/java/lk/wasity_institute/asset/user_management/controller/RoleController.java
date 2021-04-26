@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping( "/role" )
+@RequestMapping("/role")
 public class RoleController {
 
     private final RoleService roleService;
@@ -37,8 +37,8 @@ public class RoleController {
     /*
      * Send one-{find using id} role details to font-end view
      * */
-    @GetMapping( value = "/{id}" )
-    public String roleView(@PathVariable( "id" ) Integer id, Model model) {
+    @GetMapping(value = "/{id}")
+    public String roleView(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("role", roleService.findById(id));
         model.addAttribute("addStatus", false);
         return "role/addRole";
@@ -47,8 +47,8 @@ public class RoleController {
     /*
      * Send one-{find using id} role to font-end to edit
      * */
-    @GetMapping( value = "/edit/{id}" )
-    public String editRoleFrom(@PathVariable( "id" ) Integer id, Model model) {
+    @GetMapping(value = "/edit/{id}")
+    public String editRoleFrom(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("role", roleService.findById(id));
         model.addAttribute("addStatus", false);
         return "role/addRole";
@@ -57,7 +57,7 @@ public class RoleController {
     /*
      * Send form view role to font-end to add new role
      * */
-    @GetMapping( value = {"/add"} )
+    @GetMapping(value = {"/add"})
     public String roleAddFrom(Model model) {
         model.addAttribute("addStatus", true);
         model.addAttribute("role", new Role());
@@ -67,11 +67,11 @@ public class RoleController {
      * New Working palace add and stored role edit using following method
      * */
 
-    @PostMapping( value = {"/add", "/update"} )
+    @PostMapping(value = {"/add", "/update"})
     public String addRole(@Valid @ModelAttribute Role role, BindingResult result, Model model
             , RedirectAttributes redirectAttributes) {
 
-        if ( result.hasErrors() && role.getId() == null ) {
+        if (result.hasErrors() && role.getId() == null) {
             model.addAttribute("addStatus", true);
             model.addAttribute("role", role);
             return "role/addRole";
@@ -80,9 +80,9 @@ public class RoleController {
         try {
             roleService.persist(role);
             return "redirect:/role";
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             ObjectError error = new ObjectError("role",
-                                                "This role is already in the System <br/>System message -->" + e.toString());
+                    "This role is already in the System <br/>System message -->" + e.toString());
             result.addError(error);
             model.addAttribute("addStatus", true);
             model.addAttribute("role", role);
@@ -94,16 +94,22 @@ public class RoleController {
     /*
      * delete role from database
      * */
-    @GetMapping( value = "/remove/{id}")
-    public String removeRole(@PathVariable( "id" ) Integer id) {
-        roleService.delete(id);
+    @GetMapping(value = "/remove/{id}")
+    public String removeRole(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        try {
+            roleService.delete(id);
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getCause().getCause().getMessage());
+            return "redirect:/role";
+
+        }
         return "redirect:/role";
     }
 
     /*
      * search role in the database
      * */
-    @GetMapping( value = "/search" )
+    @GetMapping(value = "/search")
     public String search(Model model, Role role) {
         model.addAttribute("role", roleService.search(role));
         return "role/role";

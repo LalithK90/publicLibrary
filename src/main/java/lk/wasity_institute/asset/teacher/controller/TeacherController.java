@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.common_asset.model.enums.Title;
 import lk.wasity_institute.asset.subject.service.SubjectService;
 import lk.wasity_institute.asset.teacher.entity.Teacher;
 import lk.wasity_institute.asset.teacher.service.TeacherService;
@@ -16,6 +17,7 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,6 +53,7 @@ public class TeacherController implements AbstractController<Teacher, Integer> {
     public String form(Model model) {
         model.addAttribute("teacher", new Teacher());
         model.addAttribute("gender", Gender.values());
+        model.addAttribute("title", Title.values());
         model.addAttribute("addStatus",true);
         model.addAttribute("subjects",subjectService.findAll()
             .stream().filter(x->x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList()));
@@ -67,6 +70,7 @@ public class TeacherController implements AbstractController<Teacher, Integer> {
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("teacher", teacherService.findById(id));
         model.addAttribute("gender", Gender.values());
+        model.addAttribute("title", Title.values());
         model.addAttribute("addStatus",false);
         model.addAttribute("batches",batchService.findAll());
         model.addAttribute("subjects",subjectService.findAll());
@@ -79,6 +83,7 @@ public class TeacherController implements AbstractController<Teacher, Integer> {
             bindingResult.getAllErrors().forEach(System.out::println);
             model.addAttribute("teacher", teacher);
             model.addAttribute("gender", Gender.values());
+            model.addAttribute("title", Title.values());
             model.addAttribute("addStatus",true);
             model.addAttribute("batches",batchService.findAll());
             model.addAttribute("subjects",subjectService.findAll());
@@ -98,7 +103,15 @@ public class TeacherController implements AbstractController<Teacher, Integer> {
             }
 
         }
-        teacherService.persist(teacher);
+        try{teacherService.persist(teacher);
+        }catch (Exception e){
+            ObjectError error = new ObjectError("teacher",
+                    "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+            bindingResult.addError(error);
+            model.addAttribute("teacher", teacher);
+            model.addAttribute("addStatus", true);
+            return "teacher/addTeacher";
+        }
         return "redirect:/teacher";
 
     }

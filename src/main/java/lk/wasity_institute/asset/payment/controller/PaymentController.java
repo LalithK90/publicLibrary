@@ -64,6 +64,7 @@ public class PaymentController {
     return "payment/payment";
   }
 
+
   @GetMapping
   public String findAll(Model model) {
     return commonFindAll(LocalDate.now(), LocalDate.now(), model);
@@ -173,17 +174,17 @@ public class PaymentController {
 
     StringBuilder paymentInfo = new StringBuilder();
     for ( Payment payment : withBatchStudent ) {
-      paymentInfo.append("\n\t\t\t\t Payment Code \t\t").append(payment.getCode()).append("\t\t\t\t Month \t\t").append(payment.getMonth()).append("\tYear \t\t").append(payment.getYear()).append(
-          " \t\t\t\t Amount \t\t ").append(payment.getAmount()).append("\t\t\t\t Paid At \t\t").append(payment.getCreatedAt().toLocalDate()).append(" \t\t\t\tCreated By\t\t").append(payment.getCreatedBy());
+      paymentInfo.append("\n\t Payment Code :\t").append(payment.getCode()).append("\n\t Month : \t").append(payment.getMonth()).append("\n\tYear :\t").append(payment.getYear()).append(
+          " \n\t Amount \t\t ").append(payment.getAmount()).append("\n\t Paid At :\t").append(payment.getCreatedAt().toLocalDate()).append(" \n\tCreated By :\t").append(payment.getCreatedBy());
     }
 
 
     Student studentDb = studentService.findById(student.getId());
     if ( studentDb.getEmail() != null ) {
       String message =
-          "Dear " + studentDb.getFirstName() + "\n Your following payment was accepted\n" + paymentInfo + "\n Thanks " +
-              "\n\n Success Student";
-//      emailService.sendEmail(studentDb.getEmail(), "Payment - Notification", message);
+          "Dear " + studentDb.getFirstName() + "\n Your following payment was accepted\n" + paymentInfo + "\n Thank you..! " +
+              "\n\n Wasity Institute";
+      emailService.sendEmail(studentDb.getEmail(), "Payment - Notification", message);
     }
 
     model.addAttribute("payments", withBatchStudent);
@@ -194,10 +195,10 @@ public class PaymentController {
     if ( payment.getId() == null ) {
       Payment lastPayment = paymentService.lastStudentOnDB();
       if ( lastPayment == null ) {
-        payment.setCode("SSP" + makeAutoGenerateNumberService.numberAutoGen(null));
+        payment.setCode("WIP" + makeAutoGenerateNumberService.numberAutoGen(null));
       } else {
         String lastNumber = lastPayment.getCode().substring(3);
-        payment.setCode("SSP" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
+        payment.setCode("WIP" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
       }
     }
     return payment;

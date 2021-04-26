@@ -34,6 +34,7 @@
                 <th>Class Name</th>
                 <th>Teacher Name</th>
                 <th>Subject Name</th>
+                <th>NO:of Students</th>
                 <th style="width: 30%">Modify</th>
             </tr>
             </thead>
@@ -47,6 +48,9 @@
                 <td data-th-text="${batch.name}"></td>
                 <td data-th-text="${batch.teacher.firstName}"></td>
                 <td data-th-text="${batch.teacher.subject.name}"></td>
+                <td><a data-th-href="${'/batchStudent/batch/student/' + batch.id}">
+                    <button type="button" class="btn btn-success" id="studentcount">No.Students</button>
+                </a></td>
                 <td >
                     <a data-th-href="${'/batch/view/'+ batch.id}">
                         <button type="button" class="btn btn-success" style="border-color:  rgba(71,123,11,0.99)">View</button>

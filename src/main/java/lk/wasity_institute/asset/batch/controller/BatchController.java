@@ -112,9 +112,9 @@ public class BatchController implements AbstractController< Batch, Integer > {
       Batch lastBatch = batchService.lastBatchOnDB();
       if ( lastBatch != null ) {
         String lastNumber = lastBatch.getCode().substring(3);
-        batch.setCode("SSB" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
+        batch.setCode("WIB" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
       } else {
-        batch.setCode("SSB" + makeAutoGenerateNumberService.numberAutoGen(null));
+        batch.setCode("WIB" + makeAutoGenerateNumberService.numberAutoGen(null));
       }
     }
 
@@ -145,6 +145,22 @@ public class BatchController implements AbstractController< Batch, Integer > {
 
     return mappingJacksonValue;
   }
+
+//  @GetMapping( "/{medium}" )
+//  @ResponseBody
+//  public MappingJacksonValue findByMedium(@PathVariable( "medium" ) Medium medium) {
+//    MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(batchService.findByMedium(medium));
+//
+//    SimpleBeanPropertyFilter forBatch = SimpleBeanPropertyFilter
+//            .filterOutAllExcept("id", "name");
+//
+//    FilterProvider filters = new SimpleFilterProvider()
+//            .addFilter("Batch", forBatch);
+//
+//    mappingJacksonValue.setFilters(filters);
+//
+//    return mappingJacksonValue;
+//  }
 
   @GetMapping( "/{grade}/{id}" )
   @ResponseBody
@@ -194,4 +210,12 @@ public class BatchController implements AbstractController< Batch, Integer > {
 
     return mappingJacksonValue;
   }
+
+
+  @GetMapping("/batchStudent")
+  public String findByBatchStudent(@PathVariable Integer id, Model model){
+    model.addAttribute("batchStudents", batchStudentService.findById(id));
+    return "batch/showStudent";
+  }
+
 }
