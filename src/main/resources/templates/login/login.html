@@ -8,7 +8,7 @@
 </head>
 <body id="loginbody">
 <div class="container-fluid">
-<div class="form-area text-white ">
+<div class="form-area text-white "  >
     <div class="row">
         <div class="col-md-4 mt-3 ml-4">
             <img data-th-src="@{'/img/newlogo.jpg'}"  id="loginlogo">
@@ -23,7 +23,7 @@
     <p class="text-center  mt-5" style="font-size: xx-large;color: #281e04;border-width: thick"><b>LOGIN</b></p>
     <hr style="color: black;">
     <div class="container-fluid">
-    <form  data-th-action="${'/login'}" method="post" class="text-white">
+    <form  id="loginform" data-th-action="${'/login'}" method="post" class="text-white">
       <label id="user"> <i class="fas fa-user" style="font-size: larger;color: black"></i>
            <input  type="text" placeholder="Username" data-th-name="${'username'}" id="inuse" required>
       </label>

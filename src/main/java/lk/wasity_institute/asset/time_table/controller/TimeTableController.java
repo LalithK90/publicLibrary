@@ -170,19 +170,31 @@ public class TimeTableController {
       if ( timeTable.getId() == null ) {
         TimeTable lastTimeTable = timeTableService.lastTimeTable();
         if ( lastTimeTable == null ) {
-          timeTable.setCode("SSTM" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+          timeTable.setCode("WITM" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
         } else {
-          timeTable.setCode("SSTM" + makeAutoGenerateNumberService.numberAutoGen(lastTimeTable.getCode().substring(4)).toString());
+          timeTable.setCode("WITM" + makeAutoGenerateNumberService.numberAutoGen(lastTimeTable.getCode().substring(4)).toString());
         }
       }
-     TimeTable timeTableDb = timeTableService.persist(timeTable);
-      timeTableDb.getBatch().getBatchStudents().forEach(x->{
-        Student student = studentService.findById(x.getId());
-        if(student.getEmail()!=null){
-          String message = "Dear "+ student.getFirstName()+"\n Your "+timeTableDb.getBatch().getName()+" class would be held from "+ timeTableDb.getStartAt()+" to "+ timeTableDb.getEndAt() +"\n Thanks \n Success Student";
-          emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
-        }
-      });
+//     TimeTable timeTableDb = timeTableService.persist(timeTable);
+//      if (!timeTableDb.getBatch().getBatchStudents().isEmpty()) {
+//        timeTableDb.getBatch().getBatchStudents().forEach(x->{
+//          Student student = studentService.findById(x.getId());
+//          if(student.getEmail()!=null){
+//            String message = "Dear "+ student.getFirstName()+"\n Your "+timeTableDb.getBatch().getName()+" class would be held from "+ timeTableDb.getStartAt()+" to "+ timeTableDb.getEndAt() +"\n Thanks \n Wasity Institute";
+//            emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
+//          }
+//        });
+//      }
+
+//      TimeTable timeTableDb = timeTableService.persist(timeTable);
+//      timeTableDb.getBatch().getBatchStudents().forEach(x->{
+//        Student student = studentService.findById(x.getId());
+//        if(student.getEmail()!=null){
+//          String message = "Dear "+ student.getFirstName()+"\n Your "+timeTableDb.getBatch().getName()+" class would be held from "+ timeTableDb.getStartAt()+" to "+ timeTableDb.getEndAt() +"\n Thanks \n Success Student";
+//          emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
+//        }
+//      });
+
 
     }
 
@@ -227,7 +239,7 @@ public class TimeTableController {
     model.addAttribute("batches", batchSend);
     model.addAttribute("addStatus", addStatus);
     model.addAttribute("date", date);
-    model.addAttribute("liveDeads", LiveDead.values());
+    model.addAttribute("liveDead", LiveDead.values());
     return "timeTable/addTimeTable";
   }
 

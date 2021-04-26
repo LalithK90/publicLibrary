@@ -55,7 +55,7 @@
         <div class="col-md-2"></div><div class="col-md-2">
         <label data-th-for="${createdDate}" class=" control-label" >Date :</label ></div>
         <div class="col-md-6" >
-          <p type="text" id="createdDate" class="form-control" data-th-text="${paymentDetail.liveDead.liveDead}" >
+          <p type="text" id="createdDate" class="form-control" data-th-text="${paymentDetail.createdAt}" >
         </div >
       </div >
 
@@ -110,7 +110,7 @@
     <div class="form-group row">
         <div class="col-md-5"></div>
         <div class="col-md-4">
-            <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+            <a href="/payment" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
             <button class="btn btn-success mt-3 ml-2" type="button" id="printButton" >
                 <i class="fa fa-print" style="font-size: 20px" ></i >
                 Print

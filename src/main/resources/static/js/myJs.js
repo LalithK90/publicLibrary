@@ -471,7 +471,7 @@ $("#btnSummaryFind").bind("mouseover", function () {
 
         if (milliSecondToDay < milliSecondStartDate || milliSecondToDay < milliSecondEndDate) {
             swal({
-                title: "Date range is not valid",
+                title: "Dateba range is not valid",
                 icon: "warning",
             });
         }
@@ -623,14 +623,39 @@ $(".reveal").on('click', function () {
 });
 
 
-function confirmDelete(obj) {
-    swal("Are you sure to delete this?", {
-        dangerMode: true,
-        buttons: true,
-    }).then((x) => {
-        if (x) {
-            self.location = location.protocol + "//" + location.host + obj.getAttribute('id');
-        }
-    });
+// function confirmDelete(obj) {
+//     swal("Are you sure to delete this?", {
+//         dangerMode: true,
+//         buttons: true,
+//     }).then((x) => {
+//         if (x) {
+//             self.location = location.protocol + "//" + location.host + obj.getAttribute('id');
+//         }
+//     });
+// }
+
+
+// confirmation messasge
+$.confirm('Are You Sure To Delete This Entry?',{
+    em:'Emphasized Text',
+    title:'Delete!',
+    callEvent:function(){
+        $.alert('Deleted!')
+    },
+    cancelEvent:function(){
+        $.alert('Canceled')
+    },
+    cancelButton:'No!'
+})
+
+function ConfirmDelete()
+{
+    let x = confirm("Are you sure you want to delete?");
+    if (x)
+        return true;
+    else
+        return false;
 }
+
+
 

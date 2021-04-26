@@ -16,6 +16,7 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -98,7 +99,15 @@ public class TeacherController implements AbstractController<Teacher, Integer> {
             }
 
         }
-        teacherService.persist(teacher);
+        try{teacherService.persist(teacher);
+        }catch (Exception e){
+            ObjectError error = new ObjectError("teacher",
+                    "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+            bindingResult.addError(error);
+            model.addAttribute("teacher", teacher);
+            model.addAttribute("addStatus", true);
+            return "teacher/addTeacher";
+        }
         return "redirect:/teacher";
 
     }

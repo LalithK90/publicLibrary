@@ -4,30 +4,21 @@
     <meta charset="UTF-8">
     <title>Thymeleaf Springboot </title>
 </head>
-<body>
+<body style="margin-top: 90px;">
 <nav   data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
-<div class="container-fluid  form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a class="btn btn-primary" href="/home">
-                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp; Home
-            </a>
-        </div>
-        <div class="col">
-            <h4 class="text-dark text-center">
-                <strong>
-                    <span id="formHeader"   data-th-text="${addStatus==true?'New Role ':'Update Role'}"></span>
-                </strong>
-            </h4>
-        </div>
-        <div class="col">
-            <a href="/role" class="btn btn-primary">
-                <i class="fa fa-list"></i>&nbsp; View List
-            </a>
-        </div>
+<div class="card bg-gradient-light text-center">
+    <h1><span data-th-text="${addStatus==true?'New Role ':'Update Role'}"></span></h1>
+</div>
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-3">
+        <a href="/role">
+            <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp; Role List </button>
+        </a>
     </div>
 </div>
+
 <div class="container-fluid  formBorder">
     <div class="col-sm-12 flex-column ">
         <form id="form" class="form-horizontal" method="POST" data-th-action="${addStatus==true?'/role/add':'/role/update'}"

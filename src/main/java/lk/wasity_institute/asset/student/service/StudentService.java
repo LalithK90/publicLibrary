@@ -52,6 +52,15 @@ public class StudentService implements AbstractService<Student, Integer > {
         return studentDao.findAll(studentExample);
     }
 
+    public List< Student > searchByName(Student student) {
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        Example< Student > studentExample = Example.of(student, matcher);
+        return studentDao.findAll(studentExample);
+    }
+
     public Student lastStudentOnDB() {
         return studentDao.findFirstByOrderByIdDesc();
     }

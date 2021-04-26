@@ -5,7 +5,7 @@
   <meta charset="UTF-8" >
   <title >Success Student Management System</title >
 </head >
-<body >
+<body style="margin-top: 90px;">
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
@@ -161,15 +161,16 @@
     <div class="row" >
       <div class="col-4 text-right" >
         <a href="/payment" >
-          <button type="button" class="btn btn-danger " >Back</button >
+          <button type="button" class="btn btn-danger " id="btn" >Back</button >
         </a >
-      </div >
-      <div class="col-4 text-center" >
-        <button type="reset" class="btn btn-warning " >Clear Data</button >
       </div >
       <div class="col-4 text-left" >
         <button type="submit" class="btn btn-success " >Submit</button >
       </div >
+      <div class="col-4 text-center" >
+        <button type="reset" class="btn btn-warning " >Clear Data</button >
+      </div >
+
     </div >
 </form >
 <!--footer is included-->

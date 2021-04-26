@@ -60,18 +60,17 @@ public class SchoolController {
     if ( bindingResult.hasErrors() ) {
       return commonMethod(model, true, school);
     }
-//    try {
-//      schoolService.persist(school);
-//    }
-//    catch (Exception e){
-//      ObjectError error = new ObjectError("school",
-//              "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
-//      bindingResult.addError(error);
-//      model.addAttribute("school",school);
-//      model.addAttribute("addStatus", true);
-//      return "school/addSchool";
-//    }
-    schoolService.persist(school);
+    try {
+      schoolService.persist(school);
+    } catch (Exception e){
+      ObjectError error = new ObjectError("school",
+              "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+      bindingResult.addError(error);
+      model.addAttribute("school",school);
+      model.addAttribute("addStatus", true);
+      return "school/addSchool";
+    }
+
     return "redirect:/school";
 
   }

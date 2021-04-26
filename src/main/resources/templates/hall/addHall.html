@@ -11,7 +11,7 @@
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
 <div class="card bg-gradient-light text-center">
-    <h1>New Hall</h1>
+    <h1><span data-th-text="${addStatus==true?'New Hall':'Update Hall Details'}"></span></h1>
 </div>
 <div class="row">
     <div class="col-9"></div>

@@ -24,7 +24,7 @@ public class EmailService {
 
         try {
             mailMessage.setTo(receiverEmail);
-            mailMessage.setFrom("-(Success Institute - (not reply))");
+            mailMessage.setFrom("-(Wasity Institute - (not reply))");
             mailMessage.setSubject(subject);
             mailMessage.setText(message);
 

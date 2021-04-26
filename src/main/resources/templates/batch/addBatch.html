@@ -9,7 +9,7 @@
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 <div class="card bg-gradient-light text-center">
-  <h1>New Batch</h1>
+  <h1>  <span data-th-text="${addStatus==true?'New Batch':'Update Batch Details'}"></span></h1>
 </div>
 <div class="row">
   <div class="col-9"></div>
@@ -25,9 +25,9 @@
 <div class="container-fluid" >
   <form action="/batch/save" data-th-object="${batch}" method="post" >
     <!--id-->
-    <div class="form-group row text-right" data-th-if="${addStatus==false}" >
-      <div class="col-md-2"></div><div class="col-md-2">
-      <label data-th-for="${id}" >Id</label ></div>
+    <div class="form-group row" data-th-if="${addStatus==false}" >
+      <div class="col-md-1"></div><div class="col-md-2">
+      <label data-th-for="${id}" >Id :</label ></div>
 
       <div class="col-md-4" >
 
@@ -39,7 +39,7 @@
     <!--reference-->
     <div class="form-group row " data-th-if="${addStatus==false}" >
       <div class="col-md-1"></div><div class="col-md-2">
-      <label class=" control-label" data-th-for="${'code'}" >Batch Ref</label ></div>
+      <label class=" control-label" data-th-for="${'code'}" >Batch Ref :</label ></div>
       <div class="col-md-4" >
         <input type="text" data-th-field="*{code}" id="batchId" placeholder="Batch ID" class="form-control"
                autofocus readonly >
@@ -49,7 +49,7 @@
         <!--academicYear-->
         <div class="form-group row" >
           <div class="col-md-1"></div><div class="col-md-2">
-          <label class=" control-label" data-th-for="${'year'}" >Academic Year :</label ></div>
+          <label class=" control-label" data-th-for="${'year'}" >Exam Year :</label ></div>
           <div  class="col-md-4">
             <select id="year" class="form-control" data-th-field="*{year}" required >
               <option value="2021" >2021</option >
@@ -84,7 +84,7 @@
 <!--medium-->
       <div class="form-group row" >
           <div class="col-md-1"></div><div class="col-md-2">
-          <label class=" control-label" data-th-for="${'medium'}" >Medium</label ></div>
+          <label class=" control-label" data-th-for="${'medium'}" >Medium :</label ></div>
           <div class="col-md-4" >
               <select id="medium" class="form-control" data-th-field="*{medium}" required >
                   <option value="" >Select the Medium</option >
@@ -176,7 +176,7 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
-        <button type="submit" class="btn btn-primary mt-3 ml-2">Save</button>
+          <button type="submit" class="btn btn-primary mt-3 ml-2"><span data-th-text="${addStatus==true?'Save':'Update'}"></span></button>
         <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
       </div>
     </div>
@@ -218,6 +218,7 @@
                         + "-" + day
                         + "-" + startDateTime
                         + "-" + endDateTime);
+
 
                 },
                 error: function (err) {
