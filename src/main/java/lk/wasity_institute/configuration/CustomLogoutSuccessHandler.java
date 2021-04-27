@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 
 @Component( "customLogoutSuccessHandler" )
 public class CustomLogoutSuccessHandler extends
-        SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
+                                        SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
     @Autowired
     private UserSessionLogService userSessionLogService;
     @Autowired

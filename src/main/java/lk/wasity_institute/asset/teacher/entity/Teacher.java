@@ -64,7 +64,7 @@ public class Teacher extends AuditEntity {
   private Subject subject;
 
   @OneToMany(mappedBy = "teacher")
-  private List<Batch> batches;
+  private List< Batch > batches;
 
 
 }
