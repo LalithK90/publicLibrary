@@ -84,7 +84,7 @@ public class TimeTableStudentAttendanceController {
     });
     TimeTable timeTableDb = timeTableService.findById(timeTable.getId());
     timeTableDb.setTimeTableStatus(TimeTableStatus.MARK);
-    timeTableService.persist(timeTable);
+    timeTableService.persist(timeTableDb);
 
     return "redirect:/timeTable/teacher";
   }
