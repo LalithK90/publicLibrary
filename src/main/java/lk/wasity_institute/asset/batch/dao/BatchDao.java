@@ -21,7 +21,7 @@ public interface BatchDao extends JpaRepository<Batch, Integer > {
   Batch findByName(String name);
 
   List< Batch > findByGrade(Grade grade);
-  List< Batch > findByMedium(Medium medium);
+//  List< Batch > findByMedium(Medium medium);
 
   List< Batch > findByClassDay(ClassDay classDay);
 

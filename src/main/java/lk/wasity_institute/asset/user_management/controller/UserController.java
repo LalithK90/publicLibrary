@@ -49,6 +49,12 @@ public class UserController {
     return "user/user";
   }
 
+  @GetMapping("/teacher")
+  public String TeacherUserPage(Model model,Teacher teacher) {
+    model.addAttribute("userTeacher", userService.findAll().stream().filter(x->x.getRoles().equals(teacher)).collect(Collectors.toList()));
+    return "user/userTeacher";
+  }
+
   @GetMapping( value = "/{id}" )
   public String userView(@PathVariable( "id" ) Integer id, Model model) {
     model.addAttribute("userDetail", userService.findById(id));

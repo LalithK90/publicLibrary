@@ -60,9 +60,9 @@ public class BatchService implements AbstractService<Batch, Integer > {
   public List< Batch > findByGrade(Grade grade) {
     return batchDao.findByGrade(grade);
   }
-  public List< Batch > findByMedium(Medium medium) {
-    return batchDao.findByMedium(medium);
-  }
+//  public List< Batch > findByMedium(Medium medium) {
+//    return batchDao.findByMedium(medium);
+//  }
 
   public List< Batch > findByClassDay(ClassDay classDay) {
     return batchDao.findByClassDay(classDay);

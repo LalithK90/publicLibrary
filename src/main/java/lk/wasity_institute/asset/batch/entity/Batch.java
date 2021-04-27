@@ -40,8 +40,8 @@ public class Batch extends AuditEntity {
   @Enumerated( EnumType.STRING )
   private Grade grade;
 
-  @Enumerated( EnumType.STRING )
-  private Medium medium;
+//  @Enumerated( EnumType.STRING )
+//  private Medium medium;
 
   @Enumerated( EnumType.STRING )
   private LiveDead liveDead;
