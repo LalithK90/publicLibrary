@@ -1,0 +1,70 @@
+form,table{
+  background-color: rgba(179, 81, 6, 0.30);
+  border-radius: 5%;
+  /*padding-top: 4%;*/
+  margin-top: 5%;
+
+}
+
+body{
+  background-image: url("../img/bookalter.jpg");
+  background-size: cover;
+
+}
+label{
+  color: white;
+  font-weight: bold;
+}
+#listb{
+  width: 50%;
+  background-color: rgba(108, 81, 13, 0.99);
+  color: white;
+}
+#listb:hover{
+  background-color: rgba(165, 123, 17, 0.99);
+}
+button[type="submit"]{
+  width: 30%;
+  background-color: rgba(5,2,108,0.99);
+  color:white;
+}
+
+button[type="reset"]{
+  width: 30%;
+  background-color: rgba(236, 125, 3, 0.99);
+  color:white;
+}
+#btn{
+  width: 30%;
+  background-color: rgba(175, 11, 11, 0.99);
+  color:white;
+  border-color: rgb(248, 92, 81);
+}
+#btn:hover{
+  background-color: rgba(219,67,42,0.99);
+}
+/*#edit{*/
+/*width:13%;*/
+/*  border-color: rgba(9, 118, 193, 0.99);*/
+/*  border-radius: 12px;*/
+/*}*/
+#delete{
+  width:13%;
+  background-color: rgba(253, 25, 23, 0.99);
+  border-radius: 12px;
+  border-color: rgba(160,16,14,0.99);
+}
+#delete:hover{
+  background-color: rgba(255,87,65,0.99);
+}
+#printButton{
+  background-color: darkgoldenrod;
+  border-color: rgba(128, 55, 5, 0.99);
+}
+#studentcount{
+  border-color:  rgba(71,123,11,0.99);
+  background-color: #806520;
+}
+#studentcount:hover{
+  background-color: #9e8035;
+}
