@@ -4,6 +4,7 @@ package lk.wasity_institute.asset.time_table.controller;
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.service.BatchService;
+import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
 import lk.wasity_institute.asset.common_asset.model.DateTimeTable;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
@@ -175,17 +176,20 @@ public class TimeTableController {
         }
       }
       TimeTable timeTableDb = timeTableService.persist(timeTable);
-//      if ( !timeTableDb.getBatch().getBatchStudents().isEmpty() ) {
-//        timeTableDb.getBatch().getBatchStudents().forEach(x -> {
-//          Student student = studentService.findById(x.getId());
-//          if ( student.getEmail() != null ) {
-//            String message = "Dear " + student.getFirstName() + "\n Your " + timeTableDb.getBatch().getName() + " " +
-//                "class would be held from " + timeTableDb.getStartAt() + " to " + timeTableDb.getEndAt() + "\n Thanks" +
-//                " \n Wasity Institute";
-//            emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
-//          }
-//        });
-//      }
+      List< BatchStudent > batchStudents = batchService.findById(timeTableDb.getBatch().getId()).getBatchStudents();
+      if ( !batchStudents.isEmpty() ) {
+        batchStudents.forEach(x -> {
+          Student student = studentService.findById(x.getId());
+          if ( student.getEmail() != null ) {
+            String message = "Dear " + student.getFirstName() + "\n Your " + timeTableDb.getBatch().getName() +
+                " " +
+                "class would be held from " + timeTableDb.getStartAt() + " to " + timeTableDb.getEndAt() + "\n " +
+                "Thanks" +
+                " \n Wasity Institute";
+            emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
+          }
+        });
+      }
 
 
     }
