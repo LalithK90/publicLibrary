@@ -78,8 +78,7 @@ public class TimeTableStudentAttendanceController {
             x.setCode("WIA" + makeAutoGenerateNumberService.numberAutoGen(null));
           }
         }
-        var y = timeTableStudentAttendanceService.persist(x);
-        System.out.println(y.getCode());
+      timeTableStudentAttendanceService.persist(x);
       }
     });
     TimeTable timeTableDb = timeTableService.findById(timeTable.getId());
