@@ -2,6 +2,7 @@ package lk.wasity_institute.asset.user_management.controller;
 
 
 
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.employee.entity.Employee;
 import lk.wasity_institute.asset.employee.entity.enums.EmployeeStatus;
 import lk.wasity_institute.asset.employee.service.EmployeeService;
@@ -13,6 +14,7 @@ import lk.wasity_institute.asset.user_management.entity.User;
 import lk.wasity_institute.asset.user_management.service.RoleService;
 import lk.wasity_institute.asset.user_management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,19 +46,18 @@ public class UserController {
   }
 
   @GetMapping
-  public String userPage(Model model) {
+  public String userPage(Model model,User user ) {
     model.addAttribute("users", userService.findAll());
     return "user/user";
   }
 
   @GetMapping("/teacher")
   public String TeacherUserPage(Model model,Teacher teacher) {
-    model.addAttribute("userTeacher", userService.findAll().stream().filter(x->x.getRoles().equals(teacher)).collect(Collectors.toList()));
+    model.addAttribute("users",userService.findAll().stream().filter(x->x.getRoles().equals("TEACHER")).collect(Collectors.toList()));
     return "user/userTeacher";
   }
-
-  @GetMapping( value = "/{id}" )
-  public String userView(@PathVariable( "id" ) Integer id, Model model) {
+  @GetMapping(  "/view/{id}" )
+  public String userView(@PathVariable Integer id, Model model) {
     model.addAttribute("userDetail", userService.findById(id));
     return "user/user-detail";
   }
