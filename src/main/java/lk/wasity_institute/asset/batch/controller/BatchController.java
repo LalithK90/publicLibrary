@@ -8,6 +8,7 @@ import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
 //import lk.wasity_institute.asset.batch.entity.enums.Medium;
+import lk.wasity_institute.asset.batch.entity.enums.Medium;
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
@@ -146,21 +147,21 @@ public class BatchController implements AbstractController< Batch, Integer > {
     return mappingJacksonValue;
   }
 
-//  @GetMapping( "/{medium}" )
-//  @ResponseBody
-//  public MappingJacksonValue findByMedium(@PathVariable( "medium" ) Medium medium) {
-//    MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(batchService.findByMedium(medium));
-//
-//    SimpleBeanPropertyFilter forBatch = SimpleBeanPropertyFilter
-//            .filterOutAllExcept("id", "name");
-//
-//    FilterProvider filters = new SimpleFilterProvider()
-//            .addFilter("Batch", forBatch);
-//
-//    mappingJacksonValue.setFilters(filters);
-//
-//    return mappingJacksonValue;
-//  }
+  @GetMapping( "/{medium}" )
+  @ResponseBody
+  public MappingJacksonValue findByMedium(@PathVariable( "medium" ) Medium medium) {
+    MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(batchService.findByMedium(medium));
+
+    SimpleBeanPropertyFilter forBatch = SimpleBeanPropertyFilter
+            .filterOutAllExcept("id", "name");
+
+    FilterProvider filters = new SimpleFilterProvider()
+            .addFilter("Batch", forBatch);
+
+    mappingJacksonValue.setFilters(filters);
+
+    return mappingJacksonValue;
+  }
 
   @GetMapping( "/{grade}/{id}" )
   @ResponseBody

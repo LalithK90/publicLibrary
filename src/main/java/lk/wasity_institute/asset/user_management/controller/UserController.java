@@ -52,8 +52,8 @@ public class UserController {
   }
 
   @GetMapping("/teacher")
-  public String TeacherUserPage(Model model,Teacher teacher) {
-    model.addAttribute("users",userService.findAll().stream().filter(x->x.getRoles().equals("TEACHER")).collect(Collectors.toList()));
+  public String TeacherUserPage(Model model) {
+    model.addAttribute("users", roleService.findByRoleName("TEACHER").getUsers());
     return "user/userTeacher";
   }
   @GetMapping(  "/view/{id}" )
