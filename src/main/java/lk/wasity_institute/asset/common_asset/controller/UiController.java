@@ -1,9 +1,10 @@
 package lk.wasity_institute.asset.common_asset.controller;
 
 
+import lk.wasity_institute.asset.user_management.entity.User;
 import lk.wasity_institute.asset.user_management.service.UserService;
-import lk.wasity_institute.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UiController {
 
   private final UserService userService;
-  private final DateTimeAgeService dateTimeAgeService;
 
   @Autowired
-  public UiController(UserService userService, DateTimeAgeService dateTimeAgeService) {
+  public UiController(UserService userService) {
     this.userService = userService;
-    this.dateTimeAgeService = dateTimeAgeService;
   }
 
   @GetMapping( value = {"/", "/index"} )
@@ -27,19 +26,10 @@ public class UiController {
 
   @GetMapping( value = {"/home", "/mainWindow"} )
   public String getHome(Model model) {
-    //do some logic here if you want something to be done whenever
-        /*User authUser = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
-        Set<Petition> petitionSet = new HashSet<>();
-        minutePetitionService
-                .findByEmployeeAndCreatedAtBetween(authUser.getEmployee(),
-                        dateTimeAgeService
-                                .dateTimeToLocalDateStartInDay(LocalDate.now()),
-                        dateTimeAgeService
-                                .dateTimeToLocalDateEndInDay(LocalDate.now())).forEach(
-                minutePetition -> {
-                    petitionSet.add(petitionService.findById(minutePetition.getPetition().getId()));
-                });
-        model.addAttribute("petitions", petitionSet.toArray());*/
+    User user = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+    if ( user.getStudent() != null ) {
+      return "redirect:/studentDetail";
+    }
     return "mainWindow";
   }
 
