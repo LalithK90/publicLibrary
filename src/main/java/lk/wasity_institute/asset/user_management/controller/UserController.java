@@ -51,11 +51,23 @@ public class UserController {
     return "user/user";
   }
 
-  @GetMapping("/teacher")
-  public String TeacherUserPage(Model model) {
-    model.addAttribute("users", roleService.findByRoleName("TEACHER").getUsers());
-    return "user/userTeacher";
-  }
+//  @GetMapping("/employee")
+//  public String EmployeeUserPage(Model model, Employee employee ) {
+//    model.addAttribute("userEmployee", userService.findUserByEmployee(employee));
+//    return "user/userEmployee";
+//  }
+
+//  @GetMapping("/teacher")
+//  public String TeacherUserPage(Model model) {
+//    model.addAttribute("userTeacher", roleService.findByRoleName("TEACHER").getUsers());
+//    return "user/userTeacher";
+//  }
+//
+//  @GetMapping("/student")
+//  public String StudentUserPage(Model model) {
+//    model.addAttribute("userStudent", roleService.findByRoleName("STUDENT").getUsers());
+//    return "user/userStudent";
+//  }
   @GetMapping(  "/view/{id}" )
   public String userView(@PathVariable Integer id, Model model) {
     model.addAttribute("userDetail", userService.findById(id));
@@ -100,10 +112,13 @@ public class UserController {
   @PostMapping( value = "/workingPlace" )
   public String addUserEmployeeDetails(@ModelAttribute( "employee" ) Employee employee, Model model) {
 
-    List< Employee > employees = employeeService.search(employee)
-        .stream()
-        .filter(userService::findByEmployee)
-        .collect(Collectors.toList());
+    List< Employee > employees = employeeService.search(employee);
+//    System.out.println(employees);
+//        .stream()
+//        .filter(userService::findByEmployee)
+//        .collect(Collectors.toList());
+
+
 
     if ( employees.size() == 1 ) {
       User user = new User();

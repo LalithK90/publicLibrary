@@ -157,18 +157,18 @@
           </div >
         </div >
         <!--medium-->
-        <div class="form-row text-right" >
-          <div class="col-md-4" >
-            <label class=" control-label" data-th-for="${'medium'}" >Medium</label ></div>
-          <div class="col-md-8" >
-            <select id="medium" class="form-control" data-th-field="*{medium}" required >
-              <option value="" >Select the Grade</option >
-              <option data-th-each="medium : ${mediums}"
-                      data-th-text="${medium.medium}"
-                      data-th-value="${medium}" ></option >
-            </select >
-          </div >
-        </div >
+<!--        <div class="form-row text-right" >-->
+<!--          <div class="col-md-4" >-->
+<!--            <label class=" control-label" data-th-for="${'medium'}" >Medium</label ></div>-->
+<!--          <div class="col-md-8" >-->
+<!--            <select id="medium" class="form-control" data-th-field="*{medium}" required >-->
+<!--              <option value="" >Select the Grade</option >-->
+<!--              <option data-th-each="medium : ${mediums}"-->
+<!--                      data-th-text="${medium.medium}"-->
+<!--                      data-th-value="${medium}" ></option >-->
+<!--            </select >-->
+<!--          </div >-->
+<!--        </div >-->
 
 <!--        ExamYear-->
 
@@ -343,10 +343,10 @@
        deleteAllTableRow(selectedBatchInTable);
    });
 
-   $("#medium").change(function () {
-     mediumChange($(this).val());
-     deleteAllTableRow(selectedBatchInTable);
-   });
+   // $("#medium").change(function () {
+   //   mediumChange($(this).val());
+   //   deleteAllTableRow(selectedBatchInTable);
+   // });
 
     function gradeChange(val) {
         if (val.length !== 0) {
@@ -374,30 +374,30 @@
     }
 
 
-   function mediumChange(val) {
-     if (val.length !== 0) {
-       let url = $("#batchUrlM").val() + val;
-       let studentId = $("#id").val();
-       if (studentId) {
-         url = $("#batchUrlM").val() + val + "/" + studentId;
-       }
-
-       $.ajax({
-         type: 'GET',
-         url: url,
-         success: function (resp) {
-           addOptionTag(resp);
-         },
-         error: function (err) {
-           console.log(err);
-           swal({
-             title: "There is no more batches match with this grade",
-             icon: "warning",
-           });
-         }
-       });
-     }
-   }
+   // function mediumChange(val) {
+   //   if (val.length !== 0) {
+   //     let url = $("#batchUrlM").val() + val;
+   //     let studentId = $("#id").val();
+   //     if (studentId) {
+   //       url = $("#batchUrlM").val() + val + "/" + studentId;
+   //     }
+   //
+   //     $.ajax({
+   //       type: 'GET',
+   //       url: url,
+   //       success: function (resp) {
+   //         addOptionTag(resp);
+   //       },
+   //       error: function (err) {
+   //         console.log(err);
+   //         swal({
+   //           title: "There is no more batches match with this grade",
+   //           icon: "warning",
+   //         });
+   //       }
+   //     });
+   //   }
+   // }
 
     function addOptionTag(resp) {
         console.log("length " + resp.length);
@@ -475,11 +475,11 @@
         gradeChange($("#grade").val());
 
     });
-   $(document).ready(function () {
-     selectedBatch();
-     mediumChange($("#medium").val());
-
-   });
+   // $(document).ready(function () {
+   //   selectedBatch();
+   //   mediumChange($("#medium").val());
+   //
+   // });
 
     function selectedBatch() {
         $("#selectedCount").html($("#selectedBatchInTable tr").length - 1);
