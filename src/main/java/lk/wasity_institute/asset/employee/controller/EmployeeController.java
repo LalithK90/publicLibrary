@@ -144,7 +144,17 @@ public class EmployeeController {
 
     //after save employee files and save employee
 
-      Employee employeeSaved = employeeService.persist(employee);
+//     try {
+//       employeeService.persist(employee);
+//     }catch (Exception e){
+//       ObjectError error = new ObjectError("employee",
+//               "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+//       result.addError(error);
+//       model.addAttribute("employee", employee);
+//       model.addAttribute("addStatus", true);
+//       return "employee/addEmployee";
+//     }
+
 
     //if employee state is not working he or she cannot access to the system
     if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
@@ -156,7 +166,7 @@ public class EmployeeController {
       }
     }
 
-    try {
+    try { Employee employeeSaved = employeeService.persist(employee);
       //save employee images file
       if ( employee.getFile().getOriginalFilename() != null && !Objects.requireNonNull(employee.getFile().getContentType()).equals("application/octet-stream")) {
         EmployeeFiles employeeFiles = employeeFilesService.findByEmployee(employeeSaved);
@@ -186,8 +196,18 @@ public class EmployeeController {
       } else {
         model.addAttribute("addStatus", false);
       }
-      model.addAttribute("employee", employee);
-      return commonThings(model);
+
+
+
+      ObjectError errors = new ObjectError("employee",
+              "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+      result.addError(errors);
+      model.addAttribute("employee",employee);
+
+      return "employee/addEmployee";
+
+
+
     }
   }
 

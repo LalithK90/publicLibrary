@@ -92,7 +92,7 @@
         <!--Nic-->
         <div class="form-row text-right" >
           <div class="col-md-4" >
-            <label class="control-label" data-th-for="${NationalID}" >NIC No :</label >
+            <label class="control-label" data-th-for="${nic}" >NIC No :</label >
           </div >
           <div class="col-md-8" >
             <input data-th-field="*{nic}" class="form-control" tabindex="6" type="text"
@@ -219,7 +219,7 @@
           <div class="col-md-4" >
             <label class=" control-label" data-th-for="${mobile}" >Mobile number</label ></div>
           <div class="col-md-8" >
-            <input type="tel"  id="mobile" class="form-control" data-th-field="*{mobile}"   maxlength="10" min="10" >
+            <input type="tel"  id="mobile" class="form-control mobile" data-th-field="*{mobile}"   maxlength="10" min="10"  >
           </div >
         </div >
 
@@ -228,7 +228,7 @@
           <div class="col-md-4" >
             <label class=" control-label" data-th-for="${home}" >Fixed number</label ></div>
           <div class="col-md-8" >
-            <input type="tel"   maxlength="10" min="10"  id="land" class="form-control" data-th-field="*{home}" >
+            <input type="tel"   maxlength="10" min="10"  id="land" class="form-control land" data-th-field="*{home}" >
           </div >
         </div >
 

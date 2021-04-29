@@ -68,6 +68,7 @@ public class SchoolController {
       bindingResult.addError(error);
       model.addAttribute("school",school);
       model.addAttribute("addStatus", true);
+      model.addAttribute("addStatus", false);
       return "school/addSchool";
     }
 

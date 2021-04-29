@@ -89,6 +89,7 @@ public class SubjectController implements AbstractController<Subject, Integer > 
       bindingResult.addError(error);
       model.addAttribute("subject", subject);
       model.addAttribute("addStatus", true);
+      model.addAttribute("addStatus", false);
       return "subject/addSubject";
     }
     return "redirect:/subject";

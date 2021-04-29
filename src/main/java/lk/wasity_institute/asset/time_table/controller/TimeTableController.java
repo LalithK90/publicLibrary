@@ -180,11 +180,12 @@ public class TimeTableController {
       if ( !batchStudents.isEmpty() ) {
         batchStudents.forEach(x -> {
           Student student = studentService.findById(x.getId());
+          Batch batchDb = batchService.findById(timeTableDb.getBatch().getId());
           if ( student.getEmail() != null ) {
-            String message = "Dear " + student.getFirstName() + "\n Your " + timeTableDb.getBatch().getName() +
+            String message = "Dear " + student.getFirstName() + "\n Your " +  batchDb.getName() +
                 " " +
-                "class would be held from " + timeTableDb.getStartAt() + " to " + timeTableDb.getEndAt() + "\n " +
-                "Thanks" +
+                "class would be held at hall"+timeTableDb.getHall()+ "from\t\t" + timeTableDb.getStartAt() + " to\t\t " + timeTableDb.getEndAt() + "\n " +
+                "Thank You" +
                 " \n Wasity Institute";
             emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
           }

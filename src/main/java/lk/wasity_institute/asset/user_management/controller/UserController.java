@@ -22,6 +22,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,23 +52,32 @@ public class UserController {
     return "user/user";
   }
 
-//  @GetMapping("/employee")
-//  public String EmployeeUserPage(Model model, Employee employee ) {
-//    model.addAttribute("userEmployee", userService.findUserByEmployee(employee));
-//    return "user/userEmployee";
-//  }
+  @GetMapping("/employee")
+  public String EmployeeUserPage(Model model, Employee employee ) {
+    List<User> users= new ArrayList<>();
+    userService.findAll().forEach(x->{
+      x.getRoles().forEach(y->{
+        if(!y.getRoleName().equals("STUDENT")||!y.getRoleName().equals("TEACHER")){
+          users.add(x);
+        }
+      });
+    });
 
-//  @GetMapping("/teacher")
-//  public String TeacherUserPage(Model model) {
-//    model.addAttribute("userTeacher", roleService.findByRoleName("TEACHER").getUsers());
-//    return "user/userTeacher";
-//  }
-//
-//  @GetMapping("/student")
-//  public String StudentUserPage(Model model) {
-//    model.addAttribute("userStudent", roleService.findByRoleName("STUDENT").getUsers());
-//    return "user/userStudent";
-//  }
+    model.addAttribute("userEmployee", users.stream().distinct().collect(Collectors.toList()));
+    return "user/userEmployee";
+  }
+
+  @GetMapping("/teacher")
+  public String TeacherUserPage(Model model) {
+    model.addAttribute("userTeacher", roleService.findByRoleName("TEACHER").getUsers());
+    return "user/userTeacher";
+  }
+
+  @GetMapping("/student")
+  public String StudentUserPage(Model model) {
+    model.addAttribute("userStudent", roleService.findByRoleName("STUDENT").getUsers());
+    return "user/userStudent";
+  }
   @GetMapping(  "/view/{id}" )
   public String userView(@PathVariable Integer id, Model model) {
     model.addAttribute("userDetail", userService.findById(id));
@@ -112,11 +122,11 @@ public class UserController {
   @PostMapping( value = "/workingPlace" )
   public String addUserEmployeeDetails(@ModelAttribute( "employee" ) Employee employee, Model model) {
 
-    List< Employee > employees = employeeService.search(employee);
+    List< Employee > employees = employeeService.search(employee)
 //    System.out.println(employees);
-//        .stream()
-//        .filter(userService::findByEmployee)
-//        .collect(Collectors.toList());
+        .stream()
+        .filter(userService::findByEmployee)
+        .collect(Collectors.toList());
 
 
 

@@ -72,6 +72,7 @@ public class HallController implements AbstractController<Hall, Integer > {
       bindingResult.addError(error);
       model.addAttribute("hall", hall);
       model.addAttribute("addStatus", true);
+      model.addAttribute("addStatus", false);
       return "hall/addHall";
     }
 
