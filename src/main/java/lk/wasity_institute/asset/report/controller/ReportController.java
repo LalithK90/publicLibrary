@@ -14,6 +14,7 @@ import lk.wasity_institute.asset.payment.service.PaymentService;
 import lk.wasity_institute.asset.report.model.BatchAmount;
 import lk.wasity_institute.asset.report.model.BatchExamResultStudent;
 import lk.wasity_institute.asset.report.model.StudentAmount;
+import lk.wasity_institute.asset.report.model.StudentSchool;
 import lk.wasity_institute.asset.school.entity.School;
 import lk.wasity_institute.asset.school.service.SchoolService;
 import lk.wasity_institute.asset.student.entity.Student;
@@ -299,19 +300,45 @@ public class ReportController {
   }
 
 
-//  @GetMapping("/studentSchool")
-//  public String StudentSchool(Model model){
-//model.addAttribute("school",schoolService.findAll());
-//return "report/studentSchoolReport";
-//
-//@PostMapping("/studentSchool")
-//public String StudentSchool(@ModelAttribute,TwoDate twoDate,Model model){
-//  List<Student> students= studentService.findAll();
-//LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
-//LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
-//}
-//  }
+  @GetMapping("/studentSchool")
+  public String StudentSchool(Model model){
+model.addAttribute("school",schoolService.findAll());
+return "report/studentSchoolReport";
 
+
+  }
+  @PostMapping("/studentSchool")
+  public String StudentSchool(@ModelAttribute TwoDate twoDate,Model model){
+    List<School> schools = schoolService.findAll();
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
+//    System.out.println(twoDate.getStartDate());
+//    System.out.println(twoDate.getEndDate());
+    List<Student> students = studentService.findByCreatedAtIsBetween(startDateTime,endDateTime);
+//    System.out.println(students);
+    List<StudentSchool> studentSchools = new ArrayList<>();
+
+//    School school = schoolService.findById(twoDate.getId());
+schools.forEach(x-> {
+  long count = 0;
+  for (Student student : students) {
+    if (student.getSchool().equals(x)) {
+      count = count + 1;
+    }
+  }
+
+  StudentSchool studentSchool = new StudentSchool();
+  studentSchool.setSchool(x);
+  studentSchool.setCount(count);
+  studentSchools.add(studentSchool);
+});
+    model.addAttribute("schools",schoolService.findAll());
+
+    String message="This report is belong from" +twoDate.getStartDate()+ "to" +twoDate.getEndDate();
+    model.addAttribute("message",message);
+    model.addAttribute("studentSchools",studentSchools);
+    return "report/studentSchoolReport";
+  }
 
 }
 
