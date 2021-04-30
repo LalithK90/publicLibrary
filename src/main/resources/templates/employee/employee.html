@@ -53,10 +53,10 @@
                     <th   data-th-text="${employee.designation.designation}"></th>
                     <th   data-th-text="${employee.employeeStatus.employeeStatus}"></th>
                     <th>
-                        <a id="employeeView"   data-th-href="${'/employee/' + employee.id}" class="btn btn-success btn-sm" style="border-color:  rgba(71,123,11,0.99)">&nbsp;View</a>
-                        <a id="employeeEdit"   data-th-href="${'/employee/edit/' + employee.id}" class="btn btn-info btn-sm ml-2"  style="border-color: rgba(9, 118, 193, 0.99)"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+                        <a id="employeeView"   data-th-href="${'/employee/' + employee.id}" class="btn btn-success " style="border-color:  rgba(71,123,11,0.99)">&nbsp;View</a>
+                        <a id="employeeEdit"   data-th-href="${'/employee/edit/' + employee.id}" class="btn btn-info  ml-2"  style="border-color: rgba(9, 118, 193, 0.99)"><i class="fa fa-edit"></i>&nbsp;Edit</a>
                         <a id="employeeRemove"   data-th-href="${'/employee/remove/' + employee.id}"
-                             data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-danger btn-sm ml-2" style="border-color:  rgba(160,16,14,0.99)"><i class="fa fa-trash"></i>
+                             data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-danger  ml-2" style="border-color:  rgba(160,16,14,0.99)"><i class="fa fa-trash"></i>
                             Delete</a>
                     </th>
                 </tr>
