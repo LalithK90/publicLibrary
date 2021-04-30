@@ -48,10 +48,10 @@
 
         <!--firstName-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class=" control-label" data-th-for="${firstName}" >First name</label ></div>
           <div class="col-md-8" >
-            <input type="text" id="firstName" class="form-control" data-th-field="*{firstName}" >
+            <input type="text" id="firstName" class="form-control" data-th-field="*{firstName}" required >
           </div >
         </div >
 
@@ -59,10 +59,10 @@
 
         <!--lastName-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class="col-6 control-label" data-th-for="${lastName}" >Last name</label ></div>
           <div class="col-md-8" >
-            <input type="text" id="lastName" class="form-control" data-th-field="*{lastName}" >
+            <input type="text" id="lastName" class="form-control" data-th-field="*{lastName}" required >
           </div >
         </div >
 
@@ -70,7 +70,7 @@
 
         <!--Gender-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class=" control-label" data-th-for="${'gender'}" >Gender :</label ></div>
           <div class="col-md-8" >
             <div class="custom-control custom-checkbox custom-control-inline "
@@ -91,7 +91,7 @@
 
         <!--Nic-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class="control-label" data-th-for="${nic}" >NIC No :</label >
           </div >
           <div class="col-md-8" >
@@ -107,7 +107,7 @@
 
         <!--Date of birth-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class="control-label" for="dateOfBirth" >Birth date :</label >
           </div >
           <div class="col-md-8" >
@@ -123,10 +123,10 @@
 
         <!--address-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class="col-6 control-label" data-th-for="${address}" >Address</label ></div>
           <div class="col-md-8" >
-            <textarea id="address" class="form-control" data-th-field="*{address}" ></textarea >
+            <textarea id="address" class="form-control" data-th-field="*{address}" required></textarea >
           </div >
         </div >
 
@@ -145,7 +145,7 @@
       <div class="col-md-6">
         <!--grade-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class=" control-label" data-th-for="${'grade'}" >Grade</label ></div>
           <div class="col-md-8" >
             <select id="grade" class="form-control" data-th-field="*{grade}" required >
@@ -173,7 +173,7 @@
 <!--        ExamYear-->
 
         <div class="form-row text-right" >
-          <div class="col-md-4">
+          <div class="col-md-4 required">
           <label class=" control-label" data-th-for="${'ExamYear'}" >Exam Year :</label ></div>
           <div  class="col-md-8">
             <select id="ExamYear" class="form-control" data-th-field="*{ExamYear}" required >
@@ -191,7 +191,7 @@
 
         <!--email-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 " >
             <label class=" control-label" data-th-for="${email}" >Email</label ></div>
           <div class="col-md-8" >
             <input type="text" id="email" class="form-control" data-th-field="*{email}" >
@@ -200,7 +200,7 @@
 
     <!--school-->
     <div class="form-row text-right" >
-      <div class="col-md-4" >
+      <div class="col-md-4 required" >
         <label class=" control-label" for="school">School</label ></div>
       <div class="col-md-8" >
         <select id="school" class="form-control" data-th-field="*{school}" required>
@@ -216,10 +216,10 @@
 
         <!--mobileNumber-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class=" control-label" data-th-for="${mobile}" >Mobile number</label ></div>
           <div class="col-md-8" >
-            <input type="tel"  id="mobile" class="form-control mobile" data-th-field="*{mobile}"   maxlength="10" min="10"  >
+            <input type="tel"  id="mobile" class="form-control mobile" data-th-field="*{mobile}"   maxlength="10" min="10" required >
           </div >
         </div >
 
@@ -237,10 +237,10 @@
 
         <!--guardian-->
         <div class="form-row text-right" >
-          <div class="col-md-4" >
+          <div class="col-md-4 required" >
             <label class=" control-label" data-th-for="${guardian}" >Guardian's name</label ></div>
           <div class="col-md-8" >
-            <input type="text" id="guardian" class="form-control" data-th-field="*{guardian}" >
+            <input type="text" id="guardian" class="form-control" data-th-field="*{guardian}" required>
           </div >
         </div >
 
@@ -320,6 +320,7 @@
         <button type="submit" class="btn btn-primary mt-3 ml-2" ><span data-th-text="${addStatus==true?'Save':'Update'}" ></span ></button>
         <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
       </div>
+      <span class="required_notification text-danger bg-light"><b>* Denotes Required fields</b></span>
     </div>
 <!--    <div class="alert alert-warning alert-dismissible fade show " role="alert" data-th-if="${#fields.hasErrors('*')}">-->
 <!--      <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->

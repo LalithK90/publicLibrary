@@ -44,7 +44,7 @@
         </div>
 <!--title-->
             <div class="form-group row text-right" >
-                <div class="col-md-3" >
+                <div class="col-md-3  required" >
                     <label class="control-label" for="title" >Title :</label >
                 </div >
                 <div class="col-md-8" >
@@ -60,20 +60,20 @@
 
                 <!--firstName-->
                 <div class="form-group row text-right">
-                    <div class="col-md-3">
+                    <div class="col-md-3  required">
                     <label class="control-label" data-th-for="${firstName}">First name :</label></div>
                     <div class="col-md-8">
-                        <input type="text" id="firstName" class="form-control" data-th-field="*{firstName}">
+                        <input type="text" id="firstName" class="form-control" data-th-field="*{firstName}" required>
                     </div>
                 </div>
 
 
                 <!--lastName-->
                 <div class="form-group row text-right">
-                    <div class="col-md-3">
+                    <div class="col-md-3  required">
                         <label class="control-label" data-th-for="${lastName}">Last name :</label></div>
                     <div class="col-md-8">
-                        <input type="text" id="lastName" class="form-control" data-th-field="*{lastName}">
+                        <input type="text" id="lastName" class="form-control" data-th-field="*{lastName}" required>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
 
                 <!--Gender-->
                 <div class="form-group row text-right" >
-                    <div class="col-md-3">
+                    <div class="col-md-3  required">
                         <label class="control-label"data-th-for="${gender}" >Gender :</label ></div>
 
                     <div class="col-md-8 text-left" >
@@ -103,19 +103,19 @@
 
                 <!--mobileNumber-->
                 <div class="form-group row text-right">
-                    <div class="col-md-3">
+                    <div class="col-md-3  required">
                         <label class=" control-label" data-th-for="${mobile}">Mobile number :</label></div>
                     <div class="col-md-8">
-                        <input type="text" id="mobile" class="form-control" data-th-field="*{mobile}">
+                        <input type="text" id="mobile" class="form-control" data-th-field="*{mobile}" required>
                     </div>
                 </div>
 
                 <!--nic-->
                 <div class="form-group row text-right">
-                    <div class="col-md-3">
+                    <div class="col-md-3  required">
                         <label class=" control-label" data-th-for="${nic}">NIC :</label></div>
                     <div class="col-md-8">
-                        <input type="text" id="nic" class="form-control" data-th-field="*{nic}">
+                        <input type="text" id="nic" class="form-control" data-th-field="*{nic}" required>
                     </div>
                 </div>
         </div>
@@ -131,7 +131,7 @@
 
                 <!--address-->
                 <div class="form-group row text-right ">
-                    <div class="col-md-3">
+                    <div class="col-md-3  required">
                         <label class="control-label" data-th-for="${address}">Address :</label></div>
                     <div class="col-md-8">
                         <textarea id="address" class="form-control" data-th-field="*{address}"></textarea>
@@ -151,7 +151,7 @@
 
                 <!--subject-->
                 <div class="form-group row text-right">
-                    <div class="col-md-3">
+                    <div class="col-md-3  required">
                         <label class="control-label" data-th-for="${subject}">Subject :</label></div>
                     <div class="col-md-8">
                         <select id="subject" data-th-field="*{subject}" class="form-control" tabindex="7" required >
@@ -165,10 +165,10 @@
 
                 <!--tutionFee-->
                 <div class="form-group row text-right">
-                    <div class="col-md-3">
+                    <div class="col-md-3  required">
                         <label class=" control-label" data-th-for="${fee}">Tution Fee :</label></div>
                     <div class="col-md-8">
-                        <input type="number" id="fee" class="form-control" data-th-field="*{fee}">
+                        <input type="number" id="fee" class="form-control" data-th-field="*{fee}" required>
                     </div>
                 </div>
 
@@ -183,6 +183,7 @@
                 <button type="submit" class="btn btn-primary mt-3 ml-2">&nbsp;<span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span ></button>
                 <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
             </div>
+            <span class="required_notification text-danger bg-light"><b>* Denotes Required fields</b></span>
         </div>
 
 

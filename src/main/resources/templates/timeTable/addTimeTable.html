@@ -33,10 +33,10 @@
           <th data-th-if="${!addStatus}" >Code</th >
           <th >Batch Name</th >
           <th >Student Count</th >
-          <th >Lesson</th >
-          <th >Start At</th >
-          <th >End At</th >
-          <th >Hall</th >
+          <th class="required">Lesson</th >
+          <th class="required" >Start At</th >
+          <th class="required">End At</th >
+          <th class="required">Hall</th >
           <th data-th-if="${!addStatus}" >Activity</th >
           <th data-th-if="${!addStatus}" >Comment</th >
         </tr >
@@ -120,6 +120,7 @@
             id="submit" ></span >
       </button >
     </div >
+    <span class="required_notification text-danger bg-light"><b>* Denotes Required fields</b></span>
   </form >
 </div >
 

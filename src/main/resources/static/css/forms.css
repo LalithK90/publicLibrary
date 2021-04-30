@@ -68,3 +68,9 @@ button[type="reset"]{
 #studentcount:hover{
   background-color: #9e8035;
 }
+.required:after{
+  content:"*";
+  color: red;
+  margin-left: 15px;
+  font-size: 20px;
+}

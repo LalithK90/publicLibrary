@@ -25,23 +25,23 @@
 <div class="container-fluid">
     <form action="/hall/save" data-th-object="${hall}" method="post">
         <div class=" row form-group">
-            <div class="col-md-2"></div><div class="col-md-2">
+            <div class="col-md-2"></div><div class="col-md-2 required">
             <label class=" control-label mr-4" data-th-for="${number}">Hall Number :</label></div>
           <div class="col-md-4">
-                <input type="text" data-th-field="*{number}" id="hallId" placeholder="Hall Number" class="form-control" autofocus>
+                <input type="text" data-th-field="*{number}" id="hallId" placeholder="Hall Number" class="form-control" required autofocus>
                 <input type="text" data-th-if="${addStatus==false}" data-th-field="*{id}" id="id" placeholder="Hall Number" class="form-control" autofocus hidden>
                 <input type="text" data-th-if="${addStatus==false}" data-th-field="*{liveDead}" i placeholder="Hall Number" class="form-control" autofocus hidden>
           </div>
         </div>
         <div class=" row form-group">
-            <div class="col-md-2"></div><div class="col-md-2">
+            <div class="col-md-2"></div><div class="col-md-2 required">
             <label class=" control-label" data-th-for="${seatCount}">Seating Count:</label></div>
             <div class="col-md-4">
-                <input type="text" data-th-field="*{seatCount}" id="seatCount" placeholder="Seating Count" class="form-control" autofocus>
+                <input type="text" data-th-field="*{seatCount}" id="seatCount" placeholder="Seating Count" class="form-control" required autofocus>
             </div>
         </div>
         <div class=" row form-group">
-            <div class="col-md-2"></div><div class="col-md-2">
+            <div class="col-md-2"></div><div class="col-md-2 required">
             <label class="control-label" data-th-for="${hallCondition}">Hall Condition:</label></div>
             <div class="col-md-4">
                 <div class="custom-control custom-checkbox custom-control-inline "
@@ -59,10 +59,10 @@
             </div>
         </div>
         <div class=" row form-group">
-            <div class="col-md-2"></div><div class="col-md-2">
+            <div class="col-md-2"></div><div class="col-md-2 required">
             <label class= "control-label" data-th-for="${hallLocation}">Hall Location:</label></div>
             <div class="col-md-4 ">
-                <select id="hallLocation" class="form-control" data-th-field="*{hallLocation}">
+                <select id="hallLocation" class="form-control" data-th-field="*{hallLocation}" required>
                     <option value="1st Floor">First floor</option>
                     <option value="2nd Floor">Second floor</option>
                     <option value="3rd Floor">Third floor</option>
@@ -77,6 +77,7 @@
                 <button type="submit" class="btn btn-primary mt-3 ml-2"><span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span ></button>
                 <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
             </div>
+            <span class="required_notification text-danger bg-light"><b>* Denotes Required fields</b></span>
         </div>
 
         <div class="alert alert-warning alert-dismissible fade show " role="alert" data-th-if="${#fields.hasErrors('*')}">

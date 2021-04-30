@@ -182,11 +182,11 @@ public class TimeTableController {
         batchStudents.forEach(x -> {
           Student student = studentService.findById(x.getId());
           Batch batchDb = batchService.findById(timeTableDb.getBatch().getId());
-          Hall HallDb = hallService.findById(timeTableDb.getHall().getId());
+
           if ( student.getEmail() != null ) {
             String message = "Dear " + student.getFirstName() + "\n Your " +  batchDb.getName() +
                 " " +
-                "class would be held at hall"+HallDb.getId()+ "from\t\t" + timeTableDb.getStartAt() + " to\t\t " + timeTableDb.getEndAt() + "\n " +
+                "class would be held  from\t\t" + timeTableDb.getStartAt() + " to\t\t " + timeTableDb.getEndAt() + "\n " +
                 "Thank You" +
                 " \n Wasity Institute";
             emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
