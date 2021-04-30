@@ -1,2 +1,167 @@
+#cv{
+    background-image: linear-gradient(to right, #1b2450, #e56605);
+
+}
 
 
+#h1{
+    color: #111111;
+    font-family:Castellar;
+
+}
+#p1{
+    color: #111111;
+    font-family: "Book Antiqua";
+    font-size: large;
+}
+#h2{
+    color: #111111;
+    font-family:Castellar;
+}
+#caro{
+    width:100%;
+    height:70%;
+
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+
+
+}
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+/*contact info*/
+.card.contact{
+    border-color:#1acc8d ;
+    border-width: medium;
+    /*min-height: 118px;*/
+    /*margin-top: 40px;*/
+    /*margin-bottom: 20px;*/
+
+}
+.icon-1{
+    font-size: 40px;
+    background: #1acc8d;
+    position: absolute;
+    top: -20px;
+    border-radius: 80px;
+    /*width: 40px;*/
+    /*height: 40px;*/
+    color: white;
+    left: 45%;
+    /*transform: translateX(-50%);*/
+    margin-inside: 4px 4px 4px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    ;
+}
+.icon-2 {
+
+    font-size: 40px;
+    background: #1acc8d;
+    position: absolute;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 80px;
+    position: absolute;
+    top: -20px;
+    left: 45%;
+
+}
+.icon-3{
+    font-size: 45px;
+    background: #1acc8d;
+    position: absolute;
+    color: white;
+    top: -20px;
+    left: 45%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 80px;
+    /*width: 150px;*/
+    height: 40px;
+
+}
+#fb{
+    font-size: 40px;
+    background: white;
+    border-radius: 80px;
+    color:#3b5998;
+
+}
+#twi{
+    font-size: 40px;
+    color: #00acee;
+
+}
+.icon-4 {
+    font-size: 45px;
+
+    position: absolute;
+    color: white;
+    top: -20px;
+    left: 45%;
+    border-radius: 80px;
+    background:#1acc8d;
+
+}
+#par{
+    font-size: 60px;
+    color: orangered;
+    text-align: center;
+    animation-name: fadeOut;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    }
+
+
+@keyframes fadeOut {
+    from {color: red;}
+    to {color: yellow;}}
+
+.para1{
+    font-size:40px ;
+    animation-name:pulse;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+
+}
+@keyframes pulse {
+    from {color: darkblue;}
+    to {color: orangered;}
+}

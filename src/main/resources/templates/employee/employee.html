@@ -53,11 +53,15 @@
                     <th   data-th-text="${employee.designation.designation}"></th>
                     <th   data-th-text="${employee.employeeStatus.employeeStatus}"></th>
                     <th>
-                        <a id="employeeView"   data-th-href="${'/employee/' + employee.id}" class="btn btn-success " style="border-color:  rgba(71,123,11,0.99)">&nbsp;View</a>
-                        <a id="employeeEdit"   data-th-href="${'/employee/edit/' + employee.id}" class="btn btn-info  ml-2"  style="border-color: rgba(9, 118, 193, 0.99)"><i class="fa fa-edit"></i>&nbsp;Edit</a>
-                        <a id="employeeRemove"   data-th-href="${'/employee/remove/' + employee.id}"
-                             data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-danger  ml-2" style="border-color:  rgba(160,16,14,0.99)"><i class="fa fa-trash"></i>
-                            Delete</a>
+                        <a  data-th-href="${'/employee/' + employee.id}">
+                        <button id="employeeView"   class="btn btn-success " style="border-color:  rgba(71,123,11,0.99)">&nbsp;
+                            <i class="fa fa-folder-open"  ></i >View</button></a>
+                        <a  data-th-href="${'/employee/edit/' + employee.id}">
+                        <button id="employeeEdit"   class="btn btn-info  ml-2"  style="border-color: rgba(9, 118, 193, 0.99)"><i class="fa fa-edit"></i>&nbsp;Edit</button></a>
+                        <a data-th-href="${'/employee/remove/' + employee.id}">
+                        <button id="employeeRemove"
+                             data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-danger  ml-2" style="border-color:  rgba(160,16,14,0.99)" onclick="return ConfirmDelete()"><i class="fa fa-trash"></i>
+                            Delete</button></a>
                     </th>
                 </tr>
                 </tbody>

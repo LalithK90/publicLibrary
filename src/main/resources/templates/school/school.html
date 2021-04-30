@@ -40,10 +40,11 @@
 
                 <td>
                      <a data-th-href="${'/school/edit/'+ school.id}">
-                        <button class="btn btn-info" style="border-color: rgba(9, 118, 193, 0.99)">Edit</button>
+                        <button class="btn btn-info" style="border-color: rgba(9, 118, 193, 0.99)">
+                            <i class="fa fa-edit" ></i >Edit</button>
                     </a>
                     <a data-th-href="${'/school/delete/'+ school.id}">
-                        <button class="btn btn-danger ml-2"  style="border-color:  rgba(160,16,14,0.99)">Delete</button>
+                        <button class="btn btn-danger ml-2"  style="border-color:  rgba(160,16,14,0.99)" onclick="return ConfirmDelete()"><i  class="fa fa-trash" ></i >Delete</button>
                     </a>
                 </td>
             </tr>
