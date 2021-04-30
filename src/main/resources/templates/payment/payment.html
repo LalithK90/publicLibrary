@@ -76,10 +76,10 @@
           <td data-th-text="${#temporals.format(payment.createdAt, 'dd-MM-yyyy HH:mm')}" ></td >
           <td data-th-text="${payment.createdBy}" ></td >
           <td >
-            <a data-th-href="${'/payment/view/'+ payment.id}" >
+            <a data-th-href="${'/payment/view/'+ payment.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_RECEPTIONIST'',''ROLE_MANAGER'',''ROLE_STUDENT'')')}">
               <button class="btn btn-info" style="border-color:  rgba(71,123,11,0.99)" >  <i class="fa fa-folder-open"  ></i >View</button >
             </a >
-            <a data-th-href="${'/payment/delete/'+ payment.id}" >
+            <a data-th-href="${'/payment/delete/'+ payment.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}">
               <button class="btn btn-danger" style="border-color:  rgba(160,16,14,0.99)" onclick="return ConfirmDelete()">
                 <i  class="fa fa-trash" ></i >Delete</button >
             </a >

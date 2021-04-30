@@ -49,13 +49,13 @@
           <td data-th-text="${student.mobile}" ></td >
           <td data-th-text="${student.home}" ></td >
           <td data-th-if="${!studentRemoveBatch}" >
-            <a data-th-href="${'/student/view/'+ student.id}" >
+            <a data-th-href="${'/student/view/'+ student.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_RECEPTIONIST'',''ROLE_MANAGER'',''ROLE_TEACHER'')')}" >
               <button class="btn btn-info"  style="border-color: rgba(9, 118, 193, 0.99)"> <i class="fa fa-folder-open"  ></i >View</button >
             </a >
-            <a data-th-href="${'/student/edit/'+ student.id}" >
+            <a data-th-href="${'/student/edit/'+ student.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_RECEPTIONIST'',''ROLE_MANAGER'')')}">
               <button class="btn btn-success"style="border-color:  rgba(71,123,11,0.99)"> <i class="fa fa-edit" ></i >Edit</button >
             </a >
-            <a data-th-href="${'/student/delete/'+ student.id}" >
+            <a data-th-href="${'/student/delete/'+ student.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}">
               <button class="btn btn-danger" style="border-color:  rgba(160,16,14,0.99)" onclick="return ConfirmDelete()"><i  class="fa fa-trash" ></i >Delete</button >
             </a >
           </td >

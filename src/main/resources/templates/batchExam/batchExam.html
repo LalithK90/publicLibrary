@@ -43,18 +43,18 @@
                 <td data-th-text="${#temporals.format(batchExam.startAt, 'dd-MM-yyyy HH:mm')}" ></td >
                 <td data-th-text="${#temporals.format(batchExam.endAt, 'dd-MM-yyyy HH:mm')}" ></td >
                 <td>
-                    <a data-th-href="${'/batchExam/edit/'+ batchExam.id}">
+                    <a data-th-href="${'/batchExam/edit/'+ batchExam.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
                         <button type="button" class="btn btn-info">
                             <i class="fa fa-folder-open"  ></i >Edit</button>
                     </a>
-                    <a data-th-href="${'/batchExam/delete/'+ batchExam.id}">
+                    <a data-th-href="${'/batchExam/delete/'+ batchExam.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
                         <button type="button" class="btn btn-danger ml-2" onclick="return ConfirmDelete()">
                             <i  class="fa fa-trash" ></i >Delete</button>
                     </a>
-                    <a data-th-href="${'/batchStudentExamResult/addAttendance/'+ batchExam.id}">
+                    <a data-th-href="${'/batchStudentExamResult/addAttendance/'+ batchExam.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
                         <button type="button" class="btn btn-primary ml-2" style="background-color: #9c0cb8">Mark Attendance</button>
                     </a>
-                    <a data-th-href="${'/batchStudentExamResult/addResult/'+ batchExam.id}" >
+                    <a data-th-href="${'/batchStudentExamResult/addResult/'+ batchExam.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
                         <button type="button" class="btn btn-success ml-2"  style="background-color: #9a9822">Add Result</button>
                     </a>
                 </td>
