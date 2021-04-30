@@ -46,11 +46,11 @@ public class UserController {
     this.studentService = studentService;
   }
 
-//  @GetMapping
-//  public String userPage(Model model,User user ) {
-//    model.addAttribute("users", userService.findAll());
-//    return "user/user";
-//  }
+ @GetMapping("/all")
+  public String userPage(Model model,User user ) {
+    model.addAttribute("users", userService.findAll());
+    return "user/user";
+  }
 
   @GetMapping
   public String EmployeeUserPage(Model model, Employee employee ) {

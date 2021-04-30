@@ -16,7 +16,7 @@
   <div class="col-9"></div>
   <div class="col-3">
     <a href="/subject/add">
-      <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp; New Subject </button>
+      <button class="btn shadow mt-3" id="listb" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" ><i class="fas fa-list"></i>&nbsp;&nbsp; New Subject </button>
     </a>
   </div>
 </div>
@@ -39,11 +39,11 @@
         <td data-th-text="${subject.name}" ></td >
         <td data-th-text="${subject.code}" ></td >
         <td >
-          <a data-th-href="${'/subject/edit/'+ subject.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}">
-            <button class="btn btn-info"  style="border-color: rgba(9, 118, 193, 0.99)"><i class="fa fa-edit" ></i >Edit</button >
+          <a data-th-href="${'/subject/edit/'+ subject.id}" >
+            <button class="btn btn-info"  style="border-color: rgba(9, 118, 193, 0.99)" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" ><i class="fa fa-edit" ></i >Edit</button >
           </a >
-          <a data-th-if="${addStatus==false}" data-th-href="${'/subject/delete/'+ subject.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}">
-            <button class="btn btn-danger ml-2" style="border-color:  rgba(160,16,14,0.99)" onclick="return ConfirmDelete()"><i  class="fa fa-trash" ></i >Delete</button >
+          <a data-th-if="${addStatus==false}" data-th-href="${'/subject/delete/'+ subject.id}">
+            <button class="btn btn-danger ml-2" style="border-color:  rgba(160,16,14,0.99)" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" onclick="return ConfirmDelete()"><i  class="fa fa-trash" ></i >Delete</button >
           </a >
           <a data-th-if="${addStatus==true}" data-th-href="${'/subject/active/'+ subject.id}" >
             <button class="btn btn-info" >Active</button >

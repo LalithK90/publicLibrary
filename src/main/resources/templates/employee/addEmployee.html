@@ -292,9 +292,9 @@
           <!--Created by and created at-->
           <div id="updateStatus" data-th-if="${addStatus==false}" >
             <div class="form-row text-right" >
-              <div class="col-md-2" >
-                <label class="control-label" for="createdBy" >Created By :</label >
-              </div >
+              <div class="col-md-4" >
+                <label class="control-label" for="createdBy" >Created By :</label ></div>
+
               <div class="col-md-8" >
                 <input id="createdBy" data-th-field="*{createdBy}" class="form-control" type="text"
                        readonly />
@@ -319,7 +319,7 @@
               <button type="submit" class="btn btn-primary mt-3 ml-2"><span data-th-text="${addStatus==true?'Save':'Update'}" ></span ></button>
               <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
             </div>
-            <span class="required_notification text-danger bg-light"><b>* Denotes Required fields</b></span>
+            <span class="required_notification text-danger bg-light"><b>(*) Denotes Required fields</b></span>
           </div>
         </div >
 <!--        <div class="form-row" >-->
