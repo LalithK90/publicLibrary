@@ -13,6 +13,7 @@ import lk.wasity_institute.asset.teacher.service.TeacherService;
 import lk.wasity_institute.asset.user_management.entity.User;
 import lk.wasity_institute.asset.user_management.service.RoleService;
 import lk.wasity_institute.asset.user_management.service.UserService;
+import lk.wasity_institute.asset.user_management.service.UserSessionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,7 @@ public class UserController {
     this.roleService = roleService;
     this.teacherService = teacherService;
     this.studentService = studentService;
+
   }
 
  @GetMapping("/all")

@@ -11,14 +11,13 @@ import lk.wasity_institute.asset.common_asset.model.enums.AttendanceStatus;
 import lk.wasity_institute.asset.common_asset.model.enums.ResultGrade;
 import lk.wasity_institute.asset.payment.entity.Payment;
 import lk.wasity_institute.asset.payment.service.PaymentService;
-import lk.wasity_institute.asset.report.model.BatchAmount;
-import lk.wasity_institute.asset.report.model.BatchExamResultStudent;
-import lk.wasity_institute.asset.report.model.StudentAmount;
-import lk.wasity_institute.asset.report.model.StudentSchool;
+import lk.wasity_institute.asset.report.model.*;
 import lk.wasity_institute.asset.school.entity.School;
 import lk.wasity_institute.asset.school.service.SchoolService;
 import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.asset.student.service.StudentService;
+import lk.wasity_institute.asset.teacher.entity.Teacher;
+import lk.wasity_institute.asset.teacher.service.TeacherService;
 import lk.wasity_institute.util.service.DateTimeAgeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,17 +42,19 @@ public class ReportController {
   private final BatchService batchService;
   private final StudentService studentService;
   private final SchoolService schoolService;
+  private final TeacherService teacherService;
 
 
   public ReportController(PaymentService paymentService, BatchExamService batchExamService,
                           DateTimeAgeService dateTimeAgeService, BatchService batchService,
-                          StudentService studentService,SchoolService schoolService) {
+                          StudentService studentService,SchoolService schoolService,TeacherService teacherService) {
     this.paymentService = paymentService;
     this.batchExamService = batchExamService;
     this.dateTimeAgeService = dateTimeAgeService;
     this.batchService = batchService;
     this.studentService = studentService;
     this.schoolService = schoolService;
+    this.teacherService = teacherService;
   }
 
   private String commonIncomeReport(Model model, LocalDate startDate, LocalDate endDate) {
@@ -339,6 +340,39 @@ schools.forEach(x-> {
     model.addAttribute("studentSchools",studentSchools);
     return "report/studentSchoolReport";
   }
+
+@GetMapping("/teacherBatch")
+  public String TeacherBatch(Model model){
+    model.addAttribute("teacher",teacherService.findAll());
+    return"report/teacherBatchReport";
+
+}
+@PostMapping("/teacherBatch")
+  public String TeacherBatch(@ModelAttribute TwoDate twoDate,Model model){
+  List<Teacher> teachers=teacherService.findAll();
+    LocalDateTime startDateTime= dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
+    List<Batch> batches = batchService.findByCreatedAtIsBetween(startDateTime,endDateTime);
+    List<TeacherBatch> teacherBatches = new ArrayList<>();
+
+    teachers.forEach(x->{
+      long count = 0;
+     for(Batch batch :batches){
+       if(batch.getTeacher().equals(x)){
+         count = count +1 ;
+       }
+     }
+      TeacherBatch teacherBatch =new TeacherBatch();
+      teacherBatch.setTeacher(x);
+      teacherBatch.setCount(count);
+      teacherBatches.add(teacherBatch);
+            });
+  model.addAttribute("teachers",teacherService.findAll());
+  String message="This report is belong from" +twoDate.getStartDate()+ "to" +twoDate.getEndDate();
+  model.addAttribute("message",message);
+  model.addAttribute("teacherBatches",teacherBatches);
+  return"report/teacherBatchReport";
+}
 
 }
 
