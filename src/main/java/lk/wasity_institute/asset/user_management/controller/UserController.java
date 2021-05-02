@@ -2,6 +2,7 @@ package lk.wasity_institute.asset.user_management.controller;
 
 
 
+import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.employee.entity.Employee;
 import lk.wasity_institute.asset.employee.entity.enums.EmployeeStatus;
 import lk.wasity_institute.asset.employee.service.EmployeeService;
@@ -12,7 +13,9 @@ import lk.wasity_institute.asset.teacher.service.TeacherService;
 import lk.wasity_institute.asset.user_management.entity.User;
 import lk.wasity_institute.asset.user_management.service.RoleService;
 import lk.wasity_institute.asset.user_management.service.UserService;
+import lk.wasity_institute.asset.user_management.service.UserSessionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +23,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,16 +45,43 @@ public class UserController {
     this.roleService = roleService;
     this.teacherService = teacherService;
     this.studentService = studentService;
+
   }
 
-  @GetMapping
-  public String userPage(Model model) {
+ @GetMapping("/all")
+  public String userPage(Model model,User user ) {
     model.addAttribute("users", userService.findAll());
     return "user/user";
   }
 
-  @GetMapping( value = "/{id}" )
-  public String userView(@PathVariable( "id" ) Integer id, Model model) {
+  @GetMapping
+  public String EmployeeUserPage(Model model, Employee employee ) {
+    List<User> users= new ArrayList<>();
+    userService.findAll().forEach(x->{
+      x.getRoles().forEach(y->{
+        if(!y.getRoleName().equals("STUDENT")||!y.getRoleName().equals("TEACHER")){
+          users.add(x);
+        }
+      });
+    });
+
+    model.addAttribute("userEmployee", users.stream().distinct().collect(Collectors.toList()));
+    return "user/userEmployee";
+  }
+
+  @GetMapping("/teacher")
+  public String TeacherUserPage(Model model) {
+    model.addAttribute("userTeacher", roleService.findByRoleName("TEACHER").getUsers());
+    return "user/userTeacher";
+  }
+
+  @GetMapping("/student")
+  public String StudentUserPage(Model model) {
+    model.addAttribute("userStudent", roleService.findByRoleName("STUDENT").getUsers());
+    return "user/userStudent";
+  }
+  @GetMapping(  "/view/{id}" )
+  public String userView(@PathVariable Integer id, Model model) {
     model.addAttribute("userDetail", userService.findById(id));
     return "user/user-detail";
   }
@@ -94,9 +125,12 @@ public class UserController {
   public String addUserEmployeeDetails(@ModelAttribute( "employee" ) Employee employee, Model model) {
 
     List< Employee > employees = employeeService.search(employee)
+//    System.out.println(employees);
         .stream()
         .filter(userService::findByEmployee)
         .collect(Collectors.toList());
+
+
 
     if ( employees.size() == 1 ) {
       User user = new User();

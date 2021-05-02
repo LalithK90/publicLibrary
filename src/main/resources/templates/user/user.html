@@ -7,34 +7,21 @@
 <body style="margin-top: 90px;">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
-<div class="container-fluid form-Border" >
-  <div class="row text-center formManagement border-info" >
-    <div class="col-3" ></div >
-    <div class="col-6" >
-      <div class="form-row" >
-        <a class="btn btn-success mr-2" data-th-href="${'/user/add'}" >
-          <i class="fa fa-user-plus"  ></i > &nbsp; Add User Employee</a >
-        <a class="btn btn-success mr-2" data-th-href="${'/user/teacherAdd'}" >
-          <i class="fa fa-user-plus"  ></i > &nbsp; Add User Teacher</a >
-        <a class="btn btn-success mr-2" data-th-href="${'/user/studentAdd'}" >
-          <i class="fa fa-user-plus"  ></i > &nbsp; Add User Student</a >
+
+
+      <div class="card bg-gradient-light text-center">
+        <h1> User List</h1>
+      </div>
+
+      <div class="form-row mt-4" >
+        <a  data-th-href="${'/user/add'}" ><button class="btn btn-success mr-2">
+          <i class="fa fa-user-plus"  ></i > &nbsp; Add User Employee</button></a >
+        <a  data-th-href="${'/user/teacherAdd'}" ><button class="btn btn-success mr-2">
+          <i class="fa fa-user-plus"  ></i > &nbsp; Add User Teacher</button></a >
+        <a  data-th-href="${'/user/studentAdd'}" ><button class="btn btn-success mr-2">
+          <i class="fa fa-user-plus"  ></i > &nbsp; Add User Student</button></a >
       </div >
-    </div >
-    <div class="col-3" ></div >
-  </div >
-  <div class="row text-center formManagement border-info" >
-    <div class="col-4" ></div >
-    <div class="col-4" >
-      <h4 class="text-info text-center" >
-        <strong >
-          User Management
-        </strong >
-      </h4 >
-    </div >
-  </div >
-  <div class="col-4" ></div >
-</div >
-<div class="container-fluid  formBorder" >
+<div class="container-fluid  " >
   <div class="col-sm-12 flex-column " >
     <div class="row" id="userListTable" data-th-if="${not #lists.isEmpty(users)}" >
       <div class="col-sm-12" >
@@ -43,8 +30,9 @@
           <tr >
             <th >Index</th >
             <th >User Name</th >
+            <th >First Name</th >
             <th >User Status</th >
-            <th >User Type</th >
+<!--            <th >User Type</th >-->
             <th >Created Date</th >
             <th >Modify</th >
           </tr >
@@ -61,13 +49,13 @@
             <th data-th-text="${user.enabled==true?'Active':'Blocked'}" ></th >
             <th data-th-text="${{user.createdAt}}" ></th >
             <th >
-              <a class="btn btn-success btn-sm" id="userView" >
-                <i class="fa fa-folder-open" data-th-href="${'/user/' + user.id}" ></i >&nbsp;View</a >
-              <a class="btn btn-primary btn-sm" id="userEdit" data-th-href="${'/user/edit/' + user.id}" >
-                <i class="fa fa-edit" ></i >&nbsp;Edit</a >
-              <a class="btn btn-danger btn-sm" id="userRemove" data-th-href="${'/user/remove/' + user.id}"
-                 data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                <i aria-hidden="true" class="fa fa-trash" ></i >Delete</a >
+              <a  id="userView" ><button class="btn btn-success">
+                <i class="fa fa-folder-open" data-th-href="${'/user/view/' + user.id}" ></i >&nbsp;View </button></a >
+              <a  id="userEdit" data-th-href="${'/user/edit/' + user.id}" ><button class="btn btn-primary ">
+                <i class="fa fa-edit" ></i >&nbsp;Edit</button></a >
+              <a  id="userRemove" data-th-href="${'/user/remove/' + user.id}"><button class="btn btn-danger ">
+<!--                 data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">-->
+              <i aria-hidden="true" class="fa fa-trash" ></i >Delete</button></a >
             </th >
           </tr >
           </tbody >

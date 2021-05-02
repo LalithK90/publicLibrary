@@ -8,9 +8,11 @@ import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
 import lk.wasity_institute.asset.batch.entity.enums.Medium;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -60,9 +62,9 @@ public class BatchService implements AbstractService<Batch, Integer > {
   public List< Batch > findByGrade(Grade grade) {
     return batchDao.findByGrade(grade);
   }
-  public List< Batch > findByMedium(Medium medium) {
-    return batchDao.findByMedium(medium);
-  }
+//  public List< Batch > findByMedium(Medium medium) {
+//    return batchDao.findByMedium(medium);
+//  }
 
   public List< Batch > findByClassDay(ClassDay classDay) {
     return batchDao.findByClassDay(classDay);
@@ -71,5 +73,9 @@ public class BatchService implements AbstractService<Batch, Integer > {
   public Batch findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetween(String year, ClassDay classDay, LocalTime startAt, LocalTime endAt, LocalTime startAt1,
                                                                          LocalTime endAt1) {
   return batchDao.findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetween(year,classDay,startAt,endAt,startAt1,endAt1);
+  }
+
+  public List<Batch> findByCreatedAtIsBetween(LocalDateTime startAt, LocalDateTime endAt) {
+    return batchDao.findByCreatedAtIsBetween(startAt, endAt);
   }
 }

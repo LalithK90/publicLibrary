@@ -34,7 +34,7 @@
             <th>Active/Not</th>
             <th>Hall Number</th>
             <th>Batch Name</th>
-            <th>Modify</th>
+            <th >Modify</th>
         </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@
             <td data-th-text="${timeTable.hall.number}"></td>
             <td data-th-text="${timeTable.batch.name}"></td>
             <td>
-                <a data-th-href="${'/timeTable/view/'+ timeTable.id}"><button class="btn btn-info">View</button></a>
+                <a data-th-href="${'/timeTable/view/'+ timeTable.id}" ><button class="btn btn-info"  style="border-color:  rgba(71,123,11,0.99)"  data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_TEACHER')" ><i class="fa fa-folder-open"  ></i >View</button></a>
             </td>
         </tr>
         </tbody>

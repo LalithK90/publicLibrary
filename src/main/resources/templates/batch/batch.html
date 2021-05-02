@@ -30,11 +30,11 @@
                 <th>Class Reference</th>
                 <th>Year</th>
                 <th>Grade</th>
-                <th>Medium</th>
+<!--                <th>Medium</th>-->
                 <th>Class Name</th>
                 <th>Teacher Name</th>
                 <th>Subject Name</th>
-                <th>NO:of Students</th>
+                <th>Batch Students</th>
                 <th style="width: 30%">Modify</th>
             </tr>
             </thead>
@@ -44,24 +44,27 @@
                 <td data-th-text="${batch.code}"></td>
                 <td data-th-text="${batch.year}"></td>
                 <td data-th-text="${batch.grade.grade}"></td>
-                <td data-th-text="${batch.medium.medium}"></td>
+<!--                <td data-th-text="${batch.medium.medium}"></td>-->
                 <td data-th-text="${batch.name}"></td>
                 <td data-th-text="${batch.teacher.firstName}"></td>
                 <td data-th-text="${batch.teacher.subject.name}"></td>
                 <td><a data-th-href="${'/batchStudent/batch/student/' + batch.id}">
-                    <button type="button" class="btn btn-success" id="studentcount">No.Students</button>
+                    <button type="button" class="btn btn-success" id="studentcount">Batch Students</button>
                 </a></td>
                 <td >
                     <a data-th-href="${'/batch/view/'+ batch.id}">
-                        <button type="button" class="btn btn-success" style="border-color:  rgba(71,123,11,0.99)">View</button>
+                        <button type="button" class="btn btn-success" style="border-color:  rgba(71,123,11,0.99)">
+                            <i class="fa fa-folder-open"  ></i >View</button>
                     </a>
-                    <a data-th-href="${'/batch/edit/'+ batch.id}">
-                        <button type="button" class="btn btn-info ml-2" style="border-color: rgba(9, 118, 193, 0.99)">Edit</button>
+                    <a data-th-href="${'/batch/edit/'+ batch.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}">
+                        <button type="button" class="btn btn-info ml-2" style="border-color: rgba(9, 118, 193, 0.99)">
+                            <i class="fa fa-edit" ></i >Edit</button>
                     </a>
-                    <a data-th-href="${'/batch/delete/'+ batch.id}">
-                        <button type="button" class="btn btn-danger  ml-2" style="border-color:  rgba(160,16,14,0.99)">Delete</button>
+                    <a data-th-href="${'/batch/delete/'+ batch.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}">
+                        <button type="button" class="btn btn-danger  ml-2" style="border-color:  rgba(160,16,14,0.99)" onclick="return ConfirmDelete()">
+                            <i  class="fa fa-trash" ></i >Delete</button>
                     </a>
-                    <a data-th-href="${'/batchExam/add/'+ batch.id}">
+                    <a data-th-href="${'/batchExam/add/'+ batch.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
                         <button type="button" class="btn btn-secondary  ml-2" style="border-color:  rgba(99,98,94,0.99)">Add Exam</button>
                     </a>
                 </td>

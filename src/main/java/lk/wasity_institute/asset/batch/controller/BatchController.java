@@ -8,6 +8,7 @@ import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
 //import lk.wasity_institute.asset.batch.entity.enums.Medium;
+import lk.wasity_institute.asset.batch.entity.enums.Medium;
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;

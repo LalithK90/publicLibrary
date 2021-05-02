@@ -3,7 +3,9 @@ package lk.wasity_institute.asset.student.service;
 
 
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
+import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.payment.entity.Payment;
 import lk.wasity_institute.asset.student.dao.StudentDao;
 import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.util.interfaces.AbstractService;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -68,4 +71,10 @@ public class StudentService implements AbstractService<Student, Integer > {
   public List< Student > findByGrade(Grade grade) {
       return studentDao.findByGrade(grade);
   }
+
+    public List<Student> findByCreatedAtIsBetween(LocalDateTime startAt, LocalDateTime endAt) {
+        return studentDao.findByCreatedAtIsBetween(startAt, endAt);
+    }
+
+
 }

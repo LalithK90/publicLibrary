@@ -51,7 +51,7 @@
           </div >
           <!--Tittle -->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4  required" >
               <label class="control-label" for="title" >Title :</label >
             </div >
             <div class="col-md-8" >
@@ -66,7 +66,7 @@
           </div >
           <!--Name-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" for="name" >Name :</label >
             </div >
             <div class="col-md-8" >
@@ -89,7 +89,7 @@
           </div >
           <!--Nic-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" data-th-for="${NationalID}" >NIC No :</label >
             </div >
             <div class="col-md-8" >
@@ -102,7 +102,7 @@
           </div >
           <!--Gender-->
           <div class="form-row text-right" >
-            <div class="col-md-4 text-right" >
+            <div class="col-md-4 text-right required" >
               <label class="control-label" data-th-for="${gender}" >Gender :</label >
             </div >
             <div class="col-md-8 text-left" >
@@ -122,10 +122,10 @@
           </div >
           <!--Date of birth-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" for="dateOfBirth" >Birth date :</label >
             </div >
-            <div class="col-md-8" >
+            <div class="col-md-8 " >
               <input id="dateOfBirth" data-th-field="*{dateOfBirth}" class="form-control" tabindex="8"
                      placeholder="Ex: 1990 - 01 - 20"
                      required type="date" />
@@ -135,7 +135,7 @@
           </div >
           <!--Designation-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" for="designation" >Designation :</label >
             </div >
             <div class="col-md-8" >
@@ -154,7 +154,7 @@
         <div class="form-group col-md-6 col-sm-6 text-right flex-column" >
           <!--Civil status-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" for="civilStatus" >Civil State :</label >
             </div >
             <div class="col-md-8" >
@@ -170,7 +170,7 @@
           </div >
           <!--Address-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" for="address" >Address :</label >
             </div >
             <div class="col-md-8" >
@@ -182,7 +182,7 @@
           </div >
           <!--Mobile Number One-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" for="mobileOne" >Mobile One No :</label >
             </div >
             <div class="col-md-8" >
@@ -225,7 +225,7 @@
           </div >
           <!--Office email-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" for="officeEmail" >Office Email :</label >
             </div >
             <div class="col-md-8" >
@@ -238,7 +238,7 @@
           </div >
           <!--Date of assignment-->
           <div class="form-row text-right" >
-            <div class="col-md-4" >
+            <div class="col-md-4 required" >
               <label class="control-label" for="dateOfAssignment" >Date Of Assignment :</label >
             </div >
             <div class="col-md-8" >
@@ -292,9 +292,9 @@
           <!--Created by and created at-->
           <div id="updateStatus" data-th-if="${addStatus==false}" >
             <div class="form-row text-right" >
-              <div class="col-md-2" >
-                <label class="control-label" for="createdBy" >Created By :</label >
-              </div >
+              <div class="col-md-4" >
+                <label class="control-label" for="createdBy" >Created By :</label ></div>
+
               <div class="col-md-8" >
                 <input id="createdBy" data-th-field="*{createdBy}" class="form-control" type="text"
                        readonly />
@@ -319,6 +319,7 @@
               <button type="submit" class="btn btn-primary mt-3 ml-2"><span data-th-text="${addStatus==true?'Save':'Update'}" ></span ></button>
               <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
             </div>
+            <span class="required_notification text-danger bg-light"><b>(*) Denotes Required fields</b></span>
           </div>
         </div >
 <!--        <div class="form-row" >-->

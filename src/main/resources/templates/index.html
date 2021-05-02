@@ -1,66 +1,136 @@
 <!DOCTYPE html>
-<html lang="en"  >
-<head  data-th-replace="~{fragments/header :: headerFragment}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
     <meta charset="UTF-8">
     <title>Thymeleaf Springboot </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body class="bg-gradient-warning">
+<body style="background: beige;">
+<div id="main">
+<div class="container-fluid" >
+    <div class="card " id="cv">
+        <div class="card-body  ">
+        <div class="row">
+            <div class="col-md-4">
+                <img data-th-src="${'/img/newlogo.jpg'}" height="150px" width="200px">
+
+            </div>
+            <div class="col-md-6 mt-3">
+                <p style="font-size:60px;text-align: center">WASITY INSTITUTE</p>
+                <p style="font-size: large;color:wheat;text-align: center">Gather to Learn</p>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1">
+                <span onclick="openNav()" style="font-size: 50px;cursor: pointer;" >&#9776;</span>
+                <div class="sidenav" id="myNav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="/home">Home</a>
+                    <a href="/login">Login</a>
+<!--                    <a href="/info">Contact info</a>-->
+
+                </div>
+            </div>
+        </div>
 
 
-<div class="container-fluid">
-   <div class="row">
-       <div class="col-6">
-       <div id="demo" class="carousel slide" data-ride="carousel">
-
-           <!-- Indicators -->
-           <!--    <ul class="carousel-indicators"id="carousel">-->
-           <!--        <li data-target="#demo" data-slide-to="0" class="active"></li>-->
-           <!--        <li data-target="#demo" data-slide-to="1"></li>-->
-           <!--        <li data-target="#demo" data-slide-to="2"></li>-->
-           <!--    </ul>-->
-
-           <!-- The slideshow -->
-           <div class="carousel-inner mt-5 ml-3" >
-               <div class="carousel-item active">
-                   <img src="../img/carone.jpg" alt="car" width="600" height="400">
-               </div>
-               <div class="carousel-item">
-                   <img src="../img/caroil.jpg" alt="oil" width="600" height="400">
-               </div>
-               <div class="carousel-item">
-                   <img src="../img/CleaningInterior.jpg" alt="interior cleaning" width="600" height="400">
-               </div>
-           </div>
-
-           <!-- Left and right controls -->
-           <a class="carousel-control-prev" href="#demo" data-slide="prev">
-<!--               <span class="carousel-control-prev-icon"></span>-->
-           </a>
-           <a class="carousel-control-next" href="#demo" data-slide="next">
-<!--               <span class="carousel-control-next-icon"></span>-->
-           </a>
-       </div>
-   </div>
-       <div class="col-6 text-center mt-5">
-           <h1>NANDANA MOTORS</h1>
-           <div class="jumbotron jumbotron-fluid bg-gradient-light ">
-               <div class="container">
-                   <h3>VISION</h3>
-                   <p>Our vision is to care your vehicle at our best and give a better service to you </p>
-                   <p>T.P ,Adress </p>
-               </div>
-           </div>
-
-   </div>
-   </div>
-    <p style = "color: black; background-color: cadetblue;font-size: xx-large;text-align: center;" class="mt-3"><i>GET THE BEST SERVICE FROM US...</i></p>
 </div>
 
-<!--footer include-->
-<div  data-th-replace="~{fragments/footer :: footerFragment}"></div>
-<!--script include-->
-<div  data-th-replace="~{fragments/script :: scriptFragment}"></div>
 
+    </div>
+<div class="row"[>
+    <div class="col-md-6">
+    <div id="caro" class="carousel slide mt-3" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#caro" data-slide-to="0" class="active"></li>
+            <li data-target="#caro" data-slide-to="1"></li>
+            <li data-target="#caro" data-slide-to="2"></li>
+        </ul>
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active" >
+                <img data-th-src="${'/img/class.jpg'}" width="900" height="500">
+            </div>
+            <div class="carousel-item" >
+                <img data-th-src="${'/img/trips.jpg'}" width="900" height="500" >
+            </div>
+            <div class="carousel-item" >
+                <img data-th-src="${'/img/cafteria.jpg'}" width="900" height="500">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#caro" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#caro" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+        <p class="para1 mt-5"><i><b>Our responsibility is to give you the best</b></i></p>
+
+    </div>
+    <div class="col-md-6">
+        <div class="card mt-4 shadow" >
+            <div class="card-header  border border-info bg-info shadow ">
+                <h1 id="h1" ><b>OUR VISION</b> </h1>
+            </div>
+            <div class="card-body  border border-info ">
+                <p id="p1">Our vision is to become the best educational institute by providing<br> education for the students in our best</p>
+            </div>
+        </div>
+
+        <div class="card mt-4 shadow " >
+            <div class="card-header  border border-danger bg-danger shadow ">
+                <h1  id="h2"><b>OUR MISSION</b></h1>
+            </div>
+            <div class="card-body  border border-danger">
+                <p id="p1">We prepare our students for sucess.We inspire the students<br>to become productive citizen,leaders to our country and global</p>
+            </div>
+        </div>
+
+
+        <div class="card mt-4 shadow " >
+            <div class="card-header border border-warning bg-warning shadow ">
+                <h1  id="h2"><b>ABOUT US</b></h1>
+            </div>
+            <div class="card-body border border-warning">
+                <p id="p1">Wasity educational institute is a leading institute situated at Kiribathgoda.<br>We are giving the highest knowledge through leading lecturers to our students<br>and lending hands for them to get through their Advancced Level exams</p>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+<div class="row bg-dark text-white mt-5 ml-5 mr-5">
+    <div class="col-md-3 ml-5">
+        <b>Contact Us:</b><br>
+        <b>0112644652</b><br>
+        <b>0757727592</b>
+    </div>
+    <div class="col-md-6 mt-3 ml-4">
+        <b>Follow Us:</b>
+        <span><i class="fab fa-facebook mr-3 ml-4" id="fb"></i></span>
+        <span><i class="fab fa-twitter mr-3" id="twi"></i></span>
+        <span><img data-th-src="${'img/insta.png'}" height="50px" width="50px" style="margin-bottom: 20px"></span>
+    </div>
+
+
+</div>
+    </div>
+
+
+
+
+<!--footer include-->
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+</div>
 </body>
 </html>

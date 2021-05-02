@@ -8,6 +8,7 @@ import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
 import lk.wasity_institute.asset.common_asset.model.DateTimeTable;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.hall.entity.Hall;
 import lk.wasity_institute.asset.hall.service.HallService;
 import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.asset.student.service.StudentService;
@@ -180,11 +181,13 @@ public class TimeTableController {
       if ( !batchStudents.isEmpty() ) {
         batchStudents.forEach(x -> {
           Student student = studentService.findById(x.getId());
+          Batch batchDb = batchService.findById(timeTableDb.getBatch().getId());
+
           if ( student.getEmail() != null ) {
-            String message = "Dear " + student.getFirstName() + "\n Your " + timeTableDb.getBatch().getName() +
+            String message = "Dear " + student.getFirstName() + "\n Your " +  batchDb.getName() +
                 " " +
-                "class would be held from " + timeTableDb.getStartAt() + " to " + timeTableDb.getEndAt() + "\n " +
-                "Thanks" +
+                "class would be held  from\t\t" + timeTableDb.getStartAt() + " to\t\t " + timeTableDb.getEndAt() + "\n " +
+                "Thank You" +
                 " \n Wasity Institute";
             emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
           }

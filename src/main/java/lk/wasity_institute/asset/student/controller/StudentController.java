@@ -112,15 +112,25 @@ public class StudentController implements AbstractController<Student, Integer > 
         student.setRegNo("WIS" + makeAutoGenerateNumberService.numberAutoGen(null));
       }
     }
-   studentService.persist(student);
+    try {
+      studentService.persist(student);
+    } catch (Exception e) {
+      ObjectError error = new ObjectError("student",
+              "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+      bindingResult.addError(error);
+      model.addAttribute("student", student);
+      model.addAttribute("addStatus", true);
+      model.addAttribute("addStatus", false);
+      return "student/addStudent";
+    }
     student.getBatchStudents().forEach(x -> {
       x.setStudent(student);
       batchStudentService.persist(x);
     });
 
     return "redirect:/student";
-
   }
+
 
   @GetMapping("/delete/{id}")
   public String delete(@PathVariable Integer id, Model model) {

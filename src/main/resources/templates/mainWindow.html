@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"  >
+<head  data-th-replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="margin-top:90px">
+<nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
+<div class="=container-fluid">
+    <div class="row text-info ml-5 "><h3 >Welcome to Wasity Institute Student Management System </h3></div>
+<div class="card-columns mt-4 ">
+    <div class="card bg-gray-200 border-left-primary ml-3 " data-sec-authorize="hasAnyAuthority('ROLE_ADMIN')">
+        <div class="card-body text-center">
+            <a href="/employee" class="card-links"> <h4><b><i>Employee Details</i></b></h4>
+               </a> <i class="fas fa-users" style="font-size: x-large"></i>
+
+        </div>
+
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3 " data-sec-authorize="hasAnyAuthority('ROLE_ADMIN')">
+    <div class="card-body text-center">
+        <a href="/user" class="card-links"> <h4><b><i>User Details</i></b></h4>
+        </a> <i class="fas fa-user" style="font-size: x-large"></i>
+    </div>
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3" data-sec-authorize="hasAnyAuthority('ROLE_RECEPTIONIST','ROLE_MANAGER','ROLE_TEACHER')">
+        <div class="card-body text-center">
+            <a href="/student" class="card-links"> <h4><b><i>Student Details</i></b></h4></a>
+            <i class="fas fa-book-reader" style="font-size: x-large"></i>
+        </div>
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_ADMIN')">
+        <div class="card-body text-center">
+            <a href="/teacher" class="card-links"> <h4><b><i>Teacher Details</i></b></h4></a>
+            <i class="fas fa-chalkboard-teacher" style="font-size: x-large"></i>
+        </div>
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_RECEPTIONIST')">
+        <div class="card-body text-center">
+            <a href="/subject" class="card-links"> <h4><b><i>Subject Details</i></b></h4></a>
+            <i class="fas fa-list" style="font-size: x-large"></i>
+        </div>
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_RECEPTIONIST','ROLE_STUDENT')">
+        <div class="card-body text-center">
+            <a href="/payment" class="card-links"> <h4><b><i>Payment Details</i></b></h4></a>
+            <i class="fas fa-money-bill-wave" style="font-size: x-large"></i>
+        </div>
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3 mr-4" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_RECEPTIONIST')">
+        <div class="card-body text-center">
+            <a href="/batch" class="card-links"> <h4><b><i>Batch Details</i></b></h4></a>
+            <i class="fas fa-chalkboard" style="font-size: x-large"></i>
+        </div>
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3 mr-4" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')">
+        <div class="card-body text-center">
+            <a href="/hall" class="card-links"> <h4><b><i>Hall Details</i></b></h4></a>
+            <i class="fas fa-building" style="font-size: x-large"></i>
+        </div>
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3 mr-4" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_TEACHER','ROLE_STUDENT')" >
+        <div class="card-body text-center">
+            <a href="/timeTable" class="card-links"> <h4><b><i>TimeTable Details</i></b></h4></a>
+            <i class="fas fa-chalkboard" style="font-size: x-large"></i>
+        </div>
+    </div>
+    <div class="card bg-gray-200 border-left-primary ml-3 mr-4" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_TEACHER','ROLE_STUDENT')">
+        <div class="card-body text-center">
+            <a href="/batchExam" class="card-links"> <h4><b><i>Exam Details</i></b></h4></a>
+            <i class="fas fa-book" style="font-size: x-large"></i>
+        </div>
+    </div>
+</div>
+    <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
+    <!--script is included-->
+    <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
+</body>
+</html>
