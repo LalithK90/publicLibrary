@@ -4,6 +4,7 @@ package lk.wasity_institute.asset.student.controller;
 import lk.wasity_institute.asset.batch.controller.BatchController;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
 /*import lk.wasity_institute.asset.batch.entity.enums.Medium;*/
+import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
 import lk.wasity_institute.asset.common_asset.model.enums.Gender;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -114,14 +116,16 @@ public class StudentController implements AbstractController<Student, Integer> {
         try {
             studentService.persist(student);
         } catch (Exception e) {
-          if (student.getId() == null) {
             ObjectError error = new ObjectError("student",
                     "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
             bindingResult.addError(error);
-            return commonThing(model, student, true);
-          }else {
-            return commonThing(model, studentService.findById(student.getId()), false);
-          }
+            if (student.getId() == null) {
+              List<BatchStudent> batchStudents = new ArrayList<>();
+              student.setBatchStudents(batchStudents);
+                return commonThing(model, student, true);
+            } else {
+                return commonThing(model, studentService.findById(student.getId()), false);
+            }
         }
         student.getBatchStudents().forEach(x -> {
             x.setStudent(student);
