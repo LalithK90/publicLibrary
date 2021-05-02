@@ -185,8 +185,7 @@ public class TimeTableController {
 
                     if (student.getEmail() != null) {
                         String message = "Dear " + student.getFirstName() + "\n Your " + batchDb.getName() +
-                                " " +
-                                "class would be held  from\t\t" + timeTableDb.getStartAt() + " to\t\t " + timeTableDb.getEndAt() + "\n " +
+                                " class would be held  from\t\t" + timeTableDb.getStartAt() + " to\t\t " + timeTableDb.getEndAt() + "\n " +
                                 "Thank You" +
                                 " \n Wasity Institute";
                         emailService.sendEmail(student.getEmail(), "Time Table - Notification", message);
