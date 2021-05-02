@@ -113,17 +113,19 @@ public class StudentController implements AbstractController<Student, Integer> {
                 student.setRegNo("WIS" + makeAutoGenerateNumberService.numberAutoGen(null));
             }
         }
+
         try {
             studentService.persist(student);
         } catch (Exception e) {
             ObjectError error = new ObjectError("student",
                     "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
             bindingResult.addError(error);
-            if (student.getId() == null) {
-              List<BatchStudent> batchStudents = new ArrayList<>();
-              student.setBatchStudents(batchStudents);
+            if (student.getId() == null && bindingResult.hasErrors()) {
+                List<BatchStudent> batchStudents = new ArrayList<>();
+                student.setBatchStudents(batchStudents);
                 return commonThing(model, student, true);
-            } else {
+            }
+            if (student.getId() != null && bindingResult.hasErrors()) {
                 return commonThing(model, studentService.findById(student.getId()), false);
             }
         }
