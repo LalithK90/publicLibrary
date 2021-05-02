@@ -120,12 +120,11 @@ public class StudentController implements AbstractController<Student, Integer> {
             ObjectError error = new ObjectError("student",
                     "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
             bindingResult.addError(error);
-            if (student.getId() == null && bindingResult.hasErrors()) {
-                List<BatchStudent> batchStudents = new ArrayList<>();
-                student.setBatchStudents(batchStudents);
+            if (student.getId() == null) {
+              List<BatchStudent> batchStudents = new ArrayList<>();
+              student.setBatchStudents(batchStudents);
                 return commonThing(model, student, true);
-            }
-            if (student.getId() != null && bindingResult.hasErrors()) {
+            } else {
                 return commonThing(model, studentService.findById(student.getId()), false);
             }
         }
