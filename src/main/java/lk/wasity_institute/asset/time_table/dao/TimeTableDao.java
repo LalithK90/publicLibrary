@@ -3,6 +3,7 @@ package lk.wasity_institute.asset.time_table.dao;
 
 
 import lk.wasity_institute.asset.batch.entity.Batch;
+import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.asset.time_table.entity.TimeTable;
 import lk.wasity_institute.asset.time_table.entity.enums.TimeTableStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,7 @@ import java.util.List;
 public interface TimeTableDao extends JpaRepository<TimeTable, Integer > {
 
   TimeTable findFirstByOrderByIdDesc();
+
 
   List<TimeTable> findByBatchAndStartAtIsBetween(Batch batch, LocalDateTime form, LocalDateTime to);
 

@@ -83,10 +83,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //to see actuator details
                     .antMatchers(ALL_PERMIT_URL).permitAll()
                     //this is used the normal admin to give access every url mapping
-                    .antMatchers("/batch/**").hasAnyRole( "ADMIN","MANAGER","Teacher")
-                        .antMatchers("/batchExam/**").hasAnyRole( "ADMIN","MANAGER","Teacher")
-                        .antMatchers("/batchStudent/**").hasAnyRole( "MANAGER","Teacher","ADMIN","RECEPTIONIST")
-                        .antMatchers("/batchStudentExamResult/**").hasAnyRole( "ADMIN","MANAGER","Teacher")
+                    .antMatchers("/batch/**").hasAnyRole( "ADMIN","MANAGER","TEACHER")
+                        .antMatchers("/batchExam/**").hasAnyRole( "ADMIN","MANAGER","TEACHER")
+                        .antMatchers("/batchStudent/**").hasAnyRole( "MANAGER","TEACHER","ADMIN","RECEPTIONIST")
+                        .antMatchers("/batchStudentExamResult/**").hasAnyRole( "ADMIN","MANAGER","TEACHER")
                         .antMatchers("/employee/**").hasAnyRole("ADMIN")
                         .antMatchers("/hall/**").hasAnyRole( "MANAGER","ADMIN")
                         .antMatchers("/payment/**").hasAnyRole( "MANAGER","RECEPTIONIST","STUDENT","ADMIN")

@@ -39,7 +39,7 @@
   <form action="/batchExam" data-th-object="${batchExam}" method="post" >
     <div class="" >
 
-        <p style="color: black;text-align: center;font-size: x-large"><span data-th-text="${addstatus==true?'New Exam':'Update Exam'}"></p >
+        <p style="color: black;text-align: center;font-size: x-large"><span data-th-text="${addStatus==true?'New Exam':'Update Exam'}"></p >
         <input class="form-control" data-th-field="*{batch.id}" readonly type="hidden" >
         <div class="form-group" data-th-if="${addStatus}" >
           <label class="control-label" data-th-for="${id}" >Exam Code</label >
