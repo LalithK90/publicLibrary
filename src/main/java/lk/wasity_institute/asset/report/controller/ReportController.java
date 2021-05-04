@@ -379,21 +379,29 @@ schools.forEach(x-> {
   model.addAttribute("teacherBatches",teacherBatches);
   return"report/teacherBatchReport";
 }
-//@GetMapping("/timetableAttendance")
-//public String TimeTableAttendance(Model model){
-//   model.addAttribute("student",studentService.findAll());
-//    return "report/timeTableAttendance";
-//}
-//@PostMapping("/timetableAttendance")
-//  public String TimeTableAttendance(@ModelAttribute TwoDate twoDate,Model model){
-//    List<Student> students = studentService.findAll();
-//    List<Batch> batches = batchService.findAll().stream().filter(x->!x.getTimeTables().isEmpty()).collect(Collectors.toList());
-//    TimeTableStatus timeTableStatus = TimeTableStatus.MARK;
-//LocalDateTime StartDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
-//LocalDateTime EndDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
-//List<TimeTable> timeTables = timeTableService.findByBatchAndStartAtIsBetweenAndTimeTableStatus(batches,StartDateTime,EndDateTime,timeTableStatus);
-//
-//}
+@GetMapping("/timetableAttendance")
+public String TimeTableAttendance(Model model){
+   model.addAttribute("student",studentService.findAll());
+    return "report/timeTableAttendance";
+}
+@PostMapping("/timetableAttendance")
+  public String TimeTableAttendance(@ModelAttribute TwoDate twoDate,Model model){
+    List<Student> students = studentService.findAll();
+
+LocalDateTime StartDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
+LocalDateTime EndDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
+  List<Batch> batches = batchService.findByCreatedAtIsBetween(StartDateTime,EndDateTime).stream().filter(x->!x.getTimeTables().isEmpty()).collect(Collectors.toList());
+//  System.out.println(batches);
+ List<TimeTable> timeTables = new ArrayList<>();
+  timeTableService.findAll().forEach(x->{
+    if(x.getTimeTableStatus().equals(TimeTableStatus.MARK)){
+      timeTables.add(x);
+    }
+  });
+
+  return "report/timeTableAttendance";
+
+}
 
 
 }

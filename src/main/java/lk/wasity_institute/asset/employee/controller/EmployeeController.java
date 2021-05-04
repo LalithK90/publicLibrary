@@ -155,7 +155,7 @@ public class EmployeeController {
 //       return "employee/addEmployee";
 //     }
 
-
+    Employee employeeSaved = employeeService.persist(employee);
     //if employee state is not working he or she cannot access to the system
     if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
       User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
@@ -166,7 +166,7 @@ public class EmployeeController {
       }
     }
 
-    try { Employee employeeSaved = employeeService.persist(employee);
+    try {
       //save employee images file
       if ( employee.getFile().getOriginalFilename() != null && !Objects.requireNonNull(employee.getFile().getContentType()).equals("application/octet-stream")) {
         EmployeeFiles employeeFiles = employeeFilesService.findByEmployee(employeeSaved);
@@ -183,6 +183,7 @@ public class EmployeeController {
           employeeFiles.setEmployee(employee);
         }
         employeeFilesService.persist(employeeFiles);
+
       }
       return "redirect:/employee";
 
@@ -196,19 +197,10 @@ public class EmployeeController {
       } else {
         model.addAttribute("addStatus", false);
       }
-
-
-
-      ObjectError errors = new ObjectError("employee",
-              "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
-      result.addError(errors);
-      model.addAttribute("employee",employee);
-
-      return "employee/addEmployee";
-
-
-
+      model.addAttribute("employee", employee);
+      return commonThings(model);
     }
+
   }
 
 
