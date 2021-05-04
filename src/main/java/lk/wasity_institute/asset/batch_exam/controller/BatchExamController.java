@@ -110,10 +110,10 @@ public class BatchExamController {
   }
 
 
-  @PostMapping
+  @PostMapping("/save")
   public String save(@ModelAttribute BatchExam batchExam, BindingResult bindingResult) {
     if ( bindingResult.hasErrors() ) {
-      return "redirect:/batchExam/add" + batchExam.getBatch().getId();
+      return "redirect:/batchExam" + batchExam.getBatch().getId();
     }
     if ( batchExam.getId() == null ) {
       BatchExam lastBatchExam = batchExamService.lastBatchExamDB();

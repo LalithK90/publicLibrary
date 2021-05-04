@@ -36,25 +36,28 @@
           <form class="form-inline" data-th-action="${'/report/batchExam'}" data-th-method="POST" >
             <div class="form-group mr-2" >
               <label for="startDate" >FROM :</label >
+
               <select class="form-control" id="batchExam" name="id" >
                 <option value="" >Please Select</option >
                 <option data-th-each="batchExam : ${batchExams}"
                         data-th-value="${batchExam.id}"
                         data-th-text="${batchExam.code + batchExam.batch.name }" ></option >
               </select >
+
             </div >
             <div class="form-group mr-2" >
               <label for="startDate" >FROM :</label >
               <input class="form-control" id="startDate" name="startDate" type="date" required />
-            </div >
-            <div class="form-group mr-2" >
+
+            <div class="form-group ml-2" >
               <label for="endDate" >TO :</label >
               <input class="form-control" id="endDate" name="endDate" type="date" required />
             </div >
-            <div class="form-group mr-2" >
-              <button class="btn btn-success mt-2" id="btnSummaryFind" type="submit" ><span
-                    class="glyphicon glyphicon-search" ></span >&nbsp;Search
-              </button >
+            </div >
+            <div class="" >
+
+              <input type="submit" class="btn btn-primary" id="#btnSummaryFind" value="search">
+
             </div >
           </form >
         </div >

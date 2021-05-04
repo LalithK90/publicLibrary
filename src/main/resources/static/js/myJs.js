@@ -459,7 +459,7 @@ $('#endDate, #startDate').on('click', function () {
     }
 });
 
-$("#btnSummaryFind").bind("mouseover", function () {
+$("#btnSummaryFind").bind("mouseclick", function () {
     let endDate = document.getElementById("endDate").value;
     let startDate = document.getElementById("startDate").value;
 

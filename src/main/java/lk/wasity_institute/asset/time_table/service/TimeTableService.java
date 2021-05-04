@@ -4,6 +4,7 @@ package lk.wasity_institute.asset.time_table.service;
 
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.asset.time_table.dao.TimeTableDao;
 import lk.wasity_institute.asset.time_table.entity.TimeTable;
 import lk.wasity_institute.asset.time_table.entity.enums.TimeTableStatus;
@@ -63,4 +64,8 @@ public class TimeTableService implements AbstractService<TimeTable, Integer > {
   public List< TimeTable> findByCreatedAtIsBetween(LocalDateTime from, LocalDateTime to) {
   return timeTableDao.findByStartAtIsBetween(from,to);
   }
+ public List< TimeTable> findByBatchAndStartAtIsBetweenAndTimeTableStatus(Batch batch, LocalDateTime from, LocalDateTime to, TimeTableStatus timeTableStatus){
+    return timeTableDao.findByBatchAndStartAtIsBetweenAndTimeTableStatus(batch, from, to, timeTableStatus);
+ }
+
 }

@@ -93,7 +93,7 @@ public class StudentController implements AbstractController<Student, Integer> {
         return commonThing(model, studentService.findById(id), false);
     }
 
-    @PostMapping("/save")
+    @PostMapping(value={"/save","/update"})
     public String persist(@Valid @ModelAttribute Student student, BindingResult bindingResult,
                           RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
