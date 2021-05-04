@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" >
+<!--Styles, meta data, and title are included-->
+<head data-th-replace="~{fragments/header :: headerFragment}" >
+    <meta charset="UTF-8" >
+    <title >Wisdom Student Management System</title >
+</head >
+<body style="margin-top:90px;">
+<!--Nav bar is included-->
+<nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div><div class="col-md-9">
+        <form data-th-action="${'/report/timetableAttendance'}"  data-th-method="post">
+            <div class="row ">
+                <label for="startDateTime" class="text-center">Start Date :</label>
+                <div class="col-md-4">
+                    <input type="date" name="startDate" id="startDateTime" class="form-control"/></div>
+                <label for="endDateTime">End Date :</label>
+                <div class="col-md-4">
+                    <input type="date" name="endDate" id="endDateTime" class="form-control"/></div>
+
+
+                <input type="submit" class="btn btn-primary" value="search">
+            </div>
+
+        </form>
+
+    </div>
+    </div>
+</div>
+
+</div>
+<!--footer is included-->
+<div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
+<!--script is included-->
+<div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
+</body >
+</html >
