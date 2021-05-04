@@ -155,19 +155,23 @@ public class EmployeeController {
 //       return "employee/addEmployee";
 //     }
 
-    Employee employeeSaved = employeeService.persist(employee);
-    //if employee state is not working he or she cannot access to the system
-    if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
-      User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
-      //if employee not a user
-      if ( user != null ) {
-        user.setEnabled(false);
-        userService.persist(user);
-      }
-    }
+
 
     try {
-      //save employee images file
+
+      Employee employeeSaved = employeeService.persist(employee);
+      //if employee state is not working he or she cannot access to the system
+      if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
+        User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
+        //if employee not a user
+        if ( user != null ) {
+          user.setEnabled(false);
+          userService.persist(user);
+        }
+      }
+
+      //save employe
+      // e images file
       if ( employee.getFile().getOriginalFilename() != null && !Objects.requireNonNull(employee.getFile().getContentType()).equals("application/octet-stream")) {
         EmployeeFiles employeeFiles = employeeFilesService.findByEmployee(employeeSaved);
         if ( employeeFiles != null ) {
@@ -189,7 +193,7 @@ public class EmployeeController {
 
     } catch ( Exception e ) {
       ObjectError error = new ObjectError("employee",
-                                          "There is already in the system. System message -->" + e.toString());
+                                          "There is already in the system. System message -->" +  e.getCause().getCause().getMessage());
       result.addError(error);
       if ( employee.getId() != null ) {
         model.addAttribute("addStatus", true);

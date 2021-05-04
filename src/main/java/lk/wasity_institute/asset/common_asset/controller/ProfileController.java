@@ -32,8 +32,17 @@ public class ProfileController {
     @GetMapping( value = "/profile" )
     public String userProfile(Model model, Principal principal) {
         model.addAttribute("addStatus", true);
-        model.addAttribute("employeeDetail", userService.findByUserName(principal.getName()).getEmployee());
-        return "employee/employee-detail";
+        User user = userService.findByUserName(principal.getName());
+        if ( user.getEmployee() != null ) {
+            model.addAttribute("employeeDetail", user.getEmployee());
+            return "employee/employee-detail";
+        }
+        if ( user.getStudent() != null ) {
+            model.addAttribute("studentDetail", user.getStudent());
+            return "student/student-detail";
+        }
+        model.addAttribute("teacherDetail", user.getTeacher());
+        return "teacher/teacher-detail";
     }
 
     @GetMapping( value = "/passwordChange" )
