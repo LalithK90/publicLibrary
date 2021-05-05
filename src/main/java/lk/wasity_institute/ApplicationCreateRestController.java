@@ -52,7 +52,7 @@ public class ApplicationCreateRestController {
         employee.setMobileOne("0750000000");
         employee.setTitle(Title.DR);
         employee.setGender(Gender.MALE);
-        employee.setDesignation(Designation.CASHIER);
+        employee.setDesignation(Designation.RECEPTIONIST);
         employee.setCivilStatus(CivilStatus.UNMARRIED);
         employee.setEmployeeStatus(EmployeeStatus.WORKING);
         employee.setDateOfBirth(LocalDate.now().minusYears(18));

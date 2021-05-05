@@ -77,7 +77,14 @@
                     </div>
                 </div>
 
-
+            <!--nic-->
+            <div class="form-group row text-right">
+                <div class="col-md-3  required">
+                    <label class=" control-label" data-th-for="${nic}">NIC :</label></div>
+                <div class="col-md-8">
+                    <input type="text" id="nic" class="form-control" data-th-field="*{nic}" required>
+                </div>
+            </div>
 
                 <!--Gender-->
                 <div class="form-group row text-right" >
@@ -99,35 +106,21 @@
                         </div>
                     </div >
                 </div >
-
-
-                <!--mobileNumber-->
-                <div class="form-group row text-right">
-                    <div class="col-md-3  required">
-                        <label class=" control-label" data-th-for="${mobile}">Mobile number :</label></div>
-                    <div class="col-md-8">
-                        <input type="text" id="mobile" class="form-control" data-th-field="*{mobile}" required>
-                    </div>
+            <!--dateOfBirth-->
+            <div class="form-group row text-right">
+                <div class="col-md-3">
+                    <label class=" control-label" data-th-for="${dateOfBirth}">Date of birth :</label></div>
+                <div class="col-md-8">
+                    <input type="date" id="dateOfBirth" class="form-control" data-th-field="*{dateOfBirth}">
                 </div>
+            </div>
 
-                <!--nic-->
-                <div class="form-group row text-right">
-                    <div class="col-md-3  required">
-                        <label class=" control-label" data-th-for="${nic}">NIC :</label></div>
-                    <div class="col-md-8">
-                        <input type="text" id="nic" class="form-control" data-th-field="*{nic}" required>
-                    </div>
-                </div>
+
+
+
+
         </div>
 <div class="form-group col-md-6 col-sm-6 text-left flex-column">
-                <!--dateOfBirth-->
-                <div class="form-group row text-right">
-                    <div class="col-md-3">
-                        <label class=" control-label" data-th-for="${dateOfBirth}">Date of birth :</label></div>
-                    <div class="col-md-8">
-                        <input type="date" id="dateOfBirth" class="form-control" data-th-field="*{dateOfBirth}">
-                    </div>
-                </div>
 
                 <!--address-->
                 <div class="form-group row text-right ">
@@ -137,7 +130,14 @@
                         <textarea id="address" class="form-control" data-th-field="*{address}"></textarea>
                     </div>
                 </div>
-
+    <!--mobileNumber-->
+    <div class="form-group row text-right">
+        <div class="col-md-3  required">
+            <label class=" control-label" data-th-for="${mobile}">Mobile number :</label></div>
+        <div class="col-md-8">
+            <input type="text" id="mobile" minlength="10" maxlength="10" class="form-control mobile" data-th-field="*{mobile}" required>
+        </div>
+    </div>
 
                 <!--email-->
                 <div class="form-group row text-right">
@@ -179,7 +179,7 @@
         <div class="form-group row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <a href="/employee" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+                <a href="/teacher" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
                 <button type="submit" class="btn btn-primary mt-3 ml-2">&nbsp;<span id="submit" data-th-text="${addStatus==true?'Save': 'Update'}" ></span ></button>
                 <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
             </div>
