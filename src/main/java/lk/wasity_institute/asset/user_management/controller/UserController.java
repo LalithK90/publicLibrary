@@ -55,14 +55,12 @@ public class UserController {
 //  }
 
   @GetMapping
-  public String EmployeeUserPage(Model model, Employee employee ) {
-    List<User> users= new ArrayList<>();
-    userService.findAll().forEach(x->{
-      x.getRoles().forEach(y->{
-        if(!y.getRoleName().equals("STUDENT")||!y.getRoleName().equals("TEACHER")){
-          users.add(x);
-        }
-      });
+  public String EmployeeUserPage(Model model, Employee employee) {
+    List< User > users = new ArrayList<>();
+    userService.findAll().forEach(x -> {
+      if ( x.getEmployee() != null ) {
+        users.add(userService.findById(x.getId()));
+      }
     });
 
     model.addAttribute("userEmployee", users.stream().distinct().collect(Collectors.toList()));

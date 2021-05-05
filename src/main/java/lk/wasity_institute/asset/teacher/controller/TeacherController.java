@@ -96,9 +96,9 @@ public class TeacherController implements AbstractController<Teacher, Integer> {
             //registration number format => ST200001
             if ( lastTeacher != null ) {
                 String lastNumber = lastTeacher.getRegistrationId().substring(3);
-                teacher.setRegistrationId("SST" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
+                teacher.setRegistrationId("WIT" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
             } else {
-                teacher.setRegistrationId("SST" + makeAutoGenerateNumberService.numberAutoGen(null
+                teacher.setRegistrationId("WIT" + makeAutoGenerateNumberService.numberAutoGen(null
             ));
             }
 

@@ -88,9 +88,9 @@ public class BatchStudentExamResultController {
             batchStudentExamResultService.lastBatchStudentExamResultDB();
         if ( lastBatchStudentExamResult != null ) {
           String lastNumber = lastBatchStudentExamResult.getCode().substring(4);
-          x.setCode("SSER" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
+          x.setCode("WIER" + makeAutoGenerateNumberService.numberAutoGen(lastNumber));
         } else {
-          x.setCode("SSER" + makeAutoGenerateNumberService.numberAutoGen(null));
+          x.setCode("WIER" + makeAutoGenerateNumberService.numberAutoGen(null));
         }
       }
       batchStudentExamResultService.persist(x);

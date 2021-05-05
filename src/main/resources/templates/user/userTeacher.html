@@ -68,13 +68,13 @@
                         <th data-th-text="${{user.createdAt}}" ></th >
                         <th >
                             <a  data-th-href="${'/user/' + user.id}" >
-                            <button class="btn btn-success btn-sm" id="userView" style="border-color:  rgba(71,123,11,0.99)">
+                            <button class="btn btn-success " id="userView" style="border-color:  rgba(71,123,11,0.99)">
                                 <i class="fa fa-folder-open"></i >&nbsp;View</button ></a>
                             <a  data-th-href="${'/user/edit/' + user.id}" >
-                            <button class="btn btn-primary btn-sm" id="userEdit"style="border-color: rgba(9, 118, 193, 0.99)">
+                            <button class="btn btn-info " id="userEdit"style="border-color: rgba(9, 118, 193, 0.99)">
                                 <i class="fa fa-edit" ></i >&nbsp;Edit</button ></a>
                             <a data-th-href="${'/user/remove/' + user.id}">
-                            <button class="btn btn-danger btn-sm" id="userRemove"
+                            <button class="btn btn-danger " id="userRemove"
                                data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" style="border-color:  rgba(160,16,14,0.99)" onclick="return ConfirmDelete()">
                                 <i aria-hidden="true" class="fa fa-trash" ></i >Delete</button ></a>
                         </th >

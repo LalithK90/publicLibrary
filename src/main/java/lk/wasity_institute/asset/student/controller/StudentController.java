@@ -128,6 +128,7 @@ public class StudentController implements AbstractController<Student, Integer> {
             } else {
                 bindingResult.addError(error);
                 return commonThing(model, studentService.findById(student.getId()), false);
+
             }
         }
         student.getBatchStudents().forEach(x -> {

@@ -26,13 +26,13 @@
                     Management Functions
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER', 'ROLE_RECEPTIONIST')" class="dropdown-item" href="/student" >Student Management</a>
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER','ROLE_HR')" class="dropdown-item" href="/teacher	">Teacher Management</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_RECEPTIONIST')" class="dropdown-item" href="/student" >Student Management</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_HR')" class="dropdown-item" href="/teacher	">Teacher Management</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" class="dropdown-item" href="/batch	"> Batch Management  </a>
 <!--               todo: meka wena ekakta wenama damu <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_HR', 'MANAGER',)" class="dropdown-item" href="/employee"> Employee Management </a>-->
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN')" class="dropdown-item" href="/employee"> Employee Management </a>
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER', 'ROLE_RECEPTIONIST')" class="dropdown-item" href="/payment">Payment Management</a>
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TEACHER')" class="dropdown-item" href="/timeTable"> Timetable Management</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_RECEPTIONIST')" class="dropdown-item" href="/payment">Payment Management</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_TEACHER')" class="dropdown-item" href="/timeTable"> Timetable Management</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN')" class="dropdown-item" href="/user"> Employee User Management</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN')" class="dropdown-item" href="/user/teacher"> Teacher User Management</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN')" class="dropdown-item" href="/user/student"> Student User Management</a>
@@ -49,7 +49,7 @@
                     Services
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_RECEPTIONIST')" class="dropdown-item" href="/school/add" >New School</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_RECEPTIONIST')" class="dropdown-item" href="/school/add" >New School</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" class="dropdown-item" href="/hall/add">New Hall</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" class="dropdown-item" href="/subject/add">New Subject</a>
                     <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" class="dropdown-item" href="	/batch/add	">	New Batch	</a>
@@ -72,9 +72,9 @@
                     Reports
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER')" class="dropdown-item" href="/report/income">Income Report</a>
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER')" class="dropdown-item" href="/report/batchExam">BatchExam Report</a>
-                    <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER')" class="dropdown-item" href="/report/studentSchool">StudentSchool Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" class="dropdown-item" href="/report/income">Income Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" class="dropdown-item" href="/report/batchExam">BatchExam Report</a>
+                    <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER')" class="dropdown-item" href="/report/studentSchool">StudentSchool Report</a>
 
                 </div>
             </li>

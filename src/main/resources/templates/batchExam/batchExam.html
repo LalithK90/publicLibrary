@@ -16,7 +16,7 @@
     <div class="col-9"></div>
     <div class="col-3">
         <a href="/batch">
-            <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Batch list</button>
+            <button class="btn shadow mt-3" id="listb" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_RECEPTIONIST')"><i class="fas fa-list"></i>&nbsp;&nbsp;Batch list</button>
         </a>
     </div>
 </div>
@@ -32,7 +32,7 @@
                 <th>Batch Name</th>
                 <th>Start At</th>
                 <th>End At</th>
-                <th style="width: 38%">Modify</th>
+                <th style="width: 38%" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_TEACHER')" >Modify</th>
             </tr>
             </thead>
             <tbody>
@@ -43,19 +43,19 @@
                 <td data-th-text="${#temporals.format(batchExam.startAt, 'dd-MM-yyyy HH:mm')}" ></td >
                 <td data-th-text="${#temporals.format(batchExam.endAt, 'dd-MM-yyyy HH:mm')}" ></td >
                 <td>
-                    <a data-th-href="${'/batchExam/edit/'+ batchExam.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
-                        <button type="button" class="btn btn-info">
+                    <a data-th-href="${'/batchExam/edit/'+ batchExam.id}" >
+                        <button type="button" class="btn btn-info" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_TEACHER')" >
                             <i class="fa fa-folder-open"  ></i >Edit</button>
                     </a>
-                    <a data-th-href="${'/batchExam/delete/'+ batchExam.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
-                        <button type="button" class="btn btn-danger ml-2" onclick="return ConfirmDelete()">
+                    <a data-th-href="${'/batchExam/delete/'+ batchExam.id}" >
+                        <button type="button" class="btn btn-danger ml-2" data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_TEACHER')"  onclick="return ConfirmDelete()">
                             <i  class="fa fa-trash" ></i >Delete</button>
                     </a>
-                    <a data-th-href="${'/batchStudentExamResult/addAttendance/'+ batchExam.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
-                        <button type="button" class="btn btn-primary ml-2" style="background-color: #9c0cb8">Mark Attendance</button>
+                    <a data-th-href="${'/batchStudentExamResult/addAttendance/'+ batchExam.id}" >
+                        <button type="button" class="btn btn-primary ml-2" style="background-color: #9c0cb8" data-sec-authorize="hasAnyAuthority('ROLE_TEACHER')">Mark Attendance</button>
                     </a>
-                    <a data-th-href="${'/batchStudentExamResult/addResult/'+ batchExam.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_TEACHER'')')}">
-                        <button type="button" class="btn btn-success ml-2"  style="background-color: #9a9822">Add Result</button>
+                    <a data-th-href="${'/batchStudentExamResult/addResult/'+ batchExam.id}" >
+                        <button type="button" class="btn btn-success ml-2"  style="background-color: #9a9822" data-sec-authorize="hasAnyAuthority('ROLE_TEACHER')">Add Result</button>
                     </a>
                 </td>
             </tr>

@@ -29,6 +29,6 @@ public class StudentDetailController {
     Student student = studentService.findById(user.getStudent().getId());
 
     model.addAttribute("studentDetail", student);
-    return "student/student-detail";
+    return "student/mainWindow";
   }
 }
