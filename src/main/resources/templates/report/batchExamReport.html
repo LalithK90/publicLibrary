@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" >
 <!--Styles, meta data, and title are included-->
@@ -5,7 +6,7 @@
   <meta charset="UTF-8" >
   <title >Wisdom Student Management System</title >
 </head >
-<body >
+<body style="margin-top:90px;">
 <!--Nav bar is included-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
 
@@ -13,7 +14,7 @@
   <div class="row bg-light" >
     <div class="col" ></div >
     <div class="col" >
-      <h4 >Payment Management</h4 >
+      <h4 >Batch - Exam Report< /h4 >
     </div >
     <div class="col" >
       <a href="/batchExam" >
@@ -53,7 +54,7 @@
             </div >
             <div class="form-group mr-2" >
               <button class="btn btn-success mt-2" id="btnSummaryFind" type="submit" ><span
-                    class="glyphicon glyphicon-search" ></span >&nbsp;Search
+                      class="glyphicon glyphicon-search" ></span >&nbsp;Search
               </button >
             </div >
           </form >
@@ -82,7 +83,7 @@
       <button type="button" class="btn btn-success btn-block mb-2" data-toggle="collapse"
               data-th-attr="data-target='#content'+${index.count}"
               aria-expanded="false" aria-controls="" > Exam Details <span
-            data-th-text="${batchExamResultStudent.batchExam.batch.name+' - '+ batchExamResultStudent.batchExam.batch.teacher.subject.name}" ></span >
+              data-th-text="${batchExamResultStudent.batchExam.batch.name+' - '+ batchExamResultStudent.batchExam.batch.teacher.subject.name}" ></span >
 
       </button >
     </div >
@@ -886,3 +887,4 @@
 <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
 </body >
 </html >
+
