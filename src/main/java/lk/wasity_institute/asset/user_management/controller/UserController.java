@@ -180,7 +180,6 @@ public class UserController {
       return "redirect:/user";
     }
 
-
     if ( user.getEmployee() != null ) {
       Employee employee = employeeService.findById(user.getEmployee().getId());
       user.setEnabled(employee.getEmployeeStatus().equals(EmployeeStatus.WORKING));
@@ -188,7 +187,14 @@ public class UserController {
     user.setRoles(user.getRoles());
     user.setEnabled(true);
     userService.persist(user);
-    return "redirect:/user";
+
+    if ( user.getEmployee() != null && userService.findUserByEmployee(user.getEmployee()) != null ) {
+      return "redirect:/user";
+    } else if ( user.getTeacher() != null && userService.findUserByTeacher(user.getTeacher()) != null ) {
+      return "redirect:/user/teacher";
+    } else {
+      return "redirect:/user/student";
+    }
   }
 
 
