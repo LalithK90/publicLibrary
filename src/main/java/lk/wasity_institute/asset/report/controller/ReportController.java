@@ -4,6 +4,8 @@ import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.service.BatchService;
 import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
 import lk.wasity_institute.asset.batch_exam.service.BatchExamService;
+import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
+import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
 import lk.wasity_institute.asset.batch_student_exam_result.entity.BatchStudentExamResult;
 import lk.wasity_institute.asset.common_asset.model.Message;
 import lk.wasity_institute.asset.common_asset.model.TwoDate;
@@ -22,6 +24,8 @@ import lk.wasity_institute.asset.teacher.service.TeacherService;
 import lk.wasity_institute.asset.time_table.entity.TimeTable;
 import lk.wasity_institute.asset.time_table.entity.enums.TimeTableStatus;
 import lk.wasity_institute.asset.time_table.service.TimeTableService;
+import lk.wasity_institute.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
+import lk.wasity_institute.asset.time_table_student_attendence.service.TimeTableStudentAttendanceService;
 import lk.wasity_institute.util.service.DateTimeAgeService;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Controller;
@@ -49,10 +53,12 @@ public class ReportController {
   private final SchoolService schoolService;
   private final TeacherService teacherService;
 private final TimeTableService timeTableService;
+ private final TimeTableStudentAttendanceService timeTableStudentAttendanceService;
+ private final BatchStudentService batchStudentService;
 
   public ReportController(PaymentService paymentService, BatchExamService batchExamService,
                           DateTimeAgeService dateTimeAgeService, BatchService batchService,
-                          StudentService studentService,SchoolService schoolService,TeacherService teacherService,TimeTableService timeTableService) {
+                          StudentService studentService,SchoolService schoolService,TeacherService teacherService,TimeTableService timeTableService,TimeTableStudentAttendanceService timeTableStudentAttendanceService,BatchStudentService batchStudentService) {
     this.paymentService = paymentService;
     this.batchExamService = batchExamService;
     this.dateTimeAgeService = dateTimeAgeService;
@@ -61,6 +67,8 @@ private final TimeTableService timeTableService;
     this.schoolService = schoolService;
     this.teacherService = teacherService;
     this.timeTableService = timeTableService;
+    this.timeTableStudentAttendanceService = timeTableStudentAttendanceService;
+    this.batchStudentService = batchStudentService;
   }
 
   private String commonIncomeReport(Model model, LocalDate startDate, LocalDate endDate) {
@@ -379,29 +387,40 @@ schools.forEach(x-> {
   model.addAttribute("teacherBatches",teacherBatches);
   return"report/teacherBatchReport";
 }
-@GetMapping("/timetableAttendance")
-public String TimeTableAttendance(Model model){
-   model.addAttribute("student",studentService.findAll());
-    return "report/timeTableAttendance";
-}
-@PostMapping("/timetableAttendance")
-  public String TimeTableAttendance(@ModelAttribute TwoDate twoDate,Model model){
-    List<Student> students = studentService.findAll();
-
-LocalDateTime StartDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
-LocalDateTime EndDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
-  List<Batch> batches = batchService.findByCreatedAtIsBetween(StartDateTime,EndDateTime).stream().filter(x->!x.getTimeTables().isEmpty()).collect(Collectors.toList());
-//  System.out.println(batches);
- List<TimeTable> timeTables = new ArrayList<>();
-  timeTableService.findAll().forEach(x->{
-    if(x.getTimeTableStatus().equals(TimeTableStatus.MARK)){
-      timeTables.add(x);
-    }
-  });
-
-  return "report/timeTableAttendance";
-
-}
+//@GetMapping("/timetableAttendance")
+//public String TimeTableAttendance(Model model){
+//   model.addAttribute("batchStudent",batchStudentService.findAll());
+//    return "report/timeTableAttendance";
+//}
+//@PostMapping("/timetableAttendance")
+//  public String TimeTableAttendance(@ModelAttribute TwoDate twoDate,Model model){
+//List<BatchStudent>batchStudents = batchStudentService.findAll();
+//
+//LocalDateTime StartDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
+//LocalDateTime EndDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
+//List<TimeTableStudentAttendance> timeTableStudentAttendances = timeTableStudentAttendanceService.findByCreatedAtIsBetween(StartDateTime,EndDateTime);
+//List<TimeTableStudents> timeTableStudents = new ArrayList<>();
+//
+//batchStudents.forEach(x->{
+// long count = 0;
+// for(TimeTableStudentAttendance timeTableStudentAttendance: timeTableStudentAttendances){
+//   if(timeTableStudentAttendance.getBatchStudent().equals(x)){
+//   count = count +1;
+//   }
+// }
+//
+// TimeTableStudents timeTableStudents1 = new TimeTableStudents();
+// timeTableStudents1.setBatchStudent(x);
+// timeTableStudents.add(timeTableStudents1);
+//});
+//
+//  model.addAttribute("batchStudents",batchStudentService.findAll());
+//  String message="This report is belong from" +twoDate.getStartDate()+ "to" +twoDate.getEndDate();
+//  model.addAttribute("message",message);
+//  model.addAttribute("timeTableStudents",timeTableStudents);
+//  return "report/timeTableAttendance";
+//
+//}
 
 
 }

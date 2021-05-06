@@ -66,7 +66,19 @@
           </div >
         </div >
 
-
+      <!--Nic-->
+      <div class="form-row text-right" >
+        <div class="col-md-4 required" >
+          <label class="control-label" data-th-for="${nic}" >NIC No :</label >
+        </div >
+        <div class="col-md-8" >
+          <input data-th-field="*{nic}" class="form-control" tabindex="6" type="text"
+                 maxlength="12"
+                 minlength="10" required />
+          <span class="error" id="nicError" data-th-errors="*{nic}"
+                data-th-if="${#fields.hasErrors('nic')}" >Error NIC Number</span >
+        </div >
+      </div >
 
         <!--Gender-->
         <div class="form-row text-right" >
@@ -89,19 +101,7 @@
         </div >
 
 
-        <!--Nic-->
-        <div class="form-row text-right" >
-          <div class="col-md-4 required" >
-            <label class="control-label" data-th-for="${nic}" >NIC No :</label >
-          </div >
-          <div class="col-md-8" >
-            <input data-th-field="*{nic}" class="form-control" tabindex="6" type="text"
-                   maxlength="12"
-                   minlength="10" required />
-            <span class="error" id="nicError" data-th-errors="*{nic}"
-                  data-th-if="${#fields.hasErrors('nic')}" >Error NIC Number</span >
-          </div >
-        </div >
+
 
 
 
@@ -337,154 +337,263 @@
 </div >
 <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
 <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
-<script >
+<!--<script >-->
 
-   $("#grade").change(function () {
-       gradeChange($(this).val());
-       deleteAllTableRow(selectedBatchInTable);
-   });
+<!--   $("#grade").change(function () {-->
+<!--       gradeChange($(this).val());-->
+<!--       deleteAllTableRow(selectedBatchInTable);-->
+<!--   });-->
 
-   // $("#medium").change(function () {
-   //   mediumChange($(this).val());
-   //   deleteAllTableRow(selectedBatchInTable);
-   // });
+<!--   // $("#medium").change(function () {-->
+<!--   //   mediumChange($(this).val());-->
+<!--   //   deleteAllTableRow(selectedBatchInTable);-->
+<!--   // });-->
 
-    function gradeChange(val) {
-        if (val.length !== 0) {
-            let url = $("#batchUrl").val() + val;
-            let studentId = $("#id").val();
-            if (studentId) {
-                url = $("#batchUrl").val() + val + "/" + studentId;
-            }
+<!--    function gradeChange(val) {-->
+<!--        if (val.length !== 0) {-->
+<!--            let url = $("#batchUrl").val() + val;-->
+<!--            let studentId = $("#id").val();-->
+<!--            if (studentId) {-->
+<!--                url = $("#batchUrl").val() + val + "/" + studentId;-->
+<!--            }-->
 
-            $.ajax({
-                type: 'GET',
-                url: url,
-                success: function (resp) {
-                    addOptionTag(resp);
-                },
-                error: function (err) {
-                    console.log(err);
-                    swal({
-                        title: "There is no more batches match with this grade",
-                        icon: "warning",
-                    });
-                }
-            });
-        }
-    }
-
-
-   // function mediumChange(val) {
-   //   if (val.length !== 0) {
-   //     let url = $("#batchUrlM").val() + val;
-   //     let studentId = $("#id").val();
-   //     if (studentId) {
-   //       url = $("#batchUrlM").val() + val + "/" + studentId;
-   //     }
-   //
-   //     $.ajax({
-   //       type: 'GET',
-   //       url: url,
-   //       success: function (resp) {
-   //         addOptionTag(resp);
-   //       },
-   //       error: function (err) {
-   //         console.log(err);
-   //         swal({
-   //           title: "There is no more batches match with this grade",
-   //           icon: "warning",
-   //         });
-   //       }
-   //     });
-   //   }
-   // }
-
-    function addOptionTag(resp) {
-        console.log("length " + resp.length);
-        $("#batches").empty();
-        $("#batches").append(`<option value="">Please Select</option>`);
-        for (let i = 0; i < resp.length; i++) {
-            $("#batches").append(`<option value="${resp[i].id}">${resp[i].name}</option>`);
-        }
-        selectedBatch();
-    }
-
-    //add new item and price
-    $("#batches").bind('change', function () {
-        let valueA = optionElementRemove("#batches");
-        tableRowAdd(valueA);
+<!--            $.ajax({-->
+<!--                type: 'GET',-->
+<!--                url: url,-->
+<!--                success: function (resp) {-->
+<!--                    addOptionTag(resp);-->
+<!--                },-->
+<!--                error: function (err) {-->
+<!--                    console.log(err);-->
+<!--                    swal({-->
+<!--                        title: "There is no more batches match with this grade",-->
+<!--                        icon: "warning",-->
+<!--                    });-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    }-->
 
 
-    });
-    //table row remove
-    let tableRowRemove = function (obj) {
-        let itemIndex = obj.parentNode.parentNode.rowIndex;
-        let id = obj.id.slice(2);
-        console.log("id  " + id);
-        let removeItemText = $(`#tx${id}`).html();
-        let removeItemValue = $(`#vl${id}`).val();
+<!--   // function mediumChange(val) {-->
+<!--   //   if (val.length !== 0) {-->
+<!--   //     let url = $("#batchUrlM").val() + val;-->
+<!--   //     let studentId = $("#id").val();-->
+<!--   //     if (studentId) {-->
+<!--   //       url = $("#batchUrlM").val() + val + "/" + studentId;-->
+<!--   //     }-->
+<!--   //-->
+<!--   //     $.ajax({-->
+<!--   //       type: 'GET',-->
+<!--   //       url: url,-->
+<!--   //       success: function (resp) {-->
+<!--   //         addOptionTag(resp);-->
+<!--   //       },-->
+<!--   //       error: function (err) {-->
+<!--   //         console.log(err);-->
+<!--   //         swal({-->
+<!--   //           title: "There is no more batches match with this grade",-->
+<!--   //           icon: "warning",-->
+<!--   //         });-->
+<!--   //       }-->
+<!--   //     });-->
+<!--   //   }-->
+<!--   // }-->
 
-        console.log(removeItemText + " value   " + removeItemValue)
-        $("#batches").append(new Option(removeItemText, removeItemValue));
-        let removeRow = `#selectedBatchInTable tr:eq(${itemIndex})`
-        $(removeRow).remove();
+<!--    function addOptionTag(resp) {-->
+<!--        console.log("length " + resp.length);-->
+<!--        $("#batches").empty();-->
+<!--        $("#batches").append(`<option value="">Please Select</option>`);-->
+<!--        for (let i = 0; i < resp.length; i++) {-->
+<!--            $("#batches").append(`<option value="${resp[i].id}">${resp[i].name}</option>`);-->
+<!--        }-->
+<!--        selectedBatch();-->
+<!--    }-->
 
-        selectedBatch();
-    }
-    //option tag remove
-    let optionElementRemove = function (id) {
-        let selectedValue = $(id).val();
-        let selectedItemId = `${id} option[value='${selectedValue}']`;
-        let selectedValueInnerHTML = $(selectedItemId).html();
-        $(selectedItemId).remove();
-        return {name: selectedValueInnerHTML, value: selectedValue};
-    }
-    //table row add
-    let tableRowAdd = function (value) {
-        let rows = $("#selectedBatchInTable tr").length;
-        let rowCount = rows - 1;
+<!--    //add new item and price-->
+<!--    $("#batches").bind('change', function () {-->
+<!--        let valueA = optionElementRemove("#batches");-->
+<!--        tableRowAdd(valueA);-->
 
-        let html = `<tr>
-                        <td>
-                            <span id="tx${rowCount}">${value.name}</span>
-                            <input id="vl${rowCount}" type="hidden" name="batchStudents[${rowCount}].batch.id" value="${value.value}">
-                        </td>
-                        <td>
-                          <div class="custom-control custom-checkbox custom-control-inline " >
-                            <input class="custom-control-input" required   id="${rowCount}+ACTIVE" name="batchStudents[${rowCount}].liveDead" value="ACTIVE" type="radio" checked="checked"/>
-                            <label class="custom-control-label"  for="${rowCount}+ACTIVE" >Active </label >
-                          </div>
-                          <div class="custom-control custom-checkbox custom-control-inline " >
-                            <input class="custom-control-input" required id="${rowCount}+STOP" name="batchStudents[${rowCount}].liveDead" value="STOP" type="radio"/>
-                            <label class="custom-control-label" for="${rowCount}+STOP">Deactivate </label >
-                          </div >
-                        </td>
 
-                        <td>
-                            <button type="button" id="rm${rowCount}" class="btn btn-outline-danger" onclick="tableRowRemove(this)">Remove</button>
-                        </td>
-                    </tr>`;
+<!--    });-->
+<!--    //table row remove-->
+<!--    let tableRowRemove = function (obj) {-->
+<!--        let itemIndex = obj.parentNode.parentNode.rowIndex;-->
+<!--        let id = obj.id.slice(2);-->
+<!--        console.log("id  " + id);-->
+<!--        let removeItemText = $(`#tx${id}`).html();-->
+<!--        let removeItemValue = $(`#vl${id}`).val();-->
 
-        $("#selectedBatchInTable tr:last").after(html);
-        selectedBatch();
+<!--        console.log(removeItemText + " value   " + removeItemValue)-->
+<!--        $("#batches").append(new Option(removeItemText, removeItemValue));-->
+<!--        let removeRow = `#selectedBatchInTable tr:eq(${itemIndex})`-->
+<!--        $(removeRow).remove();-->
 
-    }
+<!--        selectedBatch();-->
+<!--    }-->
+<!--    //option tag remove-->
+<!--    let optionElementRemove = function (id) {-->
+<!--        let selectedValue = $(id).val();-->
+<!--        let selectedItemId = `${id} option[value='${selectedValue}']`;-->
+<!--        let selectedValueInnerHTML = $(selectedItemId).html();-->
+<!--        $(selectedItemId).remove();-->
+<!--        return {name: selectedValueInnerHTML, value: selectedValue};-->
+<!--    }-->
+<!--    //table row add-->
+<!--    let tableRowAdd = function (value) {-->
+<!--        let rows = $("#selectedBatchInTable tr").length;-->
+<!--        let rowCount = rows - 1;-->
 
-    $(document).ready(function () {
-        selectedBatch();
-        gradeChange($("#grade").val());
+<!--        let html = `<tr>-->
+<!--                        <td>-->
+<!--                            <span id="tx${rowCount}">${value.name}</span>-->
+<!--                            <input id="vl${rowCount}" type="hidden" name="batchStudents[${rowCount}].batch.id" value="${value.value}">-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                          <div class="custom-control custom-checkbox custom-control-inline " >-->
+<!--                            <input class="custom-control-input" required   id="${rowCount}+ACTIVE" name="batchStudents[${rowCount}].liveDead" value="ACTIVE" type="radio" checked="checked"/>-->
+<!--                            <label class="custom-control-label"  for="${rowCount}+ACTIVE" >Active </label >-->
+<!--                          </div>-->
+<!--                          <div class="custom-control custom-checkbox custom-control-inline " >-->
+<!--                            <input class="custom-control-input" required id="${rowCount}+STOP" name="batchStudents[${rowCount}].liveDead" value="STOP" type="radio"/>-->
+<!--                            <label class="custom-control-label" for="${rowCount}+STOP">Deactivate </label >-->
+<!--                          </div >-->
+<!--                        </td>-->
 
-    });
-   // $(document).ready(function () {
-   //   selectedBatch();
-   //   mediumChange($("#medium").val());
-   //
-   // });
+<!--                        <td>-->
+<!--                            <button type="button" id="rm${rowCount}" class="btn btn-outline-danger" onclick="tableRowRemove(this)">Remove</button>-->
+<!--                        </td>-->
+<!--                    </tr>`;-->
 
-    function selectedBatch() {
-        $("#selectedCount").html($("#selectedBatchInTable tr").length - 1);
-    }
-</script >
+<!--        $("#selectedBatchInTable tr:last").after(html);-->
+<!--        selectedBatch();-->
+
+<!--    }-->
+
+<!--    $(document).ready(function () {-->
+<!--        selectedBatch();-->
+<!--        gradeChange($("#grade").val());-->
+
+<!--    });-->
+<!--   // $(document).ready(function () {-->
+<!--   //   selectedBatch();-->
+<!--   //   mediumChange($("#medium").val());-->
+<!--   //-->
+<!--   // });-->
+
+<!--    function selectedBatch() {-->
+<!--        $("#selectedCount").html($("#selectedBatchInTable tr").length - 1);-->
+<!--    }-->
+<!--</script >-->
+
+<script>
+$("#grade").change(function () {
+gradeChange($(this).val());
+deleteAllTableRow(selectedBatchInTable);
+});
+
+function gradeChange(val) {
+if (val.length !== 0) {
+let url = $("#batchUrl").val() + val;
+let studentId = $("#id").val();
+if (studentId) {
+url = $("#batchUrl").val() + val + "/" + studentId;
+}
+
+$.ajax({
+type: 'GET',
+url: url,
+success: function (resp) {
+addOptionTag(resp);
+},
+error: function (err) {
+console.log(err);
+swal({
+title: "There is no more batches match with this grade",
+icon: "warning",
+});
+}
+});
+}
+}
+
+function addOptionTag(resp) {
+console.log("length " + resp.length);
+$("#batches").empty();
+$("#batches").append(`<option value="">Please Select</option>`);
+for (let i = 0; i < resp.length; i++) {
+$("#batches").append(`<option value="${resp[i].id}">${resp[i].name}</option>`);
+}
+selectedBatch();
+}
+
+//add new item and price
+$("#batches").bind('change', function () {
+let valueA = optionElementRemove("#batches");
+tableRowAdd(valueA);
+});
+//table row remove
+let tableRowRemove = function (obj) {
+let itemIndex = obj.parentNode.parentNode.rowIndex;
+let id = obj.id.slice(2);
+console.log("id  " + id);
+let removeItemText = $(`#tx${id}`).html();
+let removeItemValue = $(`#vl${id}`).val();
+
+console.log(removeItemText + " value   " + removeItemValue)
+$("#batches").append(new Option(removeItemText, removeItemValue));
+let removeRow = `#selectedBatchInTable tr:eq(${itemIndex})`
+$(removeRow).remove();
+
+selectedBatch();
+}
+//option tag remove
+let optionElementRemove = function (id) {
+let selectedValue = $(id).val();
+let selectedItemId = `${id} option[value='${selectedValue}']`;
+let selectedValueInnerHTML = $(selectedItemId).html();
+$(selectedItemId).remove();
+return {name: selectedValueInnerHTML, value: selectedValue};
+}
+//table row add
+let tableRowAdd = function (value) {
+let rows = $("#selectedBatchInTable tr").length;
+let rowCount = rows - 1;
+
+let html = `<tr>
+  <td>
+    <span id="tx${rowCount}">${value.name}</span>
+    <input id="vl${rowCount}" type="hidden" name="batchStudents[${rowCount}].batch.id" value="${value.value}">
+  </td>
+  <td>
+    <div class="custom-control custom-checkbox custom-control-inline " >
+      <input class="custom-control-input" required   id="${rowCount}+ACTIVE" name="batchStudents[${rowCount}].liveDead" value="ACTIVE" type="radio" checked="checked"/>
+      <label class="custom-control-label"  for="${rowCount}+ACTIVE" >Active </label >
+    </div>
+    <div class="custom-control custom-checkbox custom-control-inline " >
+      <input class="custom-control-input" required id="${rowCount}+STOP" name="batchStudents[${rowCount}].liveDead" value="STOP" type="radio"/>
+      <label class="custom-control-label" for="${rowCount}+STOP">Deactivate </label >
+    </div >
+  </td>
+  <td>
+    <button type="button" id="rm${rowCount}" class="btn btn-outline-danger" onclick="tableRowRemove(this)">Remove</button>
+  </td>
+</tr>`;
+
+$("#selectedBatchInTable tr:last").after(html);
+selectedBatch();
+
+}
+
+$(document).ready(function () {
+selectedBatch();
+gradeChange($("#grade").val());
+
+});
+
+function selectedBatch() {
+$("#selectedCount").html($("#selectedBatchInTable tr").length - 1);}
+</script>
 </body >
 </html >

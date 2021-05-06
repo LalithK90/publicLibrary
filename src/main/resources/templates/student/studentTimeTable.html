@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Styles, meta data, and title are included-->
+<head data-th-replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Success TimeTable Management</title>
+</head>
+<body style="margin-top: 90px;">
+
+<!--Nav bar is included-->
+<nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
+
+<div class="card bg-gradient-light text-center">
+    <h1>TimeTable List</h1>
+</div>
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-3">
+        <a href="/timeTable/add">
+            <button class="btn shadow mt-3" id="listb"><i class="fas fa-list"></i>&nbsp;&nbsp;Add new time slot</button>
+        </a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <table class="table table-striped table-inverse text-center" data-th-fragment="timeTable" id="myTable">
+        <thead class="thead-inverse">
+        <tr>
+            <th>Index</th>
+            <th>Code</th>
+            <th>Lesson</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Active/Not</th>
+            <th>Hall Number</th>
+            <th>Batch Name</th>
+            <th >Modify</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="timeTable, index : ${batchStudents.student}">
+            <td data-th-text="${index.count}"></td>
+            <td data-th-text="${timeTable.code}"></td>
+            <td data-th-text="${timeTable.lesson}"></td>
+            <td data-th-text="${#temporals.format(timeTable.startAt, 'dd-MM-yyyy HH:mm')}"></td>
+            <td data-th-text="${#temporals.format(timeTable.endAt, 'dd-MM-yyyy HH:mm')}"></td>
+            <td data-th-text="${timeTable.liveDead.liveDead}"></td>
+            <td data-th-text="${timeTable.hall.number}"></td>
+            <td data-th-text="${timeTable.batch.name}"></td>
+            <td>
+                <a data-th-href="${'/timeTable/view/'+ timeTable.id}" ><button class="btn btn-info"  style="border-color:  rgba(71,123,11,0.99)"  data-sec-authorize="hasAnyAuthority('ROLE_MANAGER','ROLE_TEACHER')" ><i class="fa fa-folder-open"  ></i >View</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--footer is included-->
+<div data-th-replace="~{fragments/footer :: footerFragment}"></div>
+<!--script is included-->
+<div data-th-replace="~{fragments/script :: scriptFragment}"></div>
+</body>
+</html>
