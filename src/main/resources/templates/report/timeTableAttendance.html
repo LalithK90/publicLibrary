@@ -26,11 +26,34 @@
             </div>
 
         </form>
+        <p data-th-text="${message}"  class="bg-dark text-white text-center mt-5"></p>
 
     </div>
     </div>
 </div>
+<div class="container-fluid">
+    <div data-th-if="${not #lists.isEmpty(timeTableStudents)}">
+        <table class="table table-striped table-inverse text-center " id="myTable" >
+            <thead class="table-inverse">
+            <tr>
+                <th>
+                   Batch Name
+                </th>
+                <th>Student Count </th>
 
+            </tr>
+            </thead>
+            <tbody>
+            <tr  data-th-each="timeTableStudent : ${timeTableStudents}">
+                <td data-th-text="${timeTableStudent.batch.name}"></td>
+                <td data-th-text="${timeTableStudent.batch.students}"></td>
+                <td data-th-text="${timeTableStudent.batch.attendance}"></td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
 </div>
 <!--footer is included-->
 <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >

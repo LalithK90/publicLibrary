@@ -15,10 +15,14 @@ import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.student.service.StudentService;
 import lk.wasity_institute.asset.teacher.controller.TeacherController;
+import lk.wasity_institute.asset.teacher.entity.Teacher;
 import lk.wasity_institute.asset.teacher.service.TeacherService;
+import lk.wasity_institute.asset.user_management.entity.User;
+import lk.wasity_institute.asset.user_management.service.UserService;
 import lk.wasity_institute.util.interfaces.AbstractController;
 import lk.wasity_institute.util.service.MakeAutoGenerateNumberService;
 import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,15 +44,17 @@ public class BatchController implements AbstractController< Batch, Integer > {
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
   private final StudentService studentService;
   private final BatchStudentService batchStudentService;
+  private final UserService userService;
 
   public BatchController(BatchService batchService, TeacherService teacherService,
                          MakeAutoGenerateNumberService makeAutoGenerateNumberService, StudentService studentService,
-                         BatchStudentService batchStudentService) {
+                         BatchStudentService batchStudentService,UserService userService) {
     this.batchService = batchService;
     this.teacherService = teacherService;
     this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
     this.studentService = studentService;
     this.batchStudentService = batchStudentService;
+    this.userService = userService;
   }
 
 
@@ -217,6 +223,15 @@ public class BatchController implements AbstractController< Batch, Integer > {
   public String findByBatchStudent(@PathVariable Integer id, Model model){
     model.addAttribute("batchStudents", batchStudentService.findById(id));
     return "batch/showStudent";
+  }
+
+  @GetMapping("/teacher")
+  public String byTeacher(Model model){
+    User authUser = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+    Teacher teacher =teacherService.findById(authUser.getTeacher().getId());
+    List<Batch> batches = batchService.findAll().stream().filter(x->x.getTeacher().equals(teacher)).collect(Collectors.toList());
+    model.addAttribute("teacherBatches",batches);
+    return "batch/batchView";
   }
 
 }

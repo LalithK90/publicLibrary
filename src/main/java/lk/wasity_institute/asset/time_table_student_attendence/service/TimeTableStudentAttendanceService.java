@@ -4,11 +4,13 @@ package lk.wasity_institute.asset.time_table_student_attendence.service;
 
 
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.student.entity.Student;
 import lk.wasity_institute.asset.time_table_student_attendence.dao.TimeTableStudentAttendanceDao;
 import lk.wasity_institute.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,5 +51,7 @@ public class TimeTableStudentAttendanceService implements AbstractService<TimeTa
   public TimeTableStudentAttendance lastTimeTableStudentAttendance() {
     return timeTableStudentAttendanceDao.findFirstByOrderByIdDesc();
   }
-
+  public List<TimeTableStudentAttendance> findByCreatedAtIsBetween(LocalDateTime startAt, LocalDateTime endAt) {
+    return timeTableStudentAttendanceDao.findByCreatedAtIsBetween(startAt, endAt);
+  }
 }

@@ -82,19 +82,20 @@ public class TimeTableController {
     @GetMapping("/byDate")
     public String byDate(Model model) {
         List<TimeTable> timeTables = timeTableService.findAll();
+        model.addAttribute("attendanceStatus",false);
         return common(timeTables, model);
     }
 
     @GetMapping("/teacher")
     public String byTeacher(Model model) {
         User authUser = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
-
-        Teacher teacher = new Teacher();
+       Teacher teacher =teacherService.findById(authUser.getTeacher().getId());
+//        Teacher teacher = new Teacher();
         List<TimeTable> timeTables = timeTableService.findAll()
                 .stream()
                 .filter(x -> x.getBatch().getTeacher().equals(teacher))
                 .collect(Collectors.toList());
-
+model.addAttribute("attendanceStatus",true);
         return common(timeTables, model);
     }
 
@@ -178,7 +179,7 @@ public class TimeTableController {
             TimeTable timeTableDb = timeTableService.persist(timeTable);
             List<BatchStudent> batchStudents = batchService.findById(timeTableDb.getBatch().getId()).getBatchStudents();
             if (!batchStudents.isEmpty()) {
-              System.out.println("im here re " + batchStudents.size());
+//              System.out.println("im here re " + batchStudents.size());
                 batchStudents.forEach(x -> {
                     Student student = studentService.findById(x.getStudent().getId());
                     Batch batchDb = batchService.findById(timeTableDb.getBatch().getId());
