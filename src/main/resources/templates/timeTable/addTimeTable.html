@@ -37,8 +37,8 @@
           <th class="required" >Start At</th >
           <th class="required">End At</th >
           <th class="required">Hall</th >
-          <th data-th-if="${!addStatus}" >Activity</th >
-          <th data-th-if="${!addStatus}" >Comment</th >
+<!--          <th data-th-if="${!addStatus}" >Activity</th >-->
+<!--          <th data-th-if="${!addStatus}" >Comment</th >-->
         </tr >
         <tr data-th-each="batch, index : ${batches.timeTables}" >
           <td data-th-if="${!addStatus}" data-th-text="${index.count}" ></td >
@@ -104,11 +104,11 @@
               </div >
             </div >
           </td >
-          <td data-th-if="${!addStatus}" >
-            <input type="text" class="form-control"
-                   data-th-name="${'timeTables[__${index.index}__].remark'}"
-                   data-th-value="${batches.timeTables[__${index.index}__].remark}" required >
-          </td >
+<!--          <td data-th-if="${!addStatus}" >-->
+<!--            <input type="text" class="form-control"-->
+<!--                   data-th-name="${'timeTables[__${index.index}__].remark'}"-->
+<!--                   data-th-value="${batches.timeTables[__${index.index}__].remark}" required >-->
+<!--          </td >-->
         </tr >
       </table >
     </div >
