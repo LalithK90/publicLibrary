@@ -49,7 +49,7 @@
         <!--firstName-->
         <div class="form-row text-right" >
           <div class="col-md-4 required" >
-            <label class=" control-label" data-th-for="${firstName}" >First name</label ></div>
+            <label class=" control-label" data-th-for="${firstName}" >First name :</label ></div>
           <div class="col-md-8" >
             <input type="text" id="firstName" class="form-control" data-th-field="*{firstName}" required >
           </div >
@@ -60,7 +60,7 @@
         <!--lastName-->
         <div class="form-row text-right" >
           <div class="col-md-4 required" >
-            <label class="col-6 control-label" data-th-for="${lastName}" >Last name</label ></div>
+            <label class="col-6 control-label" data-th-for="${lastName}" >Last name :</label ></div>
           <div class="col-md-8" >
             <input type="text" id="lastName" class="form-control" data-th-field="*{lastName}" required >
           </div >
@@ -124,7 +124,7 @@
         <!--address-->
         <div class="form-row text-right" >
           <div class="col-md-4 required" >
-            <label class="col-6 control-label" data-th-for="${address}" >Address</label ></div>
+            <label class="col-6 control-label" data-th-for="${address}" >Address :</label ></div>
           <div class="col-md-8" >
             <textarea id="address" class="form-control" data-th-field="*{address}" required></textarea >
           </div >
@@ -135,7 +135,7 @@
         <!--city-->
         <div class="form-row text-right" >
           <div class="col-md-4" >
-            <label class=" control-label" data-th-for="${city}" >City</label ></div>
+            <label class=" control-label" data-th-for="${city}" >City :</label ></div>
           <div class="col-md-8" >
             <input type="text" id="city" class="form-control" data-th-field="*{city}" >
           </div >
@@ -146,7 +146,7 @@
         <!--grade-->
         <div class="form-row text-right" >
           <div class="col-md-4 required" >
-            <label class=" control-label" data-th-for="${'grade'}" >Grade</label ></div>
+            <label class=" control-label" data-th-for="${'grade'}" >Grade :</label ></div>
           <div class="col-md-8" >
             <select id="grade" class="form-control" data-th-field="*{grade}" required >
               <option value="" >Select the Grade</option >
@@ -177,6 +177,7 @@
           <label class=" control-label" data-th-for="${'ExamYear'}" >Exam Year :</label ></div>
           <div  class="col-md-8">
             <select id="ExamYear" class="form-control" data-th-field="*{ExamYear}" required >
+              <option value="please select Year" > Please Select Year</option >
               <option value="2021" >2021</option >
               <option value="2022" >2022</option >
               <option value="2023" >2023</option >
@@ -192,7 +193,7 @@
         <!--email-->
         <div class="form-row text-right" >
           <div class="col-md-4 " >
-            <label class=" control-label" data-th-for="${email}" >Email</label ></div>
+            <label class=" control-label" data-th-for="${email}" >Email :</label ></div>
           <div class="col-md-8" >
             <input type="text" id="email" class="form-control" data-th-field="*{email}" >
           </div >
@@ -204,7 +205,7 @@
         <label class=" control-label" for="school">School</label ></div>
       <div class="col-md-8" >
         <select id="school" class="form-control" data-th-field="*{school}" required>
-          <option value="" selected disabled >Please select</option >
+          <option value="" >Please select</option >
           <option data-th-each="school : ${schools}"
                   data-th-text="${school.name}"
                   data-th-value="${school.id}" >
@@ -217,7 +218,7 @@
         <!--mobileNumber-->
         <div class="form-row text-right" >
           <div class="col-md-4 required" >
-            <label class=" control-label" data-th-for="${mobile}" >Mobile number</label ></div>
+            <label class=" control-label" data-th-for="${mobile}" >Mobile number :</label ></div>
           <div class="col-md-8" >
             <input type="tel"  id="mobile" class="form-control mobile" data-th-field="*{mobile}"   maxlength="10" min="10" required >
           </div >
@@ -226,9 +227,9 @@
         <!--fixedNumber-->
         <div class="form-row text-right" >
           <div class="col-md-4" >
-            <label class=" control-label" data-th-for="${home}" >Fixed number</label ></div>
+            <label class=" control-label" data-th-for="${home}" >Fixed number :</label ></div>
           <div class="col-md-8" >
-            <input type="tel"   maxlength="10" min="10"  id="land" class="form-control land" data-th-field="*{home}" >
+            <input type="tel"   maxlength="10" minlength="10"  id="land" class="form-control land" data-th-field="*{home}" >
           </div >
         </div >
 
@@ -238,7 +239,7 @@
         <!--guardian-->
         <div class="form-row text-right" >
           <div class="col-md-4 required" >
-            <label class=" control-label" data-th-for="${guardian}" >Guardian's name</label ></div>
+            <label class=" control-label" data-th-for="${guardian}" >Guardian's name :</label ></div>
           <div class="col-md-8" >
             <input type="text" id="guardian" class="form-control" data-th-field="*{guardian}" required>
           </div >
@@ -247,7 +248,7 @@
  <!--available Batches-->
         <div class="form-row text-right" >
           <div class="col-md-4" >
-            <label class=" control-label" data-th-for="${'batches'}" >Available Batches</label ></div>
+            <label class=" control-label" data-th-for="${'batches'}" >Available Batches :</label ></div>
           <div class="col-md-8" >
             <select id="batches" class="form-control" >
               <option value="" >Choose</option >
