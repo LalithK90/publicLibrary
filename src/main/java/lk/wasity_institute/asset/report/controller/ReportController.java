@@ -398,28 +398,18 @@ schools.forEach(x-> {
 //
 //LocalDateTime StartDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
 //LocalDateTime EndDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
-//List<TimeTableStudentAttendance> timeTableStudentAttendances = timeTableStudentAttendanceService.findByCreatedAtIsBetween(StartDateTime,EndDateTime);
-//List<TimeTableStudents> timeTableStudents = new ArrayList<>();
-//
-//batchStudents.forEach(x->{
-// long count = 0;
-// for(TimeTableStudentAttendance timeTableStudentAttendance: timeTableStudentAttendances){
-//   if(timeTableStudentAttendance.getBatchStudent().equals(x)){
-//   count = count +1;
-//   }
-// }
-//
-// TimeTableStudents timeTableStudents1 = new TimeTableStudents();
-// timeTableStudents1.setBatchStudent(x);
-// timeTableStudents.add(timeTableStudents1);
+//List<Batch> batches = batchService.findByCreatedAtIsBetween(StartDateTime,EndDateTime);
+//List<BatchStudent> batchStudent = new ArrayList<>();
+//List<TimeTableStudentAttendance> timeTableStudentAttendances=new ArrayList<>();
+//batches.forEach(x->{
+//  batchStudent.addAll(x.getBatchStudents());
 //});
-//
-//  model.addAttribute("batchStudents",batchStudentService.findAll());
-//  String message="This report is belong from" +twoDate.getStartDate()+ "to" +twoDate.getEndDate();
-//  model.addAttribute("message",message);
-//  model.addAttribute("timeTableStudents",timeTableStudents);
-//  return "report/timeTableAttendance";
-//
+//batchStudent.forEach(x->{
+//          timeTableStudentAttendances.addAll(x.getTimeTableStudentAttendances());
+//        }
+//       );
+//model.addAttribute("")
+//        return"";
 //}
 
 
