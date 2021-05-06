@@ -68,4 +68,7 @@ public class TimeTableService implements AbstractService<TimeTable, Integer > {
     return timeTableDao.findByBatchAndStartAtIsBetweenAndTimeTableStatus(batch, from, to, timeTableStatus);
  }
 
+  public  List< TimeTable> findByBatch(Batch batch) {
+    return timeTableDao.findByBatch(batch);
+  }
 }

@@ -115,26 +115,29 @@ public class StudentController implements AbstractController<Student, Integer> {
         }
 
         try {
-            studentService.persist(student);
+            Student studentDb = studentService.persist(student);
+
+            student.getBatchStudents().forEach(x -> {
+                x.setStudent(studentDb);
+                batchStudentService.persist(x);
+            });
         } catch (Exception e) {
             ObjectError error = new ObjectError("student",
                     "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
 
             if (student.getId() == null) {
                 bindingResult.addError(error);
-              List<BatchStudent> batchStudents = new ArrayList<>();
-              student.setBatchStudents(batchStudents);
+                List<BatchStudent> batchStudents = new ArrayList<>();
+                student.setBatchStudents(batchStudents);
                 return commonThing(model, student, true);
             } else {
+                student = studentService.findById(student.getId());
                 bindingResult.addError(error);
-                return commonThing(model, studentService.findById(student.getId()), false);
+                return commonThing(model, student, false);
 
             }
         }
-        student.getBatchStudents().forEach(x -> {
-            x.setStudent(student);
-            batchStudentService.persist(x);
-        });
+
 
         return "redirect:/student";
     }

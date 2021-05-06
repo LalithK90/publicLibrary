@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -126,10 +125,6 @@ model.addAttribute("attendanceStatus",true);
     @PostMapping("/add")
     public String form(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date, Model model) {
         LocalDate today = LocalDate.now();
-        //month
-        Month month = today.getMonth();
-//Day of week
-        String dayOfWeek = date.getDayOfWeek().toString();
 
         return commonThing(model, date, true);
     }

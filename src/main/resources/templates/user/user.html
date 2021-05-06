@@ -49,8 +49,8 @@
             <th data-th-text="${user.enabled==true?'Active':'Blocked'}" ></th >
             <th data-th-text="${{user.createdAt}}" ></th >
             <th >
-              <a  id="userView" ><button class="btn btn-success">
-                <i class="fa fa-folder-open" data-th-href="${'/user/view/' + user.id}" ></i >&nbsp;View </button></a >
+              <a  id="userView" data-th-href="${'/user/view/' + user.id}" ><button class="btn btn-success">
+                <i class="fa fa-folder-open" ></i >&nbsp;View </button></a >
               <a  id="userEdit" data-th-href="${'/user/edit/' + user.id}" ><button class="btn btn-primary ">
                 <i class="fa fa-edit" ></i >&nbsp;Edit</button></a >
               <a  id="userRemove" data-th-href="${'/user/remove/' + user.id}"><button class="btn btn-danger ">

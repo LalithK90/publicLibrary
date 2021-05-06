@@ -1,8 +1,6 @@
 package lk.wasity_institute.asset.user_management.controller;
 
 
-
-import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
 import lk.wasity_institute.asset.employee.entity.Employee;
 import lk.wasity_institute.asset.employee.entity.enums.EmployeeStatus;
 import lk.wasity_institute.asset.employee.service.EmployeeService;
@@ -13,9 +11,7 @@ import lk.wasity_institute.asset.teacher.service.TeacherService;
 import lk.wasity_institute.asset.user_management.entity.User;
 import lk.wasity_institute.asset.user_management.service.RoleService;
 import lk.wasity_institute.asset.user_management.service.UserService;
-import lk.wasity_institute.asset.user_management.service.UserSessionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -67,18 +63,19 @@ public class UserController {
     return "user/userEmployee";
   }
 
-  @GetMapping("/teacher")
+  @GetMapping( "/teacher" )
   public String TeacherUserPage(Model model) {
     model.addAttribute("userTeacher", roleService.findByRoleName("TEACHER").getUsers());
     return "user/userTeacher";
   }
 
-  @GetMapping("/student")
+  @GetMapping( "/student" )
   public String StudentUserPage(Model model) {
     model.addAttribute("userStudent", roleService.findByRoleName("STUDENT").getUsers());
     return "user/userStudent";
   }
-  @GetMapping(  "/view/{id}" )
+
+  @GetMapping( "/view/{id}" )
   public String userView(@PathVariable Integer id, Model model) {
     model.addAttribute("userDetail", userService.findById(id));
     return "user/user-detail";
@@ -129,7 +126,6 @@ public class UserController {
         .collect(Collectors.toList());
 
 
-
     if ( employees.size() == 1 ) {
       User user = new User();
       user.setEmployee(employees.get(0));
@@ -155,7 +151,7 @@ public class UserController {
   @PostMapping( value = {"/save", "/update"} )
   public String addUser(@Valid @ModelAttribute User user, BindingResult result, Model model) {
 
-    if ( user.getId() ==null ) {
+    if ( user.getId() == null ) {
       if ( user.getEmployee() != null && userService.findUserByEmployee(user.getEmployee()) != null ) {
         ObjectError error = new ObjectError("employee", "This employee already defined as a user");
         result.addError(error);
@@ -184,7 +180,6 @@ public class UserController {
       return "redirect:/user";
     }
 
-
     if ( user.getEmployee() != null ) {
       Employee employee = employeeService.findById(user.getEmployee().getId());
       user.setEnabled(employee.getEmployeeStatus().equals(EmployeeStatus.WORKING));
@@ -192,12 +187,19 @@ public class UserController {
     user.setRoles(user.getRoles());
     user.setEnabled(true);
     userService.persist(user);
-    return "redirect:/user";
+
+    if ( user.getEmployee() != null && userService.findUserByEmployee(user.getEmployee()) != null ) {
+      return "redirect:/user";
+    } else if ( user.getTeacher() != null && userService.findUserByTeacher(user.getTeacher()) != null ) {
+      return "redirect:/user/teacher";
+    } else {
+      return "redirect:/user/student";
+    }
   }
 
 
   @GetMapping( value = "/remove/{id}" )
-  public String removeUser(@PathVariable Integer id ) {
+  public String removeUser(@PathVariable Integer id) {
     userService.delete(id);
     return "redirect:/user";
   }
