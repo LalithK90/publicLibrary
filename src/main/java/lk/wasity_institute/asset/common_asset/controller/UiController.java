@@ -30,6 +30,10 @@ public class UiController {
     if ( user.getStudent() != null ) {
       return "redirect:/studentDetail";
     }
+    if(user.getTeacher()!=null){
+      return "redirect:/teacherDetail";
+    }
+
     return "mainWindow";
   }
 

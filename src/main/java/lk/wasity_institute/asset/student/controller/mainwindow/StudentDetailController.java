@@ -2,6 +2,8 @@ package lk.wasity_institute.asset.student.controller.mainwindow;
 
 
 import lk.wasity_institute.asset.batch.service.BatchService;
+import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
+import lk.wasity_institute.asset.batch_exam.service.BatchExamService;
 import lk.wasity_institute.asset.batch_student.service.BatchStudentService;
 import lk.wasity_institute.asset.common_asset.model.DateTimeTable;
 import lk.wasity_institute.asset.student.entity.Student;
@@ -30,15 +32,17 @@ public class StudentDetailController {
   private final TimeTableService timeTableService;
   private final BatchStudentService batchStudentService;
   private final BatchService batchService;
+  private final BatchExamService batchExamService;
 
   public StudentDetailController(StudentService studentService, UserService userService,
                                  TimeTableService timeTableService, BatchStudentService batchStudentService,
-                                 BatchService batchService) {
+                                 BatchService batchService,BatchExamService batchExamService) {
     this.studentService = studentService;
     this.userService = userService;
     this.timeTableService = timeTableService;
     this.batchStudentService = batchStudentService;
     this.batchService = batchService;
+    this.batchExamService = batchExamService;
   }
 
 
@@ -79,5 +83,17 @@ public class StudentDetailController {
     model.addAttribute("attendanceStatus", false);
     model.addAttribute("timeTableMaps", dateTimeTables);
     return "timeTable/timeTableView";
+  }
+
+  @GetMapping("/exam")
+  public String studentExam(Model model){
+    User user = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+    Student student = studentService.findById(user.getStudent().getId());
+    List<BatchExam> batchExams = new ArrayList<>();
+    batchStudentService.findByStudent(student).forEach(x->{
+      batchExams.addAll(batchExamService.findByBatch(x.getBatch()));
+    });
+    model.addAttribute("batchExams",batchExams);
+    return "batchExam/batchExam";
   }
 }

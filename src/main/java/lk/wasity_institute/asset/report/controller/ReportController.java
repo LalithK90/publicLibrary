@@ -648,13 +648,12 @@ public class ReportController {
 // timeTableStudents1.setBatchStudent(x);
 // timeTableStudents.add(timeTableStudents1);
 //});
-//
-//  model.addAttribute("batchStudents",batchStudentService.findAll());
-//  String message="This report is belong from" +twoDate.getStartDate()+ "to" +twoDate.getEndDate();
-//  model.addAttribute("message",message);
-//  model.addAttribute("timeTableStudents",timeTableStudents);
-//  return "report/timeTableAttendance";
-//
+//batchStudent.forEach(x->{
+//          timeTableStudentAttendances.addAll(x.getTimeTableStudentAttendances());
+//        }
+//       );
+//model.addAttribute("")
+//        return"";
 //}
 
 

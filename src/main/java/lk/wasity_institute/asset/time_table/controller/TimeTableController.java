@@ -34,6 +34,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 @Controller
@@ -236,7 +237,10 @@ model.addAttribute("attendanceStatus",true);
         model.addAttribute("liveDead", LiveDead.values());
         return "timeTable/addTimeTable";
     }
-
-
+@GetMapping("/delete/{id}")
+public String Delete(@PathVariable Integer id ){
+        timeTableService.delete(id);
+        return "redirect:/timeTable/byDate";
+}
 }
 
