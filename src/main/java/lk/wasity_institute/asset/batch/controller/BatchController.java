@@ -100,8 +100,8 @@ public class BatchController implements AbstractController< Batch, Integer > {
                         RedirectAttributes redirectAttributes, Model model) {
     if ( batch.getId() == null ) {
       Batch batchDbDayAndStartAndEndTime =
-              batchService.findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetween(batch.getYear(), batch.getClassDay()
-                      , batch.getStartAt(), batch.getEndAt(), batch.getStartAt(), batch.getEndAt());
+              batchService.findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetweenAndTeacher(batch.getYear(), batch.getClassDay()
+                      , batch.getStartAt(), batch.getEndAt(), batch.getStartAt(), batch.getEndAt(), batch.getTeacher());
 
 
       if ( batchDbDayAndStartAndEndTime != null ) {
