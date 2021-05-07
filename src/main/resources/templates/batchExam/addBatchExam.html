@@ -29,7 +29,7 @@
   <div class="col-9"></div>
   <div class="col-3">
     <a href="/batchExam">
-      <button class="btn shadow mt-3" id="listb"> Scheduled Exams </button>
+      <button class="btn shadow mt-3" id="listb" data-sec-authorize="hasAnyAuthority('ROLE_RECEPTIONIST','ROLE_MANAGER' )"> Scheduled Exams </button>
     </a>
   </div>
 </div>
@@ -90,7 +90,7 @@
     <div class="form-group row">
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <a href="/subject" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3">Back</button></a>
+        <a href="/batch/teacher" style="text-decoration-line: none"><button type="button"  id="btn" class="btn btn-danger mt-3" data-sec-authorize="hasAnyAuthority('ROLE_TEACHER')">Back</button></a>
         <button type="submit" class="btn btn-primary mt-3 ml-2"><span data-th-text="${addStatus==true?'Update':'Save'}"></span></button>
         <button type="reset" class="btn btn-warning mt-3 ml-2">Clear</button>
       </div>

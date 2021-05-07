@@ -6,6 +6,7 @@ import lk.wasity_institute.asset.batch_exam.dao.BatchExamDao;
 import lk.wasity_institute.asset.batch_exam.entity.BatchExam;
 import lk.wasity_institute.asset.batch_exam.entity.enums.ExamStatus;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
+import lk.wasity_institute.asset.time_table.entity.TimeTable;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
@@ -62,5 +63,9 @@ public class BatchExamService implements AbstractService<BatchExam, Integer > {
 
   public List< BatchExam> findByStartAtBetweenAndBatch(LocalDateTime startDateTime, LocalDateTime endDateTime, Batch batch) {
     return batchExamDao.findByStartAtBetweenAndBatch(startDateTime,endDateTime,batch);
+  }
+
+  public  List<BatchExam> findByBatch(Batch batch) {
+    return batchExamDao.findByBatch(batch);
   }
 }

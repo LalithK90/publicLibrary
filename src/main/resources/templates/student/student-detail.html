@@ -249,8 +249,8 @@
                 <td data-th-text="${batchStudentExamResult.code}" ></td >
                 <td data-th-text="${'Start At '+#temporals.format(batchStudentExamResult.batchExam.startAt, 'dd-MM-yyyy HH:mm')+ ' End At '+#temporals.format(batchStudentExamResult.batchExam.endAt, 'dd-MM-yyyy HH:mm')}" ></td >
                 <td data-th-text="${batchStudentExamResult.attendanceStatus.attendanceStatus}" ></td >
-                <td data-th-text="${batchStudentExamResult.mark}" ></td >
-                <td data-th-text="${batchStudentExamResult.resultGrade.resultGrade}" ></td >
+                <td data-th-if="${#strings.equals(batchStudentExamResult.attendanceStatus,'PRE')}" data-th-text="${batchStudentExamResult.mark}" ></td >
+                <td data-th-if="${#strings.equals(batchStudentExamResult.attendanceStatus,'PRE')}" data-th-text="${batchStudentExamResult.resultGrade.resultGrade}" ></td >
               </tr >
               </tbody >
             </table >

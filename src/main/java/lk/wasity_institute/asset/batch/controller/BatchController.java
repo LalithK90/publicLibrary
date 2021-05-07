@@ -219,11 +219,11 @@ public class BatchController implements AbstractController< Batch, Integer > {
   }
 
 
-  @GetMapping("/batchStudent")
-  public String findByBatchStudent(@PathVariable Integer id, Model model){
-    model.addAttribute("batchStudents", batchStudentService.findById(id));
-    return "batch/showStudent";
-  }
+//  @GetMapping("/batchStudent")
+//  public String findByBatchStudent(@PathVariable Integer id, Model model){
+//    model.addAttribute("batchStudents", batchStudentService.findById(id));
+//    return "batch/showStudent";
+//  }
 
   @GetMapping("/teacher")
   public String byTeacher(Model model){
