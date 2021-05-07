@@ -625,41 +625,6 @@ public class ReportController {
     batchStudentAttendances.add(batchStudentAttendance);
   }
 
-//@GetMapping("/timetableAttendance")
-//public String TimeTableAttendance(Model model){
-//   model.addAttribute("batchStudent",batchStudentService.findAll());
-//    return "report/timeTableAttendance";
-//}
-//@PostMapping("/timetableAttendance")
-//  public String TimeTableAttendance(@ModelAttribute TwoDate twoDate,Model model){
-//List<BatchStudent>batchStudents = batchStudentService.findAll();
-//
-//LocalDateTime StartDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
-//LocalDateTime EndDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
-//List<TimeTableStudentAttendance> timeTableStudentAttendances = timeTableStudentAttendanceService
-// .findByCreatedAtIsBetween(StartDateTime,EndDateTime);
-//List<TimeTableStudents> timeTableStudents = new ArrayList<>();
-//
-//batchStudents.forEach(x->{
-// long count = 0;
-// for(TimeTableStudentAttendance timeTableStudentAttendance: timeTableStudentAttendances){
-//   if(timeTableStudentAttendance.getBatchStudent().equals(x)){
-//   count = count +1;
-//   }
-// }
-//
-// TimeTableStudents timeTableStudents1 = new TimeTableStudents();
-// timeTableStudents1.setBatchStudent(x);
-// timeTableStudents.add(timeTableStudents1);
-//});
-//batchStudent.forEach(x->{
-//          timeTableStudentAttendances.addAll(x.getTimeTableStudentAttendances());
-//        }
-//       );
-//model.addAttribute("")
-//        return"";
-//}
-
 
 }
 
