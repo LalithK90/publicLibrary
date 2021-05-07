@@ -17,7 +17,7 @@ public class BatchExamResultStudent {
   private BatchExam batchExam;
   private Batch batch;
   private long attendCount;
-  private List<Student> attendStudents;
+  private List< Student > attendStudents;
   private long absentCount;
   private List< Student > absentStudents;
   private List< Student > aPlusStudents;

@@ -1,5 +1,6 @@
 package lk.wasity_institute.asset.report.model;
 
+
 import lk.wasity_institute.asset.batch_student.entity.BatchStudent;
 import lk.wasity_institute.asset.teacher.entity.Teacher;
 import lombok.AllArgsConstructor;
