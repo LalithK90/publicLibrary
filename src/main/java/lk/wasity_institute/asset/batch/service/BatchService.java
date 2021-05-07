@@ -6,9 +6,8 @@ import lk.wasity_institute.asset.batch.dao.BatchDao;
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.batch.entity.enums.Medium;
 import lk.wasity_institute.asset.common_asset.model.enums.LiveDead;
-import lk.wasity_institute.asset.student.entity.Student;
+import lk.wasity_institute.asset.teacher.entity.Teacher;
 import lk.wasity_institute.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
@@ -77,5 +76,10 @@ public class BatchService implements AbstractService<Batch, Integer > {
 
   public List<Batch> findByCreatedAtIsBetween(LocalDateTime startAt, LocalDateTime endAt) {
     return batchDao.findByCreatedAtIsBetween(startAt, endAt);
+  }
+
+  public Batch findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetweenAndTeacher(String year, ClassDay classDay, LocalTime startAt, LocalTime endAt,
+                                                                                   LocalTime startAt1, LocalTime endAt1, Teacher teacher) {
+    return batchDao.findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetweenAndTeacher(year,classDay,startAt,endAt,startAt1,endAt1,teacher);
   }
 }

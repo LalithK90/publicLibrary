@@ -5,8 +5,7 @@ package lk.wasity_institute.asset.batch.dao;
 import lk.wasity_institute.asset.batch.entity.Batch;
 import lk.wasity_institute.asset.batch.entity.enums.ClassDay;
 import lk.wasity_institute.asset.batch.entity.enums.Grade;
-import lk.wasity_institute.asset.batch.entity.enums.Medium;
-import lk.wasity_institute.asset.student.entity.Student;
+import lk.wasity_institute.asset.teacher.entity.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -31,4 +30,6 @@ public interface BatchDao extends JpaRepository<Batch, Integer > {
                                                                   LocalTime endAt, LocalTime startAt1, LocalTime endAt1);
 
   List<Batch> findByCreatedAtIsBetween(LocalDateTime startAt, LocalDateTime endAt);
+
+  Batch findByYearAndClassDayAndStartAtIsBetweenAndEndAtIsBetweenAndTeacher(String year, ClassDay classDay, LocalTime startAt, LocalTime endAt, LocalTime startAt1, LocalTime endAt1, Teacher teacher);
 }
