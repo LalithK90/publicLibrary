@@ -27,6 +27,7 @@ import lk.wasity_institute.asset.subject.service.SubjectService;
 import lk.wasity_institute.asset.teacher.entity.Teacher;
 import lk.wasity_institute.asset.teacher.service.TeacherService;
 import lk.wasity_institute.asset.time_table.service.TimeTableService;
+import lk.wasity_institute.asset.time_table_student_attendence.entity.TimeTableStudentAttendance;
 import lk.wasity_institute.asset.time_table_student_attendence.service.TimeTableStudentAttendanceService;
 import lk.wasity_institute.asset.user_management.service.UserService;
 import lk.wasity_institute.util.service.DateTimeAgeService;
@@ -566,6 +567,59 @@ public class ReportController {
     return "report/teacherBatchReport";
   }
 
+  @GetMapping( "/attendance" )
+  public String attendanceReport(Model model) {
+    LocalDate localDate = LocalDate.now();
+    String message = "This report for" + localDate.toString();
+    model.addAttribute("message", message);
+
+    return commonAttendanceReport(localDate, localDate, model, null);
+  }
+
+  @PostMapping( "/attendance" )
+  public String attendanceReport(@ModelAttribute TwoDate twoDate, Model model) {
+
+    String message = "This report for " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
+    if ( twoDate.getId() != null ) {
+      Batch batch = batchService.findById(twoDate.getId());
+      message = message + "  Batch Name  " + batch.getName();
+    }
+
+    model.addAttribute("message", message);
+    return commonAttendanceReport(twoDate.getStartDate(), twoDate.getEndDate(), model, twoDate.getId());
+  }
+
+  private String commonAttendanceReport(LocalDate startDate, LocalDate endDate, Model model, Integer id) {
+    model.addAttribute("batches", batchService.findAll());
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
+    Batch batchDb = batchService.findById(id);
+    List< TimeTableStudentAttendance > timeTableStudentAttendances =
+        timeTableStudentAttendanceService.findByCreatedAtIsBetween(startDateTime, endDateTime);
+
+    List< BatchStudentAttendance > batchStudentAttendances = new ArrayList<>();
+
+    HashSet< Batch > batches = new HashSet<>();
+    timeTableStudentAttendances.forEach(x -> batches.add(batchService.findById(x.getBatchStudent().getBatch().getId())));
+
+    if ( id == null ) {
+      for ( Batch batch : batches ) {
+        BatchStudentAttendance batchStudentAttendance = new BatchStudentAttendance();
+        batchStudentAttendance.setBatch(batch);
+        batchStudentAttendance.setTimeTableStudentAttendances(timeTableStudentAttendances.stream().filter(x -> x.getBatchStudent().getBatch().equals(batch)).collect(Collectors.toList()));
+        batchStudentAttendances.add(batchStudentAttendance);
+      }
+    } else {
+      BatchStudentAttendance batchStudentAttendance = new BatchStudentAttendance();
+      batchStudentAttendance.setBatch(batchDb);
+      batchStudentAttendance.setTimeTableStudentAttendances(timeTableStudentAttendances.stream().filter(x -> x.getBatchStudent().getBatch().equals(batchDb)).collect(Collectors.toList()));
+      batchStudentAttendances.add(batchStudentAttendance);
+    }
+
+
+    model.addAttribute("batchStudentAttendances", batchStudentAttendances);
+    return "report/attendanceReport";
+  }
 
 //@GetMapping("/timetableAttendance")
 //public String TimeTableAttendance(Model model){
