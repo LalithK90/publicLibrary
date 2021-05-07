@@ -596,9 +596,6 @@ public class ReportController {
     List< TimeTableStudentAttendance > timeTableStudentAttendances =
         timeTableStudentAttendanceService.findByCreatedAtIsBetween(startDateTime, endDateTime);
 
-
-
-
     List< BatchStudentAttendance > batchStudentAttendances = new ArrayList<>();
 
     HashSet< Batch > batches = new HashSet<>();
@@ -608,14 +605,20 @@ public class ReportController {
       for ( Batch batch : batches ) {
         BatchStudentAttendance batchStudentAttendance = new BatchStudentAttendance();
         batchStudentAttendance.setBatch(batch);
-        batchStudentAttendance.setTimeTableStudentAttendances(timeTableStudentAttendances.stream().filter(x -> x.getBatchStudent().getBatch().equals(batch)).collect(Collectors.toList()));
+        List< TimeTableStudentAttendance > timeTableStudentAttendancesDb = new ArrayList<>();
+        timeTableStudentAttendances.stream().filter(x -> x.getBatchStudent().getBatch().equals(batch)).collect(Collectors.toList()).forEach(
+            y ->                timeTableStudentAttendancesDb.add(timeTableStudentAttendanceService.findById(y.getId()))                                                                                                                                           );
+        batchStudentAttendance.setTimeTableStudentAttendances(timeTableStudentAttendancesDb);
         batchStudentAttendances.add(batchStudentAttendance);
       }
     } else {
       Batch batchDb = batchService.findById(id);
       BatchStudentAttendance batchStudentAttendance = new BatchStudentAttendance();
       batchStudentAttendance.setBatch(batchDb);
-      batchStudentAttendance.setTimeTableStudentAttendances(timeTableStudentAttendances.stream().filter(x -> x.getBatchStudent().getBatch().equals(batchDb)).collect(Collectors.toList()));
+      List< TimeTableStudentAttendance > timeTableStudentAttendancesDb = new ArrayList<>();
+      timeTableStudentAttendances.stream().filter(x -> x.getBatchStudent().getBatch().equals(batchDb)).collect(Collectors.toList()).forEach(
+          y ->                timeTableStudentAttendancesDb.add(timeTableStudentAttendanceService.findById(y.getId()))                                                                                                                                           );
+      batchStudentAttendance.setTimeTableStudentAttendances(timeTableStudentAttendancesDb);
       batchStudentAttendances.add(batchStudentAttendance);
     }
 
